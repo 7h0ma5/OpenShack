@@ -38,7 +38,7 @@ RESOURCES += \
 TRANSLATIONS = openshack_de.ts
 
 win32: LIBS += -L$$PWD/../lib/ -lhamlib-2
-else:unix: LIBS += -L$/usr/lib/ -lhamlib++
+else:unix: LIBS += -L$/usr/lib/ -lhamlib
 
 win32: INCLUDEPATH += $$PWD/../include/
 else:unix: INCLUDEPATH += /usr/include

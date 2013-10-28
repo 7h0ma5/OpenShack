@@ -25,6 +25,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     //addAction(deleteContact);
     ui->contactTable->setModel(model);
     ui->contactTable->hideColumn(0);
+    ui->contactTable->addAction(ui->deleteContact);
 }
 
 void LogbookWidget::deleteContact()
