@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewContactWidget</class>
+ <widget class="QWidget" name="NewContactWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>353</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="callsignLabel">
+       <property name="text">
+        <string>Callsign</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="callsignEdit"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="nameEdit"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="frequencyLabel">
+       <property name="text">
+        <string>Frequency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QDoubleSpinBox" name="frequencyEdit">
+       <property name="suffix">
+        <string notr="true"> MHz</string>
+       </property>
+       <property name="decimals">
+        <number>3</number>
+       </property>
+       <property name="maximum">
+        <double>20000.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1">
+    <layout class="QFormLayout" name="formLayout_2">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="rxRstLabel">
+       <property name="text">
+        <string>Station RST</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="rxRstEdit">
+       <property name="text">
+        <string notr="true">59</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="locationLabel">
+       <property name="text">
+        <string>Location</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="locationEdit"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="bandLabel">
+       <property name="text">
+        <string>Band</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="bandEdit">
+       <item>
+        <property name="text">
+         <string notr="true">160m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">80m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">40m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">30m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">20m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">17m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">15m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">12m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">10m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">6m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">2m</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">70cm</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="2">
+    <layout class="QFormLayout" name="formLayout_3">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="txRstLabel">
+       <property name="text">
+        <string>My RST</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txRstEdit">
+       <property name="text">
+        <string>59</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="locatorLabel">
+       <property name="text">
+        <string>Locator</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="locatorEdit"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="modeLabel">
+       <property name="text">
+        <string>Mode</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="modeEdit">
+       <item>
+        <property name="text">
+         <string>CW</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>USB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LSB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>PSK31</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RTTY</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>callsignEdit</tabstop>
+  <tabstop>rxRstEdit</tabstop>
+  <tabstop>txRstEdit</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>locationEdit</tabstop>
+  <tabstop>locatorEdit</tabstop>
+  <tabstop>frequencyEdit</tabstop>
+  <tabstop>bandEdit</tabstop>
+  <tabstop>modeEdit</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>saveContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>779</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>438</x>
+     <y>352</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>resetContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>779</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>352</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callsignEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>callsignChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>10</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>389</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>saveContact()</slot>
+  <slot>resetContact()</slot>
+  <slot>callsignChanged()</slot>
+ </slots>
+</ui>
