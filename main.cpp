@@ -39,13 +39,11 @@ int main(int argc, char* argv[]) {
     QSqlQuery query;
     query.exec("CREATE TABLE IF NOT EXISTS contacts"
                "(id INTEGER PRIMARY KEY,"
-               "callsign TEXT NOT NULL,"
-               "tx_rst TEXT,"
-               "rx_rst TEXT,"
-               "name TEXT,"
-               "location TEXT,"
-               "locator TEXT,"
-               "time TEXT NOT NULL)");
+               "call TEXT NOT NULL,"
+               "rst_rx TEXT, rst_tx TEXT,"
+               "name TEXT, qth TEXT, grid TEXT,"
+               "time_on TEXT, time_off TEXT,"
+               "frequency TEXT, band TEXT, mode TEXT)");
 
     MainWindow w;
     w.show();

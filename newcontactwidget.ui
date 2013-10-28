@@ -66,6 +66,12 @@
        <property name="maximum">
         <double>20000.000000000000000</double>
        </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>3.000000000000000</double>
+       </property>
       </widget>
      </item>
     </layout>
@@ -192,14 +198,14 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="locatorLabel">
+      <widget class="QLabel" name="gridLabel">
        <property name="text">
         <string>Locator</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="locatorEdit"/>
+      <widget class="QLineEdit" name="gridEdit"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="modeLabel">
@@ -217,12 +223,7 @@
        </item>
        <item>
         <property name="text">
-         <string>USB</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>LSB</string>
+         <string>SSB</string>
         </property>
        </item>
        <item>
@@ -273,7 +274,7 @@
   <tabstop>txRstEdit</tabstop>
   <tabstop>nameEdit</tabstop>
   <tabstop>locationEdit</tabstop>
-  <tabstop>locatorEdit</tabstop>
+  <tabstop>gridEdit</tabstop>
   <tabstop>frequencyEdit</tabstop>
   <tabstop>bandEdit</tabstop>
   <tabstop>modeEdit</tabstop>

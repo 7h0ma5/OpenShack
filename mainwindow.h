@@ -18,6 +18,8 @@ public:
 
 private slots:
     void showSettings();
+    void importAdif();
+    void exportAdif();
 
 private:
     Ui::MainWindow* ui;

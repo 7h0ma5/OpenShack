@@ -16,9 +16,9 @@ void NewContactWidget::callsignChanged() {
     }
 
     QSqlQuery query;
-    query.prepare("SELECT name, location, locator FROM contacts "
-                  "WHERE callsign = :callsign ORDER BY ID DESC");
-    query.bindValue(":callsign", ui->callsignEdit->text());
+    query.prepare("SELECT name, qth, grid FROM contacts "
+                  "WHERE call = :call ORDER BY ID DESC");
+    query.bindValue(":call", ui->callsignEdit->text());
     query.exec();
 
     if (!query.next()) {
@@ -28,27 +28,30 @@ void NewContactWidget::callsignChanged() {
 
     ui->nameEdit->setText(query.value(0).toString());
     ui->locationEdit->setText(query.value(1).toString());
-    ui->locatorEdit->setText(query.value(2).toString());
+    ui->gridEdit->setText(query.value(2).toString());
 }
 
 void NewContactWidget::resetContact() {
     ui->callsignEdit->clear();
     ui->nameEdit->clear();
     ui->locationEdit->clear();
-    ui->locatorEdit->clear();
+    ui->gridEdit->clear();
 }
 
 void NewContactWidget::saveContact() {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (callsign, tx_rst, rx_rst, name, location, locator, time) "
-                  "VALUES (:callsign, :tx_rst, :rx_rst, :name, :location, :locator, DATETIME('now'))");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, time_on, time_off, frequency, band, mode) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATETIME('now'), DATETIME('now'), :frequency, :band, :mode)");
 
-    query.bindValue(":callsign", ui->callsignEdit->text());
-    query.bindValue(":tx_rst", ui->txRstEdit->text());
-    query.bindValue(":rx_rst", ui->rxRstEdit->text());
+    query.bindValue(":call", ui->callsignEdit->text());
+    query.bindValue(":rst_rx", ui->rxRstEdit->text());
+    query.bindValue(":rst_tx", ui->txRstEdit->text());
     query.bindValue(":name", ui->nameEdit->text());
-    query.bindValue(":location", ui->locationEdit->text());
-    query.bindValue(":locator", ui->locatorEdit->text());
+    query.bindValue(":qth", ui->locationEdit->text());
+    query.bindValue(":grid", ui->gridEdit->text());
+    query.bindValue(":frequency", QString::number(ui->frequencyEdit->value(), '.', 6));
+    query.bindValue(":band", ui->bandEdit->currentText());
+    query.bindValue(":mode", ui->modeEdit->currentText());
     query.exec();
 
     resetContact();
