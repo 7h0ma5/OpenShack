@@ -18,14 +18,14 @@ void SettingsDialog::save() {
 void SettingsDialog::readSettings() {
     QSettings settings;
     ui->callsignEdit->setText(settings.value("operator/callsign").toString());
-    ui->locatorEdit->setText(settings.value("operator/locator").toString());
+    ui->locatorEdit->setText(settings.value("operator/grid").toString());
 }
 
 void SettingsDialog::writeSettings() {
     QSettings settings;
 
     settings.setValue("operator/callsign", ui->callsignEdit->text());
-    settings.setValue("operator/locator", ui->locatorEdit->text());
+    settings.setValue("operator/grid", ui->locatorEdit->text());
 }
 
 SettingsDialog::~SettingsDialog() {

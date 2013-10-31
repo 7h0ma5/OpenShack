@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     newcontactwidget.cpp \
     dxwidget.cpp \
     logbookwidget.cpp \
-    adif.cpp
+    adif.cpp \
+    utils.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
     newcontactwidget.h \
     dxwidget.h \
     logbookwidget.h \
-    adif.h
+    adif.h \
+    utils.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \

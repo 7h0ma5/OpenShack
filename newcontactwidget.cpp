@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
+#include "utils.h"
 
 NewContactWidget::NewContactWidget(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +14,7 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
 
 void NewContactWidget::callsignChanged() {
     ui->timeOnEdit->setTime(QTime::currentTime());
+    ui->timeOffEdit->setTime(QTime::currentTime());
 
     if (ui->callsignEdit->text().isEmpty()) {
         return;
@@ -32,6 +34,21 @@ void NewContactWidget::callsignChanged() {
     ui->nameEdit->setText(query.value(0).toString());
     ui->locationEdit->setText(query.value(1).toString());
     ui->gridEdit->setText(query.value(2).toString());
+}
+
+void NewContactWidget::gridChanged() {
+    QSettings settings;
+    QString myGrid = settings.value("operator/grid").toString();
+
+    double distance;
+    bool valid = grid_distance(myGrid, ui->gridEdit->text(), distance);
+
+    if (!valid) {
+        ui->distanceInfo->setText("");
+        return;
+    }
+
+    ui->distanceInfo->setText(QString::number(distance, '.', 2) + " km");
 }
 
 void NewContactWidget::resetContact() {

@@ -18,6 +18,7 @@ public slots:
     void callsignChanged();
     void resetContact();
     void saveContact();
+    void gridChanged();
 
 private:
     Ui::NewContactWidget *ui;
