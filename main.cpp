@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
                "call TEXT NOT NULL,"
                "rst_rx TEXT, rst_tx TEXT,"
                "name TEXT, qth TEXT, grid TEXT,"
-               "time_on TEXT, time_off TEXT,"
+               "date_on TEXT, time_on TEXT, time_off TEXT,"
                "frequency TEXT, band TEXT, mode TEXT)");
 
     MainWindow w;

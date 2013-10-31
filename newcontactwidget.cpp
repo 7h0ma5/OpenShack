@@ -8,9 +8,12 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     ui(new Ui::NewContactWidget)
 {
     ui->setupUi(this);
+    resetContact();
 }
 
 void NewContactWidget::callsignChanged() {
+    ui->timeOnEdit->setTime(QTime::currentTime());
+
     if (ui->callsignEdit->text().isEmpty()) {
         return;
     }
@@ -32,6 +35,8 @@ void NewContactWidget::callsignChanged() {
 }
 
 void NewContactWidget::resetContact() {
+    ui->dateEdit->setDate(QDate::currentDate());
+    ui->timeOnEdit->setTime(QTime::currentTime());
     ui->callsignEdit->clear();
     ui->nameEdit->clear();
     ui->locationEdit->clear();
@@ -40,8 +45,8 @@ void NewContactWidget::resetContact() {
 
 void NewContactWidget::saveContact() {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, time_on, time_off, frequency, band, mode) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATETIME('now'), DATETIME('now'), :frequency, :band, :mode)");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date_on, time_on, time_off, frequency, band, mode) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATE('now'), TIME('now'), TIME('now'), :frequency, :band, :mode)");
 
     query.bindValue(":call", ui->callsignEdit->text());
     query.bindValue(":rst_rx", ui->rxRstEdit->text());
