@@ -21,6 +21,7 @@ public slots:
     void send();
     void connected();
     void displayError(QAbstractSocket::SocketError error);
+    void rawModeChanged();
 
 private:
     QTcpSocket* socket;

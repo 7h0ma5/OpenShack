@@ -14,13 +14,20 @@ public:
     explicit NewContactWidget(QWidget *parent = 0);
     ~NewContactWidget();
 
+signals:
+    void contactAdded();
+
 public slots:
     void callsignChanged();
     void resetContact();
     void saveContact();
     void gridChanged();
+    void updateTimeOff();
+    void startContactTimer();
+    void stopContactTimer();
 
 private:
+    QTimer* contactTimer;
     Ui::NewContactWidget *ui;
 };
 

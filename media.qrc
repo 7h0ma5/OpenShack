@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/map">
+        <file alias="nasabluemarble.jpg">map/nasabluemarble.jpg</file>
+    </qresource>
+</RCC>

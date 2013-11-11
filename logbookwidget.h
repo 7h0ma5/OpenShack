@@ -17,6 +17,7 @@ public:
     ~LogbookWidget();
 
 public slots:
+    void updateTable();
     void deleteContact();
 
 private:

@@ -18,7 +18,10 @@ SOURCES += main.cpp\
     dxwidget.cpp \
     logbookwidget.cpp \
     adif.cpp \
-    utils.cpp
+    utils.cpp \
+    rig.cpp \
+    mapwidget.cpp \
+    rigwidget.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
@@ -26,18 +29,24 @@ HEADERS  += mainwindow.h \
     dxwidget.h \
     logbookwidget.h \
     adif.h \
-    utils.h
+    utils.h \
+    rig.h \
+    mapwidget.h \
+    rigwidget.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \
     newcontactwidget.ui \
     dxwidget.ui \
-    logbookwidget.ui
+    logbookwidget.ui \
+    mapwidget.ui \
+    rigwidget.ui
 
 OTHER_FILES +=
 
 RESOURCES += \
-    i18n.qrc
+    i18n.qrc \
+    media.qrc
 
 TRANSLATIONS = openshack_de.ts
 

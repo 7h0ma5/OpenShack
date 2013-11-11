@@ -4,11 +4,10 @@
 #include <QResource>
 #include <QDebug>
 #include "mainwindow.h"
-#include <hamlib/rig.h>
+#include "rig.h"
 
 int main(int argc, char* argv[]) {
-    RIG* myrig = rig_init(215);
-    strncpy(myrig->state.rigport.pathname, "COM1", FILPATHLEN-1);
+    Rig::init();
 
     QApplication app(argc, argv);
 
@@ -39,11 +38,13 @@ int main(int argc, char* argv[]) {
     QSqlQuery query;
     query.exec("CREATE TABLE IF NOT EXISTS contacts"
                "(id INTEGER PRIMARY KEY,"
+               "date TEXT, time_on TEXT, time_off TEXT,"
                "call TEXT NOT NULL,"
                "rst_rx TEXT, rst_tx TEXT,"
                "name TEXT, qth TEXT, grid TEXT,"
-               "date_on TEXT, time_on TEXT, time_off TEXT,"
-               "frequency TEXT, band TEXT, mode TEXT)");
+               "frequency TEXT, band TEXT, mode TEXT,"
+               "tx TEXT, power TEXT,"
+               "comment TEXT)");
 
     MainWindow w;
     w.show();

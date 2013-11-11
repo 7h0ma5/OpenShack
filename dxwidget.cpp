@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QSettings>
 #include "dxwidget.h"
 #include "ui_dxwidget.h"
 
@@ -43,13 +44,18 @@ void DxWidget::send() {
     socket->write(data);
 
     ui->commandEdit->clear();
-
-    qDebug() << QString(data);
 }
 
 void DxWidget::receive() {
-    qDebug() << "receiving data";
+    QSettings settings;
     QString data(socket->readAll());
+
+    if (data.startsWith("login:")) {
+        QByteArray call = settings.value("operator/callsign").toByteArray();
+        call.append("\n");
+        socket->write(call);
+    }
+
     ui->log->appendPlainText(data);
 }
 
@@ -63,6 +69,15 @@ void DxWidget::connected() {
     ui->sendButton->setEnabled(true);
     ui->connectButton->setEnabled(true);
     ui->connectButton->setText("Disconnect");
+}
+
+void DxWidget::rawModeChanged() {
+    if (ui->rawCheckBox->isChecked()) {
+        ui->stack->setCurrentIndex(1);
+    }
+    else {
+        ui->stack->setCurrentIndex(0);
+    }
 }
 
 DxWidget::~DxWidget() {

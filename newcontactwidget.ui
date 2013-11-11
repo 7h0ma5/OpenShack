@@ -6,19 +6,62 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>815</width>
-    <height>214</height>
+    <width>1033</width>
+    <height>436</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <item>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="4">
+       <item row="0" column="3">
+        <widget class="QLabel" name="timeOffLabel">
+         <property name="text">
+          <string>Time Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="callsignLabel">
+         <property name="text">
+          <string>Callsign</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QTimeEdit" name="timeOnEdit">
+         <property name="displayFormat">
+          <string notr="true">hh:mm:ss</string>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+         <property name="timeSpec">
+          <enum>Qt::UTC</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QTimeEdit" name="timeOffEdit">
+         <property name="displayFormat">
+          <string notr="true">hh:mm:ss</string>
+         </property>
+         <property name="timeSpec">
+          <enum>Qt::UTC</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
         <spacer name="horizontalSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -31,13 +74,6 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="timeOnLabel">
-         <property name="text">
-          <string>Time On</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="dateLabel">
          <property name="text">
@@ -45,11 +81,27 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="callsignEdit">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="timeOnLabel">
+         <property name="text">
+          <string>Time On</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="1">
         <widget class="QDateEdit" name="dateEdit">
          <property name="dateTime">
           <datetime>
-           <hour>20</hour>
+           <hour>15</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -65,43 +117,13 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="timeOffLabel">
+       <item row="1" column="4">
+        <widget class="QPushButton" name="stopContactTimerButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
-          <string>Time Off</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="callsignEdit">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="callsignLabel">
-         <property name="text">
-          <string>Callsign</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QTimeEdit" name="timeOnEdit">
-         <property name="calendarPopup">
-          <bool>true</bool>
-         </property>
-         <property name="timeSpec">
-          <enum>Qt::UTC</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QTimeEdit" name="timeOffEdit">
-         <property name="timeSpec">
-          <enum>Qt::UTC</enum>
+          <string>Stop</string>
          </property>
         </widget>
        </item>
@@ -316,20 +338,21 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="distanceInfo">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="commentLabel">
+       <property name="text">
+        <string>Comment</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="commentEdit">
+       <property name="tabChangesFocus">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer">
@@ -362,17 +385,64 @@
      </item>
     </layout>
    </item>
-   <item>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Info</string>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(255,0,0,0.5);</string>
-     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="distanceLabel">
+        <property name="text">
+         <string>Distance</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="distanceInfo">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="dxccLabel">
+        <property name="text">
+         <string>DXCC</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="dxccInfo">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="contactLabel">
+        <property name="text">
+         <string>Contacts</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="contactInfo">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -446,11 +516,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>stopContactTimerButton</sender>
+   <signal>clicked()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>stopContactTimer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>509</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>saveContact()</slot>
   <slot>resetContact()</slot>
   <slot>callsignChanged()</slot>
   <slot>gridChanged()</slot>
+  <slot>stopContactTimer()</slot>
  </slots>
 </ui>

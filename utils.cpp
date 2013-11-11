@@ -3,8 +3,8 @@
 #include <cmath>
 #include "utils.h"
 
-#define PI 3.14159265
 #define EARTH_RADIUS 6371
+#define EARTH_CIRCUM 40075
 
 bool grid_validate(QString grid) {
     QRegExp regex("^[A-Za-z]{2}[0-9]{2}([A-Za-z]{2})?$");
@@ -46,10 +46,10 @@ bool grid_distance(QString gridA, QString gridB, double &distance) {
 
     if (!validA || !validB) return false;
 
-    double dLat = (latB-latA)*PI/180;
-    double dLon = (lonB-lonA)*PI/180;
-    latA = latA*PI/180;
-    latB = latA*PI/180;
+    double dLat = (latB-latA)*M_PI/180;
+    double dLon = (lonB-lonA)*M_PI/180;
+    latA = latA*M_PI/180;
+    latB = latA*M_PI/180;
 
     double a = sin(dLat/2) * sin(dLat/2) +
                sin(dLon/2) * sin(dLon/2) * cos(latA) * cos(latB);
@@ -57,7 +57,7 @@ bool grid_distance(QString gridA, QString gridB, double &distance) {
     double c = 2 * atan2(sqrt(a), sqrt(1-a));
     distance = EARTH_RADIUS * c;
 
-    return true;
+    return distance < EARTH_CIRCUM;
 }
 
 bool grid_bearing(QString gridA, QString gridB, double &distance) {

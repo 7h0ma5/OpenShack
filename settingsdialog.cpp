@@ -1,12 +1,18 @@
 #include <QSettings>
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
+#include "rig.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+
+    QStringListModel* rigModel = new QStringListModel();
+    rigModel->setStringList(Rig::allModels());
+    ui->rigModelSelect->setModel(rigModel);
+
     readSettings();
 }
 

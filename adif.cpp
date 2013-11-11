@@ -15,12 +15,12 @@ void Adif::exportToFile(QString filename) {
     query.exec();
 
     while (query.next()) {
-        QDateTime time_on = QDateTime::fromString(query.value("time_on").toString(), Qt::ISODate);
-        QDateTime time_off = QDateTime::fromString(query.value("time_off").toString(), Qt::ISODate);
+        QDate date = QDate::fromString(query.value("date").toString(), Qt::ISODate);
+        QTime time_on = QTime::fromString(query.value("time_on").toString(), Qt::ISODate);
+        QTime time_off = QTime::fromString(query.value("time_off").toString(), Qt::ISODate);
 
         writeField(out, "call", query.value("call").toString());
-        writeField(out, "qso_date", time_on.toString("yyyyMMdd"), "D");
-        writeField(out, "qso_date_off", time_off.toString("yyyyMMdd"), "D");
+        writeField(out, "qso_date", date.toString("yyyyMMdd"), "D");
         writeField(out, "time_on", time_on.toString("hhmmss"), "T");
         writeField(out, "time_off", time_off.toString("hhmmss"), "T");
         writeField(out, "rst_rcvd", query.value("rst_rx").toString());
@@ -31,6 +31,7 @@ void Adif::exportToFile(QString filename) {
         writeField(out, "frequency", query.value("frequency").toString(), "N");
         writeField(out, "band", query.value("band").toString());
         writeField(out, "mode", query.value("mode").toString());
+        writeField(out, "comment", query.value("comment").toString());
 
         out << "<eor>\n\n";
     }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>300</height>
+    <width>913</width>
+    <height>511</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,30 +27,59 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QPlainTextEdit" name="log">
-     <property name="readOnly">
-      <bool>true</bool>
+    <widget class="QStackedWidget" name="stack">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <property name="plainText">
-      <string notr="true"/>
-     </property>
+     <widget class="QWidget" name="page">
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTableView" name="dxTable"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="log">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLineEdit" name="commandEdit"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="sendButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Send</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QComboBox" name="serverSelect">
        <property name="currentText">
@@ -70,6 +99,26 @@
       <widget class="QPushButton" name="connectButton">
        <property name="text">
         <string>Connect</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="rawCheckBox">
+       <property name="text">
+        <string>Raw</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="commandEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sendButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Send</string>
        </property>
       </widget>
      </item>
@@ -127,9 +176,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>rawCheckBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>DxWidget</receiver>
+   <slot>rawModeChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>268</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>send()</slot>
   <slot>toggleConnect()</slot>
+  <slot>rawModeChanged()</slot>
  </slots>
 </ui>
