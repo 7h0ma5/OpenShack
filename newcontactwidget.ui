@@ -40,6 +40,9 @@
        </item>
        <item row="1" column="2">
         <widget class="QTimeEdit" name="timeOnEdit">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="displayFormat">
           <string notr="true">hh:mm:ss</string>
          </property>
@@ -53,6 +56,9 @@
        </item>
        <item row="1" column="3">
         <widget class="QTimeEdit" name="timeOffEdit">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="displayFormat">
           <string notr="true">hh:mm:ss</string>
          </property>
@@ -99,9 +105,12 @@
        </item>
        <item row="1" column="1">
         <widget class="QDateEdit" name="dateEdit">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="dateTime">
           <datetime>
-           <hour>15</hour>
+           <hour>11</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -122,6 +131,9 @@
          <property name="enabled">
           <bool>false</bool>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="text">
           <string>Stop</string>
          </property>
@@ -131,17 +143,39 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="rxRstLabel">
-         <property name="text">
-          <string>RST TX</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="txRstLabel">
          <property name="text">
           <string>RST RX</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QDoubleSpinBox" name="frequencyEdit">
+         <property name="suffix">
+          <string notr="true"> MHz</string>
+         </property>
+         <property name="decimals">
+          <number>5</number>
+         </property>
+         <property name="maximum">
+          <double>20000.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.001000000000000</double>
+         </property>
+         <property name="value">
+          <double>3.500000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="txRstEdit">
+         <property name="text">
+          <string>59</string>
+         </property>
+         <property name="maxLength">
+          <number>8</number>
          </property>
         </widget>
        </item>
@@ -179,99 +213,6 @@
          </item>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QDoubleSpinBox" name="frequencyEdit">
-         <property name="suffix">
-          <string notr="true"> MHz</string>
-         </property>
-         <property name="decimals">
-          <number>3</number>
-         </property>
-         <property name="maximum">
-          <double>20000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.100000000000000</double>
-         </property>
-         <property name="value">
-          <double>3.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="txRstEdit">
-         <property name="text">
-          <string>59</string>
-         </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QComboBox" name="bandEdit">
-         <item>
-          <property name="text">
-           <string notr="true">160m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">80m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">40m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">30m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">20m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">17m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">15m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">12m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">10m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">6m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">2m</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">70cm</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="0" column="4">
         <widget class="QLabel" name="modeLabel">
          <property name="text">
@@ -279,10 +220,24 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="frequencyLabel">
+       <item row="0" column="0">
+        <widget class="QLabel" name="rxRstLabel">
          <property name="text">
-          <string>Frequency</string>
+          <string>RST TX</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="bandText">
+         <property name="text">
+          <string>80m</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="rxRstEdit">
+         <property name="text">
+          <string notr="true">59</string>
          </property>
         </widget>
        </item>
@@ -293,10 +248,33 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="rxRstEdit">
+       <item row="0" column="2">
+        <widget class="QLabel" name="frequencyLabel">
          <property name="text">
-          <string notr="true">59</string>
+          <string>Frequency</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QDoubleSpinBox" name="powerEdit">
+         <property name="suffix">
+          <string> W</string>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>500.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>100.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="powerLabel">
+         <property name="text">
+          <string>Power</string>
          </property>
         </widget>
        </item>
@@ -371,6 +349,9 @@
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
        </property>
        <property name="styleSheet">
         <string notr="true"/>
@@ -448,6 +429,19 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>callsignEdit</tabstop>
+  <tabstop>rxRstEdit</tabstop>
+  <tabstop>txRstEdit</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>locationEdit</tabstop>
+  <tabstop>gridEdit</tabstop>
+  <tabstop>commentEdit</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>timeOnEdit</tabstop>
+  <tabstop>timeOffEdit</tabstop>
+  <tabstop>frequencyEdit</tabstop>
+  <tabstop>modeEdit</tabstop>
+  <tabstop>stopContactTimerButton</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>
@@ -532,6 +526,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>frequencyEdit</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>frequencyChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>394</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>saveContact()</slot>
@@ -539,5 +549,6 @@
   <slot>callsignChanged()</slot>
   <slot>gridChanged()</slot>
   <slot>stopContactTimer()</slot>
+  <slot>frequencyChanged()</slot>
  </slots>
 </ui>

@@ -1,5 +1,7 @@
 #include <QtSql/QtSql>
 #include <QDebug>
+#include "rig.h"
+#include "hamqth.h"
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
 #include "utils.h"
@@ -12,6 +14,10 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
 
     contactTimer = new QTimer(this);
     connect(contactTimer, SIGNAL(timeout()), this, SLOT(updateTimeOff()));
+
+    callbook = new HamQTH(this);
+    connect(callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
+            this, SLOT(callsignResult(const QMap<QString, QString>&)));
 
     resetContact();
 }
@@ -26,6 +32,8 @@ void NewContactWidget::callsignChanged() {
     }
 
     startContactTimer();
+
+    callbook->queryCallsign(ui->callsignEdit->text());
 
     QSqlQuery query;
     query.prepare("SELECT name, qth, grid, date FROM contacts "
@@ -46,6 +54,41 @@ void NewContactWidget::callsignChanged() {
     }
 }
 
+void NewContactWidget::callsignResult(const QMap<QString, QString>& data) {
+    if (!data.value("name").isEmpty() && ui->nameEdit->text().isEmpty()) {
+        ui->nameEdit->setText(data.value("name"));
+    }
+
+    if (!data.value("grid").isEmpty() && ui->gridEdit->text().isEmpty()) {
+        ui->gridEdit->setText(data.value("grid"));
+    }
+
+    if (!data.value("location").isEmpty() && ui->locationEdit->text().isEmpty()) {
+        ui->locationEdit->setText(data.value("location"));
+    }
+}
+
+void NewContactWidget::frequencyChanged() {
+    double freq = ui->frequencyEdit->value();
+    QString band = "OOB!";
+
+    if (freq <= 2.0 && freq >= 1.8) band = "160m";
+    else if (freq <= 3.8 && freq >= 3.5) band = "80m";
+    else if (freq <= 7.5 && freq >= 7.0) band = "40m";
+    else if (freq <= 10.150 && freq >= 10.1) band = "30m";
+    else if (freq <= 14.350 && freq >= 14.0) band = "20m";
+    else if (freq <= 18.168 && freq >= 18.068) band = "17m";
+    else if (freq <= 21.450 && freq >= 21.000) band = "15m";
+    else if (freq <= 24.990 && freq >= 24.890) band = "12m";
+    else if (freq <= 29.700 && freq >= 28.000) band = "10m";
+    else if (freq <= 52 && freq >= 50)  band = "6m";
+    else if (freq <= 148 && freq >= 144) band = "2m";
+    else if (freq <= 440 && freq >= 430) band = "70cm";
+
+    ui->bandText->setText(band);
+    Rig::setFrequency(freq*1e6);
+}
+
 void NewContactWidget::gridChanged() {
     QSettings settings;
     QString myGrid = settings.value("operator/grid").toString();
@@ -54,7 +97,7 @@ void NewContactWidget::gridChanged() {
     bool valid = grid_distance(myGrid, ui->gridEdit->text(), distance);
 
     if (!valid) {
-        ui->distanceInfo->setText("");
+        ui->distanceInfo->setText("Invalid Grid");
         return;
     }
 
@@ -75,8 +118,8 @@ void NewContactWidget::resetContact() {
 
 void NewContactWidget::saveContact() {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date, time_on, time_off, frequency, band, mode, comment) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATE('now'), TIME('now'), TIME('now'), :frequency, :band, :mode, :comment)");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date, time_on, time_off, frequency, band, mode, power, comment) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATE('now'), TIME('now'), TIME('now'), :frequency, :band, :mode, :power, :comment)");
 
     query.bindValue(":call", ui->callsignEdit->text());
     query.bindValue(":rst_rx", ui->rxRstEdit->text());
@@ -85,8 +128,9 @@ void NewContactWidget::saveContact() {
     query.bindValue(":qth", ui->locationEdit->text());
     query.bindValue(":grid", ui->gridEdit->text());
     query.bindValue(":frequency", QString::number(ui->frequencyEdit->value(), '.', 6));
-    query.bindValue(":band", ui->bandEdit->currentText());
+    query.bindValue(":band", ui->bandText->text());
     query.bindValue(":mode", ui->modeEdit->currentText());
+    query.bindValue(":power", QString::number(ui->powerEdit->value(), '.', 2));
     query.bindValue(":comment", ui->commentEdit->toPlainText());
     query.exec();
 

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql network
+QT       += core gui sql network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     utils.cpp \
     rig.cpp \
     mapwidget.cpp \
-    rigwidget.cpp
+    rigwidget.cpp \
+    hamqth.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
@@ -32,7 +33,8 @@ HEADERS  += mainwindow.h \
     utils.h \
     rig.h \
     mapwidget.h \
-    rigwidget.h
+    rigwidget.h \
+    hamqth.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \

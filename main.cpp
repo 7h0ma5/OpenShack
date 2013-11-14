@@ -7,8 +7,6 @@
 #include "rig.h"
 
 int main(int argc, char* argv[]) {
-    Rig::init();
-
     QApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName("DL2IC");
@@ -48,6 +46,8 @@ int main(int argc, char* argv[]) {
 
     MainWindow w;
     w.show();
+
+    //Rig::connect();
 
     return app.exec();
 }

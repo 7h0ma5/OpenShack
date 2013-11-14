@@ -59,8 +59,17 @@
          <property name="horizontalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
+         <attribute name="horizontalHeaderHighlightSections">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>24</number>
+         </attribute>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>25</number>
          </attribute>
         </widget>
        </item>
@@ -208,10 +217,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>dxTable</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>DxWidget</receiver>
+   <slot>entryDoubleClicked(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>send()</slot>
   <slot>toggleConnect()</slot>
   <slot>rawModeChanged()</slot>
+  <slot>entryDoubleClicked(QModelIndex)</slot>
  </slots>
 </ui>

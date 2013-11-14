@@ -6,14 +6,26 @@
 
 class Rig {
 private:
-    static QStringList rigList;
-    static int addRig(const struct rig_caps* caps, void* data);
+    static RIG* rig;
 
 public:
-    Rig();
+    static void connect();
+    static void setFrequency(double freq);
+};
 
-    static void init();
-    static QStringList allModels();
+class RigTypeModel : public QAbstractListModel {
+    Q_OBJECT
+
+public:
+    RigTypeModel(QObject* parent = 0);
+    int rowCount(const QModelIndex& parent = QModelIndex()) const;
+    QVariant data(const QModelIndex& index, int role) const;
+    QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const;
+    static int addRig(const struct rig_caps* caps, void* data);
+
+private:
+    QStringList rigList;
+    QMap<QString, int> rigIds;
 };
 
 #endif // RIG_H

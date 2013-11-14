@@ -7,6 +7,8 @@ namespace Ui {
 class NewContactWidget;
 }
 
+class HamQTH;
+
 class NewContactWidget : public QWidget {
     Q_OBJECT
 
@@ -19,14 +21,17 @@ signals:
 
 public slots:
     void callsignChanged();
+    void frequencyChanged();
     void resetContact();
     void saveContact();
     void gridChanged();
     void updateTimeOff();
     void startContactTimer();
     void stopContactTimer();
+    void callsignResult(const QMap<QString, QString>& data);
 
 private:
+    HamQTH* callbook;
     QTimer* contactTimer;
     Ui::NewContactWidget *ui;
 };

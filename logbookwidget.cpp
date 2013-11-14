@@ -24,6 +24,9 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     model->setHeaderData(10, Qt::Horizontal, QObject::tr("Frequency"));
     model->setHeaderData(11, Qt::Horizontal, QObject::tr("Band"));
     model->setHeaderData(12, Qt::Horizontal, QObject::tr("Mode"));
+    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Transmitter"));
+    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Power"));
+    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Comment"));
 
     model->select();
 
@@ -31,8 +34,10 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->setModel(model);
     ui->contactTable->hideColumn(0);
     ui->contactTable->hideColumn(3);
+    ui->contactTable->hideColumn(15);
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
+    ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void LogbookWidget::deleteContact()

@@ -8,14 +8,6 @@ namespace Ui {
 class DxWidget;
 }
 
-struct DxEntry {
-    QString spotter;
-    QString call;
-    QString freq;
-    QString time;
-    QString comment;
-};
-
 class DxTableModel : public QAbstractTableModel {
     Q_OBJECT
 
@@ -45,11 +37,15 @@ public slots:
     void connected();
     void socketError(QAbstractSocket::SocketError error);
     void rawModeChanged();
+    void entryDoubleClicked(QModelIndex index);
 
 private:
     DxTableModel* dxTableModel;
     QTcpSocket* socket;
     Ui::DxWidget *ui;
+
+    void connectCluster();
+    void disconnectCluster();
 };
 
 #endif // DXWIDGET_H

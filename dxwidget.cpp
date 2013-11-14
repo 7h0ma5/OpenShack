@@ -23,23 +23,12 @@ QVariant DxTableModel::headerData(int section, Qt::Orientation orientation, int 
     if (role != Qt::DisplayRole || orientation != Qt::Horizontal) return QVariant();
 
     switch (section) {
-    case 0:
-        return "Time";
-
-    case 1:
-        return "Callsign";
-
-    case 2:
-        return "Frequency";
-
-    case 3:
-        return "Spotter";
-
-    case 4:
-        return "Comment";
-
-    default:
-        return QVariant();
+    case 0: return "Time";
+    case 1: return "Callsign";
+    case 2: return "Frequency";
+    case 3: return "Spotter";
+    case 4: return "Comment";
+    default: return QVariant();
     }
 }
 
@@ -47,54 +36,57 @@ void DxTableModel::addEntry(QStringList entry) {
     beginInsertRows(QModelIndex(), dxData.count(), dxData.count());
     dxData.append(entry);
     endInsertRows();
-
-    //QModelIndex top = createIndex(dxData.count()-1, 0, 0);
-    //QModelIndex bottom = createIndex(dxData.count()-1, 5, 0);
-    //emit dataChanged(top, bottom);
 }
 
 DxWidget::DxWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::DxWidget)
-{
+    ui(new Ui::DxWidget) {
 
     socket = NULL;
 
     ui->setupUi(this);
-
     dxTableModel = new DxTableModel(this);
     ui->dxTable->setModel(dxTableModel);
 }
 
 void DxWidget::toggleConnect() {
     if (socket && socket->isOpen()) {
-        ui->sendButton->setEnabled(false);
-        ui->connectButton->setEnabled(true);
-        ui->connectButton->setText("Connect");
+        disconnectCluster();
 
-        socket->disconnect();
-        socket->close();
-
-        delete socket;
-        socket = NULL;
     }
     else {
-        QStringList server = ui->serverSelect->currentText().split(":");
-        QString host = server[0];
-        int port = server[1].toInt();
-
-        socket = new QTcpSocket(this);
-
-        connect(socket, SIGNAL(readyRead()), this, SLOT(receive()));
-        connect(socket, SIGNAL(connected()), this, SLOT(connected()));
-        connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
-                this, SLOT(socketError(QAbstractSocket::SocketError)));
-
-        ui->connectButton->setEnabled(false);
-        ui->connectButton->setText("Connecting");
-
-        socket->connectToHost(host, port);
+        connectCluster();
     }
+}
+
+void DxWidget::connectCluster() {
+    QStringList server = ui->serverSelect->currentText().split(":");
+    QString host = server[0];
+    int port = server[1].toInt();
+
+    socket = new QTcpSocket(this);
+
+    connect(socket, SIGNAL(readyRead()), this, SLOT(receive()));
+    connect(socket, SIGNAL(connected()), this, SLOT(connected()));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
+            this, SLOT(socketError(QAbstractSocket::SocketError)));
+
+    ui->connectButton->setEnabled(false);
+    ui->connectButton->setText("Connecting");
+
+    socket->connectToHost(host, port);
+}
+
+void DxWidget::disconnectCluster() {
+    ui->sendButton->setEnabled(false);
+    ui->connectButton->setEnabled(true);
+    ui->connectButton->setText("Connect");
+
+    socket->disconnect();
+    socket->close();
+
+    delete socket;
+    socket = NULL;
 }
 
 void DxWidget::send() {
@@ -172,6 +164,10 @@ void DxWidget::rawModeChanged() {
     else {
         ui->stack->setCurrentIndex(0);
     }
+}
+
+void DxWidget::entryDoubleClicked(QModelIndex index) {
+    qDebug() << "double click";
 }
 
 DxWidget::~DxWidget() {
