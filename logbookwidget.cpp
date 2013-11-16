@@ -1,4 +1,5 @@
 #include <QtSql>
+#include <QMessageBox>
 #include "logbookwidget.h"
 #include "ui_logbookwidget.h"
 
@@ -21,16 +22,17 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("Name"));
     model->setHeaderData(8, Qt::Horizontal, QObject::tr("Location"));
     model->setHeaderData(9, Qt::Horizontal, QObject::tr("Locator"));
-    model->setHeaderData(10, Qt::Horizontal, QObject::tr("Frequency"));
-    model->setHeaderData(11, Qt::Horizontal, QObject::tr("Band"));
-    model->setHeaderData(12, Qt::Horizontal, QObject::tr("Mode"));
-    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Transmitter"));
-    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Power"));
-    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Comment"));
+    model->setHeaderData(10, Qt::Horizontal, QObject::tr("CQ"));
+    model->setHeaderData(11, Qt::Horizontal, QObject::tr("ITU"));
+    model->setHeaderData(12, Qt::Horizontal, QObject::tr("Frequency"));
+    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Band"));
+    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Mode"));
+    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Rig"));
+    model->setHeaderData(16, Qt::Horizontal, QObject::tr("Power"));
+    model->setHeaderData(17, Qt::Horizontal, QObject::tr("Comment"));
 
     model->select();
 
-    //addAction(deleteContact);
     ui->contactTable->setModel(model);
     ui->contactTable->hideColumn(0);
     ui->contactTable->hideColumn(3);
@@ -42,9 +44,17 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
 
 void LogbookWidget::deleteContact()
 {
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Delete", "Delete the selected contacts?",
+                                  QMessageBox::Yes|QMessageBox::No);
+
+    if (reply != QMessageBox::Yes) return;
+
     foreach (QModelIndex index, ui->contactTable->selectionModel()->selectedRows()) {
         model->removeRow(index.row());
     }
+    ui->contactTable->clearSelection();
+    model->select();
 }
 
 void LogbookWidget::updateTable() {

@@ -110,7 +110,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>11</hour>
+           <hour>8</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -143,6 +143,51 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="txRstEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>59</string>
+         </property>
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="powerLabel">
+         <property name="text">
+          <string>Power</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QDoubleSpinBox" name="powerEdit">
+         <property name="suffix">
+          <string> W</string>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>500.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>100.000000000000000</double>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="txRstLabel">
          <property name="text">
@@ -150,13 +195,13 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="1" column="3">
         <widget class="QDoubleSpinBox" name="frequencyEdit">
          <property name="suffix">
           <string notr="true"> MHz</string>
          </property>
          <property name="decimals">
-          <number>5</number>
+          <number>4</number>
          </property>
          <property name="maximum">
           <double>20000.000000000000000</double>
@@ -169,17 +214,47 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="txRstEdit">
+       <item row="0" column="0">
+        <widget class="QLabel" name="rxRstLabel">
          <property name="text">
-          <string>59</string>
-         </property>
-         <property name="maxLength">
-          <number>8</number>
+          <string>RST TX</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="rxRstEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string notr="true">59</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="frequencyLabel">
+         <property name="text">
+          <string>Frequency</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="modeLabel">
+         <property name="text">
+          <string>Mode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
         <widget class="QComboBox" name="modeEdit">
          <item>
           <property name="text">
@@ -213,75 +288,63 @@
          </item>
         </widget>
        </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="modeLabel">
+       <item row="0" column="6">
+        <widget class="QLabel" name="rigLabel">
          <property name="text">
-          <string>Mode</string>
+          <string>Rig</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="rxRstLabel">
-         <property name="text">
-          <string>RST TX</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="bandText">
-         <property name="text">
-          <string>80m</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="rxRstEdit">
-         <property name="text">
-          <string notr="true">59</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="bandLabel">
-         <property name="text">
-          <string>Band</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="frequencyLabel">
-         <property name="text">
-          <string>Frequency</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <widget class="QDoubleSpinBox" name="powerEdit">
-         <property name="suffix">
-          <string> W</string>
-         </property>
-         <property name="decimals">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <double>500.000000000000000</double>
-         </property>
-         <property name="value">
-          <double>100.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="5">
-        <widget class="QLabel" name="powerLabel">
-         <property name="text">
-          <string>Power</string>
-         </property>
+       <item row="1" column="6">
+        <widget class="QComboBox" name="rigEdit">
+         <item>
+          <property name="text">
+           <string notr="true">FT-450D</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="gridEdit">
+         <property name="maxLength">
+          <number>32767</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="cqEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="gridLabel">
+         <property name="text">
+          <string>Locator</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="locationLabel">
          <property name="text">
@@ -295,24 +358,33 @@
        <item row="1" column="1">
         <widget class="QLineEdit" name="locationEdit"/>
        </item>
-       <item row="1" column="2">
-        <widget class="QLineEdit" name="gridEdit">
-         <property name="maxLength">
-          <number>32767</number>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="ituEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="nameLabel">
+       <item row="0" column="3">
+        <widget class="QLabel" name="cqLabel">
          <property name="text">
-          <string>Name</string>
+          <string>CQ</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="gridLabel">
+       <item row="0" column="4">
+        <widget class="QLabel" name="ituLabel">
          <property name="text">
-          <string>Locator</string>
+          <string>ITU</string>
          </property>
         </widget>
        </item>
@@ -326,11 +398,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="commentEdit">
-       <property name="tabChangesFocus">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="commentEdit"/>
      </item>
      <item>
       <spacer name="verticalSpacer">
@@ -423,6 +491,20 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="bandLabel">
+        <property name="text">
+         <string>Band</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="bandText">
+        <property name="text">
+         <string>80m</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -435,12 +517,10 @@
   <tabstop>nameEdit</tabstop>
   <tabstop>locationEdit</tabstop>
   <tabstop>gridEdit</tabstop>
-  <tabstop>commentEdit</tabstop>
   <tabstop>dateEdit</tabstop>
   <tabstop>timeOnEdit</tabstop>
   <tabstop>timeOffEdit</tabstop>
   <tabstop>frequencyEdit</tabstop>
-  <tabstop>modeEdit</tabstop>
   <tabstop>stopContactTimerButton</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>

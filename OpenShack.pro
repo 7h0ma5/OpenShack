@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     rig.cpp \
     mapwidget.cpp \
     rigwidget.cpp \
-    hamqth.cpp
+    hamqth.cpp \
+    cty.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
@@ -34,7 +35,8 @@ HEADERS  += mainwindow.h \
     rig.h \
     mapwidget.h \
     rigwidget.h \
-    hamqth.h
+    hamqth.h \
+    cty.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \
@@ -48,7 +50,7 @@ OTHER_FILES +=
 
 RESOURCES += \
     i18n.qrc \
-    media.qrc
+    data.qrc
 
 TRANSLATIONS = openshack_de.ts
 

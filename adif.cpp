@@ -28,9 +28,13 @@ void Adif::exportToFile(QString filename) {
         writeField(out, "name", query.value("name").toString());
         writeField(out, "qth", query.value("qth").toString());
         writeField(out, "gridsquare", query.value("grid").toString());
+        writeField(out, "cqz", query.value("cqz").toString());
+        writeField(out, "ituz", query.value("ituz").toString());
         writeField(out, "frequency", query.value("frequency").toString(), "N");
         writeField(out, "band", query.value("band").toString());
         writeField(out, "mode", query.value("mode").toString());
+        writeField(out, "power", query.value("power").toString());
+        writeField(out, "rig", query.value("rig").toString());
         writeField(out, "comment", query.value("comment").toString());
 
         out << "<eor>\n\n";
@@ -40,6 +44,7 @@ void Adif::exportToFile(QString filename) {
 }
 
 void Adif::writeField(QTextStream& out, QString name, QString value, QString type) {
+    if (value.isEmpty()) return;
     out << "<" << name << ":" << value.size();
     if (!type.isEmpty()) out << ":" << type;
     out << ">" << value << '\n';

@@ -11,7 +11,7 @@ MapWidget::MapWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPixmap pix(":/map/nasabluemarble.jpg");
+    QPixmap pix(":/data/map/nasabluemarble.jpg");
     scene = new QGraphicsScene(ui->mapView);
     scene->addPixmap(pix);
     scene->setSceneRect(pix.rect());

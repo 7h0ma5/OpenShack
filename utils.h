@@ -5,7 +5,7 @@
 
 bool grid_validate(QString grid);
 bool grid_to_coord(QString grid, double &lat, double &lon);
-bool grid_distance(QString gridA, QString gridB, double &distance);
-bool grid_bearing(QString gridA, QString gridB, double &distance);
+double coord_distance(double latA, double lonA, double latB, double lonB);
+int coord_bearing(double latA, double lonA, double latB, double lonB);
 
 #endif // UTILS_H

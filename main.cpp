@@ -40,8 +40,9 @@ int main(int argc, char* argv[]) {
                "call TEXT NOT NULL,"
                "rst_rx TEXT, rst_tx TEXT,"
                "name TEXT, qth TEXT, grid TEXT,"
+               "cqz INTEGER, ituz INTEGER,"
                "frequency TEXT, band TEXT, mode TEXT,"
-               "tx TEXT, power TEXT,"
+               "rig TEXT, power TEXT,"
                "comment TEXT)");
 
     MainWindow w;

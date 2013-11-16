@@ -60,7 +60,7 @@
   </layout>
   <action name="deleteContact">
    <property name="text">
-    <string>Delete Contact</string>
+    <string>Delete</string>
    </property>
    <property name="shortcut">
     <string>Del</string>

@@ -83,11 +83,6 @@ void HamQTH::processReply(QNetworkReply* reply) {
             data["grid"] = xml.readElementText();
         }
     }
-    if (xml.hasError()) {
-        qDebug() << "HamQTH XML error" << xml.errorString();
-        delete reply;
-        return;
-    }
 
     delete reply;
 

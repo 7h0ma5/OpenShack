@@ -6,9 +6,9 @@
 class QNetworkAccessManager;
 class QNetworkReply;
 
-class HamQTH : public QObject
-{
+class HamQTH : public QObject {
     Q_OBJECT
+
 public:
     explicit HamQTH(QObject *parent = 0);
 
@@ -17,7 +17,7 @@ signals:
 
 public slots:
     void queryCallsign(QString callsign);
-    void processReply(QNetworkReply*);
+    void processReply(QNetworkReply* reply);
 
 private:
     QNetworkAccessManager* nam;

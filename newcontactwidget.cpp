@@ -1,7 +1,6 @@
 #include <QtSql/QtSql>
 #include <QDebug>
 #include "rig.h"
-#include "hamqth.h"
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
 #include "utils.h"
@@ -15,9 +14,10 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     contactTimer = new QTimer(this);
     connect(contactTimer, SIGNAL(timeout()), this, SLOT(updateTimeOff()));
 
-    callbook = new HamQTH(this);
-    connect(callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
+    connect(&callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
             this, SLOT(callsignResult(const QMap<QString, QString>&)));
+
+    cty.import();
 
     resetContact();
 }
@@ -33,15 +33,11 @@ void NewContactWidget::callsignChanged() {
 
     startContactTimer();
 
-    callbook->queryCallsign(ui->callsignEdit->text());
-
     QSqlQuery query;
     query.prepare("SELECT name, qth, grid, date FROM contacts "
                   "WHERE call = :call ORDER BY ID DESC");
     query.bindValue(":call", ui->callsignEdit->text());
     query.exec();
-
-    ui->contactInfo->setText(QString::number(query.size()));
 
     if (!query.next()) {
         ui->contactInfo->setText("First Contact!");
@@ -51,6 +47,16 @@ void NewContactWidget::callsignChanged() {
         ui->locationEdit->setText(query.value(1).toString());
         ui->gridEdit->setText(query.value(2).toString());
         ui->contactInfo->setText(query.value(3).toString());
+    }
+
+    callbook.queryCallsign(ui->callsignEdit->text());
+
+    Dxcc* dxcc = cty.lookup(ui->callsignEdit->text());
+    if (dxcc) {
+         ui->dxccInfo->setText(dxcc->name);
+         ui->cqEdit->setText(QString::number(dxcc->cqZone));
+         ui->ituEdit->setText(QString::number(dxcc->ituZone));
+         updateCoordinates(dxcc->lat, dxcc->lon, COORD_DXCC);
     }
 }
 
@@ -90,18 +96,10 @@ void NewContactWidget::frequencyChanged() {
 }
 
 void NewContactWidget::gridChanged() {
-    QSettings settings;
-    QString myGrid = settings.value("operator/grid").toString();
-
-    double distance;
-    bool valid = grid_distance(myGrid, ui->gridEdit->text(), distance);
-
-    if (!valid) {
-        ui->distanceInfo->setText("Invalid Grid");
-        return;
-    }
-
-    ui->distanceInfo->setText(QString::number(distance, '.',0) + " km");
+    double lat, lon;
+    bool valid = grid_to_coord(ui->gridEdit->text(), lat, lon);
+    if (!valid) return;
+    updateCoordinates(lat, lon, COORD_GRID);
 }
 
 void NewContactWidget::resetContact() {
@@ -113,13 +111,20 @@ void NewContactWidget::resetContact() {
     ui->locationEdit->clear();
     ui->gridEdit->clear();
     ui->commentEdit->clear();
+    ui->contactInfo->clear();
+    ui->dxccInfo->clear();
+    ui->distanceInfo->clear();
     stopContactTimer();
+    ui->callsignEdit->setFocus();
+    coordPrec = COORD_NONE;
 }
 
 void NewContactWidget::saveContact() {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date, time_on, time_off, frequency, band, mode, power, comment) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, DATE('now'), TIME('now'), TIME('now'), :frequency, :band, :mode, :power, :comment)");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date,"
+                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :date,"
+                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment)");
 
     query.bindValue(":call", ui->callsignEdit->text());
     query.bindValue(":rst_rx", ui->rxRstEdit->text());
@@ -127,11 +132,17 @@ void NewContactWidget::saveContact() {
     query.bindValue(":name", ui->nameEdit->text());
     query.bindValue(":qth", ui->locationEdit->text());
     query.bindValue(":grid", ui->gridEdit->text());
-    query.bindValue(":frequency", QString::number(ui->frequencyEdit->value(), '.', 6));
+    query.bindValue(":date", ui->dateEdit->date().toString(Qt::ISODate));
+    query.bindValue(":time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
+    query.bindValue(":time_off", ui->timeOffEdit->time().toString(Qt::ISODate));
+    query.bindValue(":frequency", QString::number(ui->frequencyEdit->value(), '.', 4));
     query.bindValue(":band", ui->bandText->text());
     query.bindValue(":mode", ui->modeEdit->currentText());
+    query.bindValue(":cqz", ui->cqEdit->text());
+    query.bindValue(":ituz", ui->ituEdit->text());
     query.bindValue(":power", QString::number(ui->powerEdit->value(), '.', 2));
-    query.bindValue(":comment", ui->commentEdit->toPlainText());
+    query.bindValue(":rig", ui->rigEdit->currentText());
+    query.bindValue(":comment", ui->commentEdit->text());
     query.exec();
 
     resetContact();
@@ -155,6 +166,20 @@ void NewContactWidget::stopContactTimer() {
 
 void NewContactWidget::updateTimeOff() {
     ui->timeOffEdit->setTime(QTime::currentTime());
+}
+
+void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision prec) {
+    if (prec <= coordPrec) return;
+
+    QSettings settings;
+    QString myGrid = settings.value("operator/grid").toString();
+
+    double myLat, myLon;
+    grid_to_coord(myGrid, myLat, myLon);
+
+    double distance = coord_distance(myLat, myLon, lat, lon);
+
+    ui->distanceInfo->setText(QString::number(distance, '.', 1) + " km");
 }
 
 NewContactWidget::~NewContactWidget() {

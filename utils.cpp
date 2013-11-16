@@ -39,13 +39,7 @@ bool grid_to_coord(QString grid, double &lat, double &lon) {
     return true;
 }
 
-bool grid_distance(QString gridA, QString gridB, double &distance) {
-    double latA, lonA, latB, lonB;
-    bool validA = grid_to_coord(gridA, latA, lonA);
-    bool validB = grid_to_coord(gridB, latB, lonB);
-
-    if (!validA || !validB) return false;
-
+double coord_distance(double latA, double lonA, double latB, double lonB) {
     double dLat = (latB-latA)*M_PI/180;
     double dLon = (lonB-lonA)*M_PI/180;
     latA = latA*M_PI/180;
@@ -55,11 +49,9 @@ bool grid_distance(QString gridA, QString gridB, double &distance) {
                sin(dLon/2) * sin(dLon/2) * cos(latA) * cos(latB);
 
     double c = 2 * atan2(sqrt(a), sqrt(1-a));
-    distance = EARTH_RADIUS * c;
-
-    return distance < EARTH_CIRCUM;
+    return EARTH_RADIUS * c;
 }
 
-bool grid_bearing(QString gridA, QString gridB, double &distance) {
+int coord_bearing(double latA, double lonA, double latB, double lonB) {
 
 }
