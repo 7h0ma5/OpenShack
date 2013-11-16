@@ -42,6 +42,7 @@ public slots:
     void updateCoordinates(double lat, double lon, CoordPrecision prec);
 
 private:
+    QString callsign;
     Cty cty;
     HamQTH callbook;
     QTimer* contactTimer;

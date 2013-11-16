@@ -21,10 +21,17 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
 }
 
 void NewContactWidget::callsignChanged() {
+    if (ui->callsignEdit->text() == callsign) {
+        return;
+    }
+    else {
+        callsign = ui->callsignEdit->text();
+    }
+
     ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
     ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
 
-    if (ui->callsignEdit->text().isEmpty()) {
+    if (callsign.isEmpty()) {
         stopContactTimer();
         return;
     }
@@ -34,7 +41,7 @@ void NewContactWidget::callsignChanged() {
     QSqlQuery query;
     query.prepare("SELECT name, qth, grid, date FROM contacts "
                   "WHERE call = :call ORDER BY ID DESC");
-    query.bindValue(":call", ui->callsignEdit->text());
+    query.bindValue(":call", callsign);
     query.exec();
 
     if (!query.next()) {
@@ -47,9 +54,9 @@ void NewContactWidget::callsignChanged() {
         ui->contactInfo->setText(query.value(3).toString());
     }
 
-    callbook.queryCallsign(ui->callsignEdit->text());
+    callbook.queryCallsign(callsign);
 
-    Dxcc* dxcc = cty.lookup(ui->callsignEdit->text());
+    Dxcc* dxcc = cty.lookup(callsign);
     if (dxcc) {
          ui->dxccInfo->setText(dxcc->name);
          ui->cqEdit->setText(QString::number(dxcc->cqZone));

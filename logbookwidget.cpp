@@ -1,7 +1,41 @@
 #include <QtSql>
 #include <QMessageBox>
+#include <QStyledItemDelegate>
 #include "logbookwidget.h"
 #include "ui_logbookwidget.h"
+
+class DateFormatDelegate : public QStyledItemDelegate {
+public:
+    DateFormatDelegate(QObject *parent = 0) :
+        QStyledItemDelegate(parent) { }
+
+    virtual QString displayText(const QVariant& value, const QLocale& locale) const {
+        return value.toDate().toString(locale.dateFormat(QLocale::ShortFormat));
+    }
+};
+
+class TimeFormatDelegate : public QStyledItemDelegate {
+public:
+    TimeFormatDelegate(QObject *parent = 0) :
+        QStyledItemDelegate(parent) { }
+
+    virtual QString displayText(const QVariant& value, const QLocale& locale) const {
+        return value.toTime().toString(locale.timeFormat(QLocale::ShortFormat));
+    }
+};
+
+class StringFormatDelegate : public QStyledItemDelegate {
+public:
+    StringFormatDelegate(QString format, QObject *parent = 0) :
+        QStyledItemDelegate(parent), format(format) { }
+
+    virtual QString displayText(const QVariant& value, const QLocale&) const {
+        return format.arg(value.toString());
+    }
+private:
+    QString format;
+};
+
 
 LogbookWidget::LogbookWidget(QWidget *parent) :
     QWidget(parent),
@@ -38,6 +72,12 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
     ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->contactTable->setItemDelegateForColumn(1, new DateFormatDelegate(ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(2, new TimeFormatDelegate(ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(3, new TimeFormatDelegate(ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(12, new StringFormatDelegate("%1 MHz", ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(16, new StringFormatDelegate("%1 W", ui->contactTable));
 }
 
 void LogbookWidget::deleteContact()
