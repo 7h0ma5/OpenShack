@@ -66,7 +66,7 @@ void Cty::parseData(QByteArray data) {
     QList<QByteArray> contries = data.split(';');
     foreach (QByteArray country, contries) {
         QList<QByteArray> columns = country.split(':');
-        if (columns.count() != 9) { qDebug() << "error"; continue; };
+        if (columns.count() != 9) continue;;
 
         Dxcc* dxcc = new Dxcc;
         dxcc->name = QString(columns.at(0).trimmed());
