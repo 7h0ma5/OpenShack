@@ -12,10 +12,10 @@ class NewContactWidget;
 class HamQTH;
 
 enum CoordPrecision {
-    COORD_NONE,
-    COORD_DXCC,
-    COORD_GRID,
-    COORD_FULL
+    COORD_NONE = 0,
+    COORD_DXCC = 1,
+    COORD_GRID = 2,
+    COORD_FULL = 3
 };
 
 class NewContactWidget : public QWidget {
@@ -27,6 +27,7 @@ public:
 
 signals:
     void contactAdded();
+    void newTarget(double lat, double lon);
 
 public slots:
     void callsignChanged();

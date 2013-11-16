@@ -10,17 +10,22 @@ MapWidget::MapWidget(QWidget *parent) :
     ui(new Ui::MapWidget)
 {
     ui->setupUi(this);
-
-    QPixmap pix(":/data/map/nasabluemarble.jpg");
     scene = new QGraphicsScene(ui->mapView);
+    redraw();
+}
+
+void MapWidget::redraw() {
+    scene->clear();
+    drawMap();
+    drawDaylightOverlay();
+}
+
+void MapWidget::drawMap() {
+    QPixmap pix(":/data/map/nasabluemarble.jpg");
     scene->addPixmap(pix);
     scene->setSceneRect(pix.rect());
     ui->mapView->setScene(scene);
     ui->mapView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-
-    drawPoint(50.775278, 6.082778);
-    drawLine(50.775278, 6.082778, 43, -75);
-    drawDaylightOverlay();
 }
 
 void MapWidget::drawPoint(double lat, double lon) {
@@ -61,6 +66,17 @@ void MapWidget::drawDaylightOverlay() {
 
     qDebug() << offset_x << offset_sin << offset_y;
                 */
+}
+
+void MapWidget::setTarget(double lat, double lon) {
+    redraw();
+
+    if (lat == 0 && lon == 0) {
+        return;
+    }
+
+    qDebug() << lat << lon;
+    drawPoint(lat, lon);
 }
 
 void MapWidget::resizeEvent(QResizeEvent*) {

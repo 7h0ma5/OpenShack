@@ -17,14 +17,12 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     connect(&callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
             this, SLOT(callsignResult(const QMap<QString, QString>&)));
 
-    cty.import();
-
     resetContact();
 }
 
 void NewContactWidget::callsignChanged() {
-    ui->timeOnEdit->setTime(QTime::currentTime());
-    ui->timeOffEdit->setTime(QTime::currentTime());
+    ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
 
     if (ui->callsignEdit->text().isEmpty()) {
         stopContactTimer();
@@ -44,7 +42,7 @@ void NewContactWidget::callsignChanged() {
     }
     else {
         ui->nameEdit->setText(query.value(0).toString());
-        ui->locationEdit->setText(query.value(1).toString());
+        ui->qthEdit->setText(query.value(1).toString());
         ui->gridEdit->setText(query.value(2).toString());
         ui->contactInfo->setText(query.value(3).toString());
     }
@@ -69,8 +67,8 @@ void NewContactWidget::callsignResult(const QMap<QString, QString>& data) {
         ui->gridEdit->setText(data.value("grid"));
     }
 
-    if (!data.value("location").isEmpty() && ui->locationEdit->text().isEmpty()) {
-        ui->locationEdit->setText(data.value("location"));
+    if (!data.value("qth").isEmpty() && ui->qthEdit->text().isEmpty()) {
+        ui->qthEdit->setText(data.value("qth"));
     }
 }
 
@@ -104,11 +102,11 @@ void NewContactWidget::gridChanged() {
 
 void NewContactWidget::resetContact() {
     ui->dateEdit->setDate(QDate::currentDate());
-    ui->timeOnEdit->setTime(QTime::currentTime());
-    ui->timeOffEdit->setTime(QTime::currentTime());
+    ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
     ui->callsignEdit->clear();
     ui->nameEdit->clear();
-    ui->locationEdit->clear();
+    ui->qthEdit->clear();
     ui->gridEdit->clear();
     ui->commentEdit->clear();
     ui->contactInfo->clear();
@@ -116,7 +114,9 @@ void NewContactWidget::resetContact() {
     ui->distanceInfo->clear();
     stopContactTimer();
     ui->callsignEdit->setFocus();
+
     coordPrec = COORD_NONE;
+    emit newTarget(0, 0);
 }
 
 void NewContactWidget::saveContact() {
@@ -130,7 +130,7 @@ void NewContactWidget::saveContact() {
     query.bindValue(":rst_rx", ui->rxRstEdit->text());
     query.bindValue(":rst_tx", ui->txRstEdit->text());
     query.bindValue(":name", ui->nameEdit->text());
-    query.bindValue(":qth", ui->locationEdit->text());
+    query.bindValue(":qth", ui->qthEdit->text());
     query.bindValue(":grid", ui->gridEdit->text());
     query.bindValue(":date", ui->dateEdit->date().toString(Qt::ISODate));
     query.bindValue(":time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
@@ -165,7 +165,7 @@ void NewContactWidget::stopContactTimer() {
 }
 
 void NewContactWidget::updateTimeOff() {
-    ui->timeOffEdit->setTime(QTime::currentTime());
+    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
 }
 
 void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision prec) {
@@ -180,6 +180,10 @@ void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision 
     double distance = coord_distance(myLat, myLon, lat, lon);
 
     ui->distanceInfo->setText(QString::number(distance, '.', 1) + " km");
+
+    coordPrec = prec;
+
+    emit newTarget(lat, lon);
 }
 
 NewContactWidget::~NewContactWidget() {

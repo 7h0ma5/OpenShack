@@ -110,7 +110,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>8</hour>
+           <hour>7</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -191,7 +191,7 @@
        <item row="0" column="1">
         <widget class="QLabel" name="txRstLabel">
          <property name="text">
-          <string>RST RX</string>
+          <string>RST TX</string>
          </property>
         </widget>
        </item>
@@ -217,7 +217,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="rxRstLabel">
          <property name="text">
-          <string>RST TX</string>
+          <string>RST RX</string>
          </property>
         </widget>
        </item>
@@ -341,14 +341,14 @@
        <item row="0" column="2">
         <widget class="QLabel" name="gridLabel">
          <property name="text">
-          <string>Locator</string>
+          <string>Grid Locator</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="locationLabel">
+        <widget class="QLabel" name="qthLabel">
          <property name="text">
-          <string>Location</string>
+          <string>QTH</string>
          </property>
         </widget>
        </item>
@@ -356,7 +356,7 @@
         <widget class="QLineEdit" name="nameEdit"/>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="locationEdit"/>
+        <widget class="QLineEdit" name="qthEdit"/>
        </item>
        <item row="1" column="4">
         <widget class="QLineEdit" name="ituEdit">
@@ -445,6 +445,12 @@
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="distanceLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>Distance</string>
         </property>
@@ -458,6 +464,12 @@
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string notr="true"/>
         </property>
@@ -465,6 +477,12 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="dxccLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>DXCC</string>
         </property>
@@ -472,6 +490,12 @@
       </item>
       <item row="1" column="1">
        <widget class="QLabel" name="dxccInfo">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -479,6 +503,12 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="contactLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>Contacts</string>
         </property>
@@ -486,6 +516,12 @@
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="contactInfo">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -500,6 +536,12 @@
       </item>
       <item row="3" column="1">
        <widget class="QLabel" name="bandText">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>80m</string>
         </property>
@@ -515,7 +557,7 @@
   <tabstop>rxRstEdit</tabstop>
   <tabstop>txRstEdit</tabstop>
   <tabstop>nameEdit</tabstop>
-  <tabstop>locationEdit</tabstop>
+  <tabstop>qthEdit</tabstop>
   <tabstop>gridEdit</tabstop>
   <tabstop>dateEdit</tabstop>
   <tabstop>timeOnEdit</tabstop>

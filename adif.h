@@ -5,8 +5,8 @@
 
 class Adif {
 public:
-    void exportToFile(QString filename);
-    void importFromFile(QString filename);
+    int exportToFile(QString filename);
+    int importFromFile(QString filename);
 
 private:
     void writeField(QTextStream& out, QString name, QString value, QString type="");

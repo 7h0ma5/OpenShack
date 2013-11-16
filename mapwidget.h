@@ -16,10 +16,15 @@ public:
     explicit MapWidget(QWidget *parent = 0);
     ~MapWidget();
 
+public slots:
+    void setTarget(double lat, double lon);
+
 protected:
     void resizeEvent(QResizeEvent* event);
 
 private:
+    void redraw();
+    void drawMap();
     void drawDaylightOverlay();
     void drawPoint(double lat, double lon);
     void drawLine(double latA, double lonA, double latB, double lonB);

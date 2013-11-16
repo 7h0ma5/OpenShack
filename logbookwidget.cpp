@@ -35,8 +35,6 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
 
     ui->contactTable->setModel(model);
     ui->contactTable->hideColumn(0);
-    ui->contactTable->hideColumn(3);
-    ui->contactTable->hideColumn(15);
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
     ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

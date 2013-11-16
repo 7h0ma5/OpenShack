@@ -20,6 +20,9 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
       <widget class="QTabWidget" name="tabWidget_2">
        <property name="currentIndex">
         <number>0</number>
@@ -43,7 +46,7 @@
         </attribute>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
-          <widget class="DxWidget" name="widget" native="true"/>
+          <widget class="DxWidget" name="dxWidget" native="true"/>
          </item>
         </layout>
        </widget>
@@ -53,7 +56,7 @@
         </attribute>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
-          <widget class="MapWidget" name="widget_2" native="true"/>
+          <widget class="MapWidget" name="mapWidget" native="true"/>
          </item>
         </layout>
        </widget>
@@ -155,6 +158,7 @@
    <container>1</container>
    <slots>
     <signal>contactAdded()</signal>
+    <signal>newTarget(double,double)</signal>
    </slots>
   </customwidget>
   <customwidget>
@@ -177,6 +181,9 @@
    <extends>QWidget</extends>
    <header>mapwidget.h</header>
    <container>1</container>
+   <slots>
+    <slot>setTarget(double,double)</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -258,6 +265,22 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>195</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>newContactWidget</sender>
+   <signal>newTarget(double,double)</signal>
+   <receiver>mapWidget</receiver>
+   <slot>setTarget(double,double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>518</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>228</y>
     </hint>
    </hints>
   </connection>

@@ -2,6 +2,8 @@
 #include <QtSql/QtSql>
 #include <QMessageBox>
 #include <QResource>
+#include <QDir>
+#include <QStandardPaths>
 #include <QDebug>
 #include "mainwindow.h"
 #include "rig.h"
@@ -21,9 +23,15 @@ int main(int argc, char* argv[]) {
     translator.load(":/i18n/openshack_" + QLocale::system().name().left(2));
     app.installTranslator(&translator);
 
+    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+
+    if (!dataDir.exists()) {
+        dataDir.mkpath(dataDir.path());
+    }
+
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("openshack.db3");
+    db.setDatabaseName(dataDir.filePath("openshack.db3"));
 
     // Quit if the connection to the DB fails
     if (!db.open()) {

@@ -69,7 +69,6 @@ void HamQTH::processReply(QNetworkReply* reply) {
         if (token != QXmlStreamReader::StartElement) {
             continue;
         }
-        qDebug() << xml.name();
         if (xml.name() == "session_id") {
             sessionId = xml.readElementText();
         }
@@ -77,7 +76,7 @@ void HamQTH::processReply(QNetworkReply* reply) {
             data["name"] = xml.readElementText();
         }
         else if (xml.name() == "qth") {
-            data["location"] = xml.readElementText();
+            data["qth"] = xml.readElementText();
         }
         else if (xml.name() == "grid") {
             data["grid"] = xml.readElementText();

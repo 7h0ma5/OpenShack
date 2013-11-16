@@ -19,8 +19,10 @@ MainWindow::MainWindow(QWidget* parent) :
     restoreState(settings.value("windowState").toByteArray());
 
     QString op = settings.value("operator/callsign", "NOCALL").toString();
-    QLabel* label = new QLabel(op);
-    ui->statusBar->addWidget(label);
+    QString grid  = settings.value("operator/grid", "NO GRID").toString();
+
+    ui->statusBar->addWidget(new QLabel(op, ui->statusBar));
+    ui->statusBar->addWidget(new QLabel(grid, ui->statusBar));
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
@@ -42,15 +44,19 @@ void MainWindow::showSettings() {
 void MainWindow::importAdif() {
     QString filename = QFileDialog::getOpenFileName(this, "ADIF File", "", "*.adi");
 
+    ui->statusBar->showMessage(QString("Importing %1...").arg(filename));
     Adif adif;
-    adif.importFromFile(filename);
+    int count = adif.importFromFile(filename);
+    ui->statusBar->showMessage(QString("Imported %1 contacts.").arg(count), 5000);
 }
 
 void MainWindow::exportAdif() {
     QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
 
+    ui->statusBar->showMessage(QString("Exporting %1...").arg(filename));
     Adif adif;
-    adif.exportToFile(filename);
+    int count = adif.exportToFile(filename);
+    ui->statusBar->showMessage(QString("Exported %1 contacts.").arg(count), 5000);
 }
 
 MainWindow::~MainWindow() {

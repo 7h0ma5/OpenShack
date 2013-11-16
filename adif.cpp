@@ -2,7 +2,7 @@
 #include <QDebug>
 #include "adif.h"
 
-void Adif::exportToFile(QString filename) {
+int Adif::exportToFile(QString filename) {
     QFile file(filename);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
@@ -14,6 +14,7 @@ void Adif::exportToFile(QString filename) {
     QSqlQuery query("SELECT * FROM contacts");
     query.exec();
 
+    int count = 0;
     while (query.next()) {
         QDate date = QDate::fromString(query.value("date").toString(), Qt::ISODate);
         QTime time_on = QTime::fromString(query.value("time_on").toString(), Qt::ISODate);
@@ -30,17 +31,21 @@ void Adif::exportToFile(QString filename) {
         writeField(out, "gridsquare", query.value("grid").toString());
         writeField(out, "cqz", query.value("cqz").toString());
         writeField(out, "ituz", query.value("ituz").toString());
-        writeField(out, "frequency", query.value("frequency").toString(), "N");
+        writeField(out, "freq", query.value("frequency").toString(), "N");
+        writeField(out, "freq_rx", query.value("frequency").toString(), "N");
         writeField(out, "band", query.value("band").toString());
+        writeField(out, "band_rx", query.value("band").toString());
         writeField(out, "mode", query.value("mode").toString());
         writeField(out, "power", query.value("power").toString());
         writeField(out, "rig", query.value("rig").toString());
         writeField(out, "comment", query.value("comment").toString());
 
         out << "<eor>\n\n";
+        count++;
     }
 
     file.close();
+    return count;
 }
 
 void Adif::writeField(QTextStream& out, QString name, QString value, QString type) {
@@ -51,6 +56,7 @@ void Adif::writeField(QTextStream& out, QString name, QString value, QString typ
     // TODO: handle unicode values
 }
 
-void Adif::importFromFile(QString filename) {
+int Adif::importFromFile(QString filename) {
     // TODO
+    return 0;
 }
