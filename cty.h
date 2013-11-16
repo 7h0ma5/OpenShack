@@ -21,14 +21,18 @@ class Cty : public QObject {
     Q_OBJECT
 
 public:
+    Cty();
     ~Cty();
-    void import();
+
     Dxcc* lookup(QString callsign);
 
 public slots:
     void processReply(QNetworkReply* reply);
 
 private:
+    void download();
+    void parseData(QByteArray data);
+
     QNetworkAccessManager* nam;
     QMap<QString, Dxcc*> dxccMap;
     QList<Dxcc*> dxccList;

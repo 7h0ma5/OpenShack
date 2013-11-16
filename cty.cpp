@@ -3,19 +3,38 @@
 #include <QUrlQuery>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QStandardPaths>
 #include <QDebug>
 #include <QStringRef>
+#include <QDir>
+#include <QFile>
 #include "cty.h"
 
 #define CTY_URL "http://www.country-files.com/cty/cty.dat"
 
-void Cty::import() {
+Cty::Cty() {
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+
+    if (dir.exists("cty.dat")) {
+        qDebug() << "use cached cty.dat at" << dir.path();
+        QFile file(dir.filePath("cty.dat"));
+        file.open(QIODevice::ReadOnly);
+        parseData(file.readAll());
+        file.close();
+    }
+    else {
+        download();
+    }
+}
+
+void Cty::download() {
     nam = new QNetworkAccessManager(this);
     connect(nam, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(processReply(QNetworkReply*)));
 
     QUrl url(CTY_URL);
     nam->get(QNetworkRequest(url));
+    qDebug() << "download cty.dat from" << url.toString();
 }
 
 Dxcc* Cty::lookup(QString callsign) {
@@ -29,11 +48,24 @@ Dxcc* Cty::lookup(QString callsign) {
 }
 
 void Cty::processReply(QNetworkReply* reply) {
-    QByteArray bytes = reply->readAll();
-    QList<QByteArray> countries = bytes.split(';');
+    QByteArray data = reply->readAll();
+    parseData(data);
 
-    foreach (QByteArray countryRow, countries) {
-        QList<QByteArray> columns = countryRow.split(':');
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+
+    QFile file(dir.filePath("cty.dat"));
+    file.open(QIODevice::WriteOnly);
+    file.write(data);
+    file.close();
+
+    delete reply;
+    delete nam;
+}
+
+void Cty::parseData(QByteArray data) {
+    QList<QByteArray> contries = data.split(';');
+    foreach (QByteArray country, contries) {
+        QList<QByteArray> columns = country.split(':');
         if (columns.count() != 9) { qDebug() << "error"; continue; };
 
         Dxcc* dxcc = new Dxcc;
@@ -42,7 +74,7 @@ void Cty::processReply(QNetworkReply* reply) {
         dxcc->ituZone = columns.at(2).trimmed().toInt();
         strncpy(dxcc->continent, columns.at(3).trimmed().data(), 2);
         dxcc->lat = columns.at(4).trimmed().toFloat();
-        dxcc->lon = columns.at(5).trimmed().toFloat();
+        dxcc->lon = -columns.at(5).trimmed().toFloat();
         dxcc->utcOffset = columns.at(6).trimmed().toFloat();
 
         dxccList.append(dxcc);
@@ -54,9 +86,6 @@ void Cty::processReply(QNetworkReply* reply) {
             dxccMap[QString(prefix.trimmed())] = dxcc;
         }
     }
-
-    delete reply;
-    delete nam;
 }
 
 Cty::~Cty() {
