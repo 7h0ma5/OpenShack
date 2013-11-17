@@ -83,7 +83,21 @@ void Cty::parseData(QByteArray data) {
 
         QList<QByteArray> prefixes = columns.at(8).split(',');
         foreach (QByteArray prefix, prefixes) {
-            dxccMap[QString(prefix.trimmed())] = dxcc;
+            prefix = prefix.trimmed();
+            if (prefix.at(0) == '=')  {
+                prefix.remove(0, 1);
+            }
+            int end;
+            if ((end = prefix.indexOf('/')) > 0) {
+                prefix.truncate(end);
+            }
+            if ((end = prefix.indexOf('(')) > 0) {
+                prefix.truncate(end);
+            }
+            if ((end = prefix.indexOf('[')) > 0) {
+                prefix.truncate(end);
+            }
+            dxccMap[QString(prefix)] = dxcc;
         }
     }
 }

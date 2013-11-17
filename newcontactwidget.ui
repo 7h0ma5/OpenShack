@@ -110,7 +110,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>5</hour>
+           <hour>4</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -764,6 +764,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>modeEdit</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>modeChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>171</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>263</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>saveContact()</slot>
@@ -772,5 +788,6 @@
   <slot>gridChanged()</slot>
   <slot>stopContactTimer()</slot>
   <slot>frequencyChanged()</slot>
+  <slot>modeChanged()</slot>
  </slots>
 </ui>

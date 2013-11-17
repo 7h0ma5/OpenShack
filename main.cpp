@@ -56,7 +56,13 @@ int main(int argc, char* argv[]) {
     MainWindow w;
     w.show();
 
-    //Rig::connect();
+    QThread* rigThread = new QThread;
+    Rig* rig = Rig::instance();
+    rig->moveToThread(rigThread);
+    QObject::connect(rigThread, SIGNAL(started()), rig, SLOT(start()));
+    rigThread->start();
+
+    rig->open();
 
     return app.exec();
 }

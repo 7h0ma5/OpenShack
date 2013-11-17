@@ -4,13 +4,37 @@
 #include <QtCore>
 #include <hamlib/rig.h>
 
-class Rig {
-private:
-    static RIG* rig;
+class Rig : public QObject {
+    Q_OBJECT
 
 public:
-    static void connect();
-    static void setFrequency(double freq);
+    static Rig* instance();
+
+public slots:
+    void start();
+    void update();
+    void open();
+
+    void setFrequency(double freq);
+    void setMode(QString mod);
+    void setPower(double power);
+
+signals:
+    void frequencyChanged(double freq);
+    void modeChanged(QString mode);
+    void powerChanged(double power);
+
+private:
+    Rig() { }
+
+    Rig(Rig const&);
+    void operator=(Rig const&);
+
+    RIG* rig;
+    int freq;
+    unsigned int power;
+    QString mode;
+    QMutex rigLock;
 };
 
 class RigTypeModel : public QAbstractListModel {

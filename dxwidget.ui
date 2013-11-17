@@ -118,6 +118,21 @@
          <string>db0sue.de:8000</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>telnet.reversebeacon.net:7300</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>dl4rck.ham-radio-op.net:8000</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>db0erf.de:41113</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>

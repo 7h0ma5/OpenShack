@@ -12,6 +12,17 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    rig = Rig::instance();
+
+    connect(rig, SIGNAL(frequencyChanged(double)),
+            this, SLOT(changeFrequency(double)));
+
+    connect(rig, SIGNAL(modeChanged(QString)),
+            this, SLOT(changeMode(QString)));
+
+    connect(rig, SIGNAL(powerChanged(double)),
+            this, SLOT(changePower(double)));
+
     contactTimer = new QTimer(this);
     connect(contactTimer, SIGNAL(timeout()), this, SLOT(updateTimeOff()));
 
@@ -98,7 +109,13 @@ void NewContactWidget::frequencyChanged() {
     else if (freq <= 440 && freq >= 430) band = "70cm";
 
     ui->bandText->setText(band);
-    Rig::setFrequency(freq*1e6);
+
+    rig->setFrequency(freq);
+}
+
+void NewContactWidget::modeChanged() {
+    QString mode = ui->modeEdit->currentText();
+    rig->setMode(mode);
 }
 
 void NewContactWidget::gridChanged() {
@@ -196,6 +213,24 @@ void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision 
     coordPrec = prec;
 
     emit newTarget(lat, lon);
+}
+
+void NewContactWidget::changeFrequency(double freq) {
+    ui->frequencyEdit->blockSignals(true);
+    ui->frequencyEdit->setValue(freq);
+    ui->frequencyEdit->blockSignals(false);
+}
+
+void NewContactWidget::changeMode(QString mode) {
+    ui->modeEdit->blockSignals(true);
+    ui->modeEdit->setCurrentText(mode);
+    ui->modeEdit->blockSignals(false);
+}
+
+void NewContactWidget::changePower(double power) {
+    ui->powerEdit->blockSignals(true);
+    ui->powerEdit->setValue(power);
+    ui->powerEdit->blockSignals(false);
 }
 
 NewContactWidget::~NewContactWidget() {

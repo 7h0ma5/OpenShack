@@ -10,6 +10,7 @@ class NewContactWidget;
 }
 
 class HamQTH;
+class Rig;
 
 enum CoordPrecision {
     COORD_NONE = 0,
@@ -32,6 +33,7 @@ signals:
 public slots:
     void callsignChanged();
     void frequencyChanged();
+    void modeChanged();
     void resetContact();
     void saveContact();
     void gridChanged();
@@ -40,8 +42,12 @@ public slots:
     void stopContactTimer();
     void callsignResult(const QMap<QString, QString>& data);
     void updateCoordinates(double lat, double lon, CoordPrecision prec);
+    void changeFrequency(double freq);
+    void changeMode(QString mode);
+    void changePower(double power);
 
 private:
+    Rig* rig;
     QString callsign;
     Cty cty;
     HamQTH callbook;
