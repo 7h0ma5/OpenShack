@@ -88,6 +88,7 @@
      <string>Logbook</string>
     </property>
     <addaction name="actionNewContact"/>
+    <addaction name="actionSaveContact"/>
     <addaction name="separator"/>
     <addaction name="actionImport"/>
     <addaction name="actionExport"/>
@@ -127,6 +128,9 @@
    <property name="text">
     <string>New Contact</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionImport">
    <property name="text">
@@ -148,6 +152,14 @@
     <string>About</string>
    </property>
   </action>
+  <action name="actionSaveContact">
+   <property name="text">
+    <string>Save Contact</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -159,6 +171,8 @@
    <slots>
     <signal>contactAdded()</signal>
     <signal>newTarget(double,double)</signal>
+    <slot>resetContact()</slot>
+    <slot>saveContact()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -281,6 +295,38 @@
     <hint type="destinationlabel">
      <x>398</x>
      <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNewContact</sender>
+   <signal>triggered()</signal>
+   <receiver>newContactWidget</receiver>
+   <slot>resetContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>518</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveContact</sender>
+   <signal>triggered()</signal>
+   <receiver>newContactWidget</receiver>
+   <slot>saveContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>518</y>
     </hint>
    </hints>
   </connection>

@@ -56,14 +56,16 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("Name"));
     model->setHeaderData(8, Qt::Horizontal, QObject::tr("Location"));
     model->setHeaderData(9, Qt::Horizontal, QObject::tr("Locator"));
-    model->setHeaderData(10, Qt::Horizontal, QObject::tr("CQ"));
-    model->setHeaderData(11, Qt::Horizontal, QObject::tr("ITU"));
-    model->setHeaderData(12, Qt::Horizontal, QObject::tr("Frequency"));
-    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Band"));
-    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Mode"));
-    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Rig"));
-    model->setHeaderData(16, Qt::Horizontal, QObject::tr("Power"));
-    model->setHeaderData(17, Qt::Horizontal, QObject::tr("Comment"));
+    model->setHeaderData(10, Qt::Horizontal, QObject::tr("My Locator"));
+    model->setHeaderData(11, Qt::Horizontal, QObject::tr("CQ"));
+    model->setHeaderData(12, Qt::Horizontal, QObject::tr("ITU"));
+    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Frequency"));
+    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Band"));
+    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Mode"));
+    model->setHeaderData(16, Qt::Horizontal, QObject::tr("Rig"));
+    model->setHeaderData(17, Qt::Horizontal, QObject::tr("Power"));
+    model->setHeaderData(18, Qt::Horizontal, QObject::tr("Comment"));
+    model->setHeaderData(19, Qt::Horizontal, QObject::tr("QSL via"));
 
     model->select();
 
@@ -76,8 +78,8 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->setItemDelegateForColumn(1, new DateFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(2, new TimeFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(3, new TimeFormatDelegate(ui->contactTable));
-    ui->contactTable->setItemDelegateForColumn(12, new StringFormatDelegate("%1 MHz", ui->contactTable));
-    ui->contactTable->setItemDelegateForColumn(16, new StringFormatDelegate("%1 W", ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(13, new StringFormatDelegate("%1 MHz", ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(17, new StringFormatDelegate("%1 W", ui->contactTable));
 }
 
 void LogbookWidget::deleteContact()

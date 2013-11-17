@@ -110,7 +110,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>6</hour>
+           <hour>5</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -403,7 +403,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -411,10 +411,10 @@
         </attribute>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="1" column="0">
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="qslViaEdit"/>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="qslViaLabel">
            <property name="text">
             <string>QSL via</string>
            </property>

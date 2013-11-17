@@ -1,4 +1,5 @@
 #include <QtSql/QtSql>
+#include <QShortcut>
 #include <QDebug>
 #include "rig.h"
 #include "newcontactwidget.h"
@@ -119,6 +120,7 @@ void NewContactWidget::resetContact() {
     ui->contactInfo->clear();
     ui->dxccInfo->clear();
     ui->distanceInfo->clear();
+    ui->qslViaEdit->clear();
     stopContactTimer();
     ui->callsignEdit->setFocus();
 
@@ -127,11 +129,12 @@ void NewContactWidget::resetContact() {
 }
 
 void NewContactWidget::saveContact() {
+    QSettings settings;
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment)");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, my_grid, date,"
+                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment, qsl_via) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :my_grid, :date,"
+                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment, :qsl_via)");
 
     query.bindValue(":call", ui->callsignEdit->text());
     query.bindValue(":rst_rx", ui->rxRstEdit->text());
@@ -139,6 +142,7 @@ void NewContactWidget::saveContact() {
     query.bindValue(":name", ui->nameEdit->text());
     query.bindValue(":qth", ui->qthEdit->text());
     query.bindValue(":grid", ui->gridEdit->text());
+    query.bindValue(":my_grid", settings.value("operator/grid"));
     query.bindValue(":date", ui->dateEdit->date().toString(Qt::ISODate));
     query.bindValue(":time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
     query.bindValue(":time_off", ui->timeOffEdit->time().toString(Qt::ISODate));
@@ -150,6 +154,7 @@ void NewContactWidget::saveContact() {
     query.bindValue(":power", QString::number(ui->powerEdit->value(), '.', 2));
     query.bindValue(":rig", ui->rigEdit->currentText());
     query.bindValue(":comment", ui->commentEdit->text());
+    query.bindValue(":qsl_via", ui->qslViaEdit->text());
     query.exec();
 
     resetContact();
