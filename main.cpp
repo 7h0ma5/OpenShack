@@ -47,11 +47,11 @@ int main(int argc, char* argv[]) {
                "date TEXT, time_on TEXT, time_off TEXT,"
                "call TEXT NOT NULL,"
                "rst_rx TEXT, rst_tx TEXT,"
-               "name TEXT, qth TEXT, grid TEXT,"
+               "name TEXT, qth TEXT, grid TEXT, my_grid TEXT,"
                "cqz INTEGER, ituz INTEGER,"
                "frequency TEXT, band TEXT, mode TEXT,"
                "rig TEXT, power TEXT,"
-               "comment TEXT)");
+               "comment TEXT, qsl_via TEXT)");
 
     MainWindow w;
     w.show();

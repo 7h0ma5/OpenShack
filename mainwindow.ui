@@ -36,7 +36,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="LogbookWidget" name="contactTable" native="true"/>
+          <widget class="LogbookWidget" name="logbookWidget" native="true"/>
          </item>
         </layout>
        </widget>
@@ -255,7 +255,7 @@
   <connection>
    <sender>newContactWidget</sender>
    <signal>contactAdded()</signal>
-   <receiver>contactTable</receiver>
+   <receiver>logbookWidget</receiver>
    <slot>updateTable()</slot>
    <hints>
     <hint type="sourcelabel">

@@ -38,7 +38,6 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 void MainWindow::showSettings() {
     SettingsDialog sw;
     sw.exec();
-
 }
 
 void MainWindow::importAdif() {
@@ -48,6 +47,7 @@ void MainWindow::importAdif() {
     Adif adif;
     int count = adif.importFromFile(filename);
     ui->statusBar->showMessage(QString("Imported %1 contacts.").arg(count), 5000);
+    ui->logbookWidget->updateTable();
 }
 
 void MainWindow::exportAdif() {
