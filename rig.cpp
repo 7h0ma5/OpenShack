@@ -97,7 +97,7 @@ void Rig::open() {
 }
 
 void Rig::setFrequency(double newFreq) {
-    qDebug() << "set freq to" << newFreq;
+    if (!rig) return;
     freq = newFreq*1e6;
 
     rigLock.lock();
@@ -106,6 +106,7 @@ void Rig::setFrequency(double newFreq) {
 }
 
 void Rig::setMode(QString newMode) {
+    if (!rig) return;
     mode = newMode;
     rigLock.lock();
     if (newMode == "CW") {
@@ -129,6 +130,7 @@ void Rig::setMode(QString newMode) {
 }
 
 void Rig::setPower(double newPower) {
+    if (!rig) return;
     power = (int)(newPower*1000);
 }
 

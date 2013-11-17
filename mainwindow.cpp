@@ -5,6 +5,7 @@
 #include "settingsdialog.h"
 #include "ui_mainwindow.h"
 #include "adif.h"
+#include "rig.h"
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -33,6 +34,10 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     settings.setValue("windowState", saveState());
 
     QMainWindow::closeEvent(event);
+}
+
+void MainWindow::rigConnect() {
+    Rig::instance()->open();
 }
 
 void MainWindow::showSettings() {

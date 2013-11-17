@@ -17,6 +17,7 @@ public:
     void closeEvent(QCloseEvent* event);
 
 private slots:
+    void rigConnect();
     void showSettings();
     void importAdif();
     void exportAdif();

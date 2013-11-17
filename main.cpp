@@ -62,7 +62,5 @@ int main(int argc, char* argv[]) {
     QObject::connect(rigThread, SIGNAL(started()), rig, SLOT(start()));
     rigThread->start();
 
-    rig->open();
-
     return app.exec();
 }
