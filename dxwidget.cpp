@@ -38,6 +38,14 @@ void DxTableModel::addEntry(QStringList entry) {
     endInsertRows();
 }
 
+QString DxTableModel::getCallsign(const QModelIndex& index) {
+    return dxData.at(index.row()).at(1);
+}
+
+QString DxTableModel::getFrequency(const QModelIndex& index) {
+    return dxData.at(index.row()).at(2);
+}
+
 DxWidget::DxWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::DxWidget) {
@@ -167,7 +175,9 @@ void DxWidget::rawModeChanged() {
 }
 
 void DxWidget::entryDoubleClicked(QModelIndex index) {
-    qDebug() << "double click";
+    QString callsign = dxTableModel->getCallsign(index);
+    QString frequency = dxTableModel->getFrequency(index);
+    emit tuneDx(callsign, frequency.toDouble()/1000.0);
 }
 
 DxWidget::~DxWidget() {

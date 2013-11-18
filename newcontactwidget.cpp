@@ -233,6 +233,14 @@ void NewContactWidget::changePower(double power) {
     ui->powerEdit->blockSignals(false);
 }
 
+void NewContactWidget::tuneDx(QString callsign, double frequency) {
+    resetContact();
+    ui->callsignEdit->setText(callsign);
+    ui->frequencyEdit->setValue(frequency);
+    callsignChanged();
+    stopContactTimer();
+}
+
 NewContactWidget::~NewContactWidget() {
     delete ui;
 }

@@ -25,7 +25,7 @@
       </property>
       <widget class="QTabWidget" name="tabWidget_2">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="movable">
         <bool>true</bool>
@@ -173,6 +173,7 @@
     <signal>newTarget(double,double)</signal>
     <slot>resetContact()</slot>
     <slot>saveContact()</slot>
+    <slot>tuneDx(QString,double)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -189,6 +190,9 @@
    <extends>QWidget</extends>
    <header>dxwidget.h</header>
    <container>1</container>
+   <slots>
+    <signal>tuneDx(QString,double)</signal>
+   </slots>
   </customwidget>
   <customwidget>
    <class>MapWidget</class>
@@ -323,6 +327,22 @@
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>518</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dxWidget</sender>
+   <signal>tuneDx(QString,double)</signal>
+   <receiver>newContactWidget</receiver>
+   <slot>tuneDx(QString,double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>398</x>
+     <y>228</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>

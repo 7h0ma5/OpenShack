@@ -18,6 +18,8 @@ public:
     QVariant data(const QModelIndex& index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     void addEntry(QStringList entry);
+    QString getCallsign(const QModelIndex& index);
+    QString getFrequency(const QModelIndex& index);
 
 private:
     QList<QStringList> dxData;
@@ -38,6 +40,9 @@ public slots:
     void socketError(QAbstractSocket::SocketError error);
     void rawModeChanged();
     void entryDoubleClicked(QModelIndex index);
+
+signals:
+    void tuneDx(QString callsign, double freq);
 
 private:
     DxTableModel* dxTableModel;
