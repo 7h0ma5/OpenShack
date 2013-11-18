@@ -75,6 +75,7 @@ void Adif::readField(QTextStream& in, QString& field, QString& value) {
         if (c == ':' || c == '>') break;
         field.append(c);
     }
+    field = field.toLower();
     if (c == '>' || in.atEnd()) return;
 
     // read field length
@@ -127,7 +128,7 @@ int Adif::importFromFile(QString filename) {
             readField(in, field, value);
             if (field == "eor") break;
             if (!value.isEmpty()) {
-                contact[field.toLower()] = value;
+                contact[field] = value;
             }
         }
         if (field == "eor") {
