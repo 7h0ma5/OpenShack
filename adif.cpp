@@ -29,6 +29,7 @@ int Adif::exportToFile(QString filename) {
         writeField(out, "name", query.value("name").toString());
         writeField(out, "qth", query.value("qth").toString());
         writeField(out, "gridsquare", query.value("grid").toString());
+        writeField(out, "my_gridsquare", query.value("my_grid").toString());
         writeField(out, "cqz", query.value("cqz").toString());
         writeField(out, "ituz", query.value("ituz").toString());
         writeField(out, "freq", query.value("frequency").toString(), "N");
@@ -39,6 +40,7 @@ int Adif::exportToFile(QString filename) {
         writeField(out, "power", query.value("power").toString());
         writeField(out, "rig", query.value("rig").toString());
         writeField(out, "comment", query.value("comment").toString());
+        writeField(out, "qsl_via", query.value("qsl_via").toString());
 
         out << "<eor>\n\n";
         count++;
@@ -143,10 +145,10 @@ int Adif::importFromFile(QString filename) {
 
 void Adif::insertContact(QMap<QString, QString>& data) {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment)");
+    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, my_grid, date,"
+                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment, qsl_via) "
+                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :my_grid, :date,"
+                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment, :qsl_via)");
 
     query.bindValue(":call", data.value("call", "NOCALL"));
     query.bindValue(":rst_rx", data.value("rst_rcvd"));
@@ -154,6 +156,7 @@ void Adif::insertContact(QMap<QString, QString>& data) {
     query.bindValue(":name", data.value("name"));
     query.bindValue(":qth", data.value("qth"));
     query.bindValue(":grid", data.value("gridsquare"));
+    query.bindValue(":my_grid", data.value("my_gridsquare"));
     query.bindValue(":date", QDate::fromString(data.value("qso_date"), "yyyyMMdd").toString(Qt::ISODate));
     query.bindValue(":time_on", QTime::fromString(data.value("time_on"), "hhmmss").toString(Qt::ISODate));
     query.bindValue(":time_off", QTime::fromString(data.value("time_off"), "hhmmss").toString(Qt::ISODate));
@@ -165,6 +168,7 @@ void Adif::insertContact(QMap<QString, QString>& data) {
     query.bindValue(":power", data.value("power"));
     query.bindValue(":rig", data.value("rig"));
     query.bindValue(":comment", data.value("comment"));
+    query.bindValue(":qsl_via", data.value("qsl_via"));
     query.exec();
 
     qDebug() << query.lastError();
