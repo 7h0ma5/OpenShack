@@ -51,8 +51,8 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Time on"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("Time off"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("Call"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("RX RST"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("TX RST"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("RST Sent"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("RST Rcvd"));
     model->setHeaderData(7, Qt::Horizontal, QObject::tr("Name"));
     model->setHeaderData(8, Qt::Horizontal, QObject::tr("Location"));
     model->setHeaderData(9, Qt::Horizontal, QObject::tr("Locator"));

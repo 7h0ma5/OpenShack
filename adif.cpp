@@ -7,9 +7,11 @@ int Adif::exportToFile(QString filename) {
     file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
 
-    writeField(out, "PROGRAMMID", "OpenShack");
+    out << "# OpenShack ADIF Export " << QDateTime::currentDateTimeUtc().toString(Qt::ISODate) << "\n";
     writeField(out, "ADIF_VER", "2.2.7");
-    out << "<eoh>\n\n";
+    writeField(out, "PROGRAMID", "OpenShack");
+    writeField(out, "PROGRAMVERSION", "1.0");
+    out << "<EOH>\n\n";
 
     QSqlQuery query("SELECT * FROM contacts");
     query.exec();
@@ -24,8 +26,8 @@ int Adif::exportToFile(QString filename) {
         writeField(out, "qso_date", date.toString("yyyyMMdd"), "D");
         writeField(out, "time_on", time_on.toString("hhmmss"), "T");
         writeField(out, "time_off", time_off.toString("hhmmss"), "T");
-        writeField(out, "rst_rcvd", query.value("rst_rx").toString());
-        writeField(out, "rst_sent", query.value("rst_tx").toString());
+        writeField(out, "rst_rcvd", query.value("rst_rcvd").toString());
+        writeField(out, "rst_sent", query.value("rst_sent").toString());
         writeField(out, "name", query.value("name").toString());
         writeField(out, "qth", query.value("qth").toString());
         writeField(out, "gridsquare", query.value("grid").toString());
@@ -37,8 +39,8 @@ int Adif::exportToFile(QString filename) {
         writeField(out, "band", query.value("band").toString());
         writeField(out, "band_rx", query.value("band").toString());
         writeField(out, "mode", query.value("mode").toString());
-        writeField(out, "power", query.value("power").toString());
-        writeField(out, "rig", query.value("rig").toString());
+        writeField(out, "tx_pwr", query.value("tx_power").toString());
+        writeField(out, "my_rig", query.value("my_rig").toString());
         writeField(out, "comment", query.value("comment").toString());
         writeField(out, "qsl_via", query.value("qsl_via").toString());
 
@@ -145,14 +147,14 @@ int Adif::importFromFile(QString filename) {
 
 void Adif::insertContact(QMap<QString, QString>& data) {
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, my_grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment, qsl_via) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :my_grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment, :qsl_via)");
+    query.prepare("INSERT INTO contacts (call, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
+                  "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
+                  "VALUES (:call, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
+                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
 
     query.bindValue(":call", data.value("call", "NOCALL"));
-    query.bindValue(":rst_rx", data.value("rst_rcvd"));
-    query.bindValue(":rst_tx", data.value("rst_sent"));
+    query.bindValue(":rst_rcvd", data.value("rst_rcvd"));
+    query.bindValue(":rst_sent", data.value("rst_sent"));
     query.bindValue(":name", data.value("name"));
     query.bindValue(":qth", data.value("qth"));
     query.bindValue(":grid", data.value("gridsquare"));
@@ -165,8 +167,8 @@ void Adif::insertContact(QMap<QString, QString>& data) {
     query.bindValue(":mode", data.value("mode"));
     query.bindValue(":cqz", data.value("cqz"));
     query.bindValue(":ituz", data.value("ituz"));
-    query.bindValue(":power", data.value("power"));
-    query.bindValue(":rig", data.value("rig"));
+    query.bindValue(":tx_power", data.value("tx_pwr"));
+    query.bindValue(":my_rig", data.value("my_rig"));
     query.bindValue(":comment", data.value("comment"));
     query.bindValue(":qsl_via", data.value("qsl_via"));
     query.exec();

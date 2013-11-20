@@ -46,11 +46,11 @@ int main(int argc, char* argv[]) {
                "(id INTEGER PRIMARY KEY,"
                "date TEXT, time_on TEXT, time_off TEXT,"
                "call TEXT NOT NULL,"
-               "rst_rx TEXT, rst_tx TEXT,"
+               "rst_sent TEXT, rst_rcvd TEXT,"
                "name TEXT, qth TEXT, grid TEXT, my_grid TEXT,"
                "cqz INTEGER, ituz INTEGER,"
                "frequency TEXT, band TEXT, mode TEXT,"
-               "rig TEXT, power TEXT,"
+               "my_rig TEXT, tx_power TEXT,"
                "comment TEXT, qsl_via TEXT)");
 
     MainWindow w;

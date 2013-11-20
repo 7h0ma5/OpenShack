@@ -110,7 +110,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>4</hour>
+           <hour>3</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -143,8 +143,41 @@
      </item>
      <item>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <widget class="QLabel" name="rstRcvdLabel">
+         <property name="text">
+          <string>RST Rcvd</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="txRstEdit">
+        <widget class="QLineEdit" name="rstRcvdEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string notr="true">59</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="rstSentLabel">
+         <property name="text">
+          <string>RST Sent</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="rstSentEdit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -165,33 +198,101 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
-        <widget class="QLabel" name="powerLabel">
+       <item row="0" column="2">
+        <widget class="QLabel" name="modeLabel">
          <property name="text">
-          <string>Power</string>
+          <string>Mode</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="5">
-        <widget class="QDoubleSpinBox" name="powerEdit">
-         <property name="suffix">
-          <string> W</string>
-         </property>
-         <property name="decimals">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <double>500.000000000000000</double>
-         </property>
-         <property name="value">
-          <double>100.000000000000000</double>
-         </property>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="modeEdit">
+         <item>
+          <property name="text">
+           <string notr="true">CW</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">SSB</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">AM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">FM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">PSK31</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">QPSK31</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">RTTY</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">JT65</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">JT65A</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">JT65B</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">JT65C</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">SSTV</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">THOR</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">MT63</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>OLIVIA</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>HELL</string>
+          </property>
+         </item>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="txRstLabel">
+       <item row="0" column="3">
+        <widget class="QLabel" name="frequencyLabel">
          <property name="text">
-          <string>RST TX</string>
+          <string>Frequency</string>
          </property>
         </widget>
        </item>
@@ -214,88 +315,30 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="rxRstLabel">
+       <item row="0" column="4">
+        <widget class="QLabel" name="powerLabel">
          <property name="text">
-          <string>RST RX</string>
+          <string>Power</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="rxRstEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="1" column="4">
+        <widget class="QDoubleSpinBox" name="powerEdit">
+         <property name="suffix">
+          <string> W</string>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
+         <property name="decimals">
+          <number>1</number>
          </property>
-         <property name="text">
-          <string notr="true">59</string>
+         <property name="maximum">
+          <double>500.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>100.000000000000000</double>
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="frequencyLabel">
-         <property name="text">
-          <string>Frequency</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="modeLabel">
-         <property name="text">
-          <string>Mode</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QComboBox" name="modeEdit">
-         <item>
-          <property name="text">
-           <string>CW</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>SSB</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>AM</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>FM</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PSK31</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>RTTY</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="rigLabel">
-         <property name="text">
-          <string>Rig</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="6">
+       <item row="1" column="5">
         <widget class="QComboBox" name="rigEdit">
          <item>
           <property name="text">
@@ -303,6 +346,26 @@
           </property>
          </item>
         </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLabel" name="rigLabel">
+         <property name="text">
+          <string>Rig</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
@@ -387,6 +450,19 @@
           <string>ITU</string>
          </property>
         </widget>
+       </item>
+       <item row="1" column="5">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
@@ -654,15 +730,13 @@
  </widget>
  <tabstops>
   <tabstop>callsignEdit</tabstop>
-  <tabstop>rxRstEdit</tabstop>
-  <tabstop>txRstEdit</tabstop>
+  <tabstop>rstRcvdEdit</tabstop>
   <tabstop>nameEdit</tabstop>
   <tabstop>qthEdit</tabstop>
   <tabstop>gridEdit</tabstop>
   <tabstop>dateEdit</tabstop>
   <tabstop>timeOnEdit</tabstop>
   <tabstop>timeOffEdit</tabstop>
-  <tabstop>frequencyEdit</tabstop>
   <tabstop>stopContactTimerButton</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>

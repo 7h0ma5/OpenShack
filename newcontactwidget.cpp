@@ -148,14 +148,14 @@ void NewContactWidget::resetContact() {
 void NewContactWidget::saveContact() {
     QSettings settings;
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_rx, rst_tx, name, qth, grid, my_grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, power, rig, comment, qsl_via) "
-                  "VALUES (:call, :rst_rx, :rst_tx, :name, :qth, :grid, :my_grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :power, :rig, :comment, :qsl_via)");
+    query.prepare("INSERT INTO contacts (call, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
+                  "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
+                  "VALUES (:call, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
+                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
 
     query.bindValue(":call", ui->callsignEdit->text());
-    query.bindValue(":rst_rx", ui->rxRstEdit->text());
-    query.bindValue(":rst_tx", ui->txRstEdit->text());
+    query.bindValue(":rst_sent", ui->rstSentEdit->text());
+    query.bindValue(":rst_rcvd", ui->rstRcvdEdit->text());
     query.bindValue(":name", ui->nameEdit->text());
     query.bindValue(":qth", ui->qthEdit->text());
     query.bindValue(":grid", ui->gridEdit->text());
@@ -168,13 +168,16 @@ void NewContactWidget::saveContact() {
     query.bindValue(":mode", ui->modeEdit->currentText());
     query.bindValue(":cqz", ui->cqEdit->text());
     query.bindValue(":ituz", ui->ituEdit->text());
-    query.bindValue(":power", QString::number(ui->powerEdit->value(), '.', 2));
-    query.bindValue(":rig", ui->rigEdit->currentText());
+    query.bindValue(":tx_power", QString::number(ui->powerEdit->value(), '.', 2));
+    query.bindValue(":my_rig", ui->rigEdit->currentText());
     query.bindValue(":comment", ui->commentEdit->text());
     query.bindValue(":qsl_via", ui->qslViaEdit->text());
     query.exec();
 
     resetContact();
+
+    qDebug() << query.lastQuery();
+    qDebug() << query.lastError();
 
     emit contactAdded();
 }
