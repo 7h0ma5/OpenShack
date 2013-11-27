@@ -117,15 +117,20 @@ void Adif::readField(QTextStream& in, QString& field, QString& value) {
 int Adif::importFromFile(QString filename) {
     QFile file(filename);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QTextStream in(&file);
 
+    QTextStream in(&file);
+    int count = import(in);
+
+    file.close();
+
+    return count;
+}
+
+int Adif::import(QTextStream& in) {
     QString field;
     QString value;
 
-    while (!in.atEnd() && field != "eoh") {
-        readField(in, field, value);
-    }
-
+    int count = 0;
     while (!in.atEnd()) {
         QMap<QString, QString> contact;
         while (!in.atEnd()) {
@@ -137,12 +142,11 @@ int Adif::importFromFile(QString filename) {
         }
         if (field == "eor") {
             insertContact(contact);
+            count++;
         }
     }
 
-    file.close();
-
-    return 0;
+    return count;
 }
 
 void Adif::insertContact(QMap<QString, QString>& data) {
@@ -160,8 +164,6 @@ void Adif::insertContact(QMap<QString, QString>& data) {
     query.bindValue(":grid", data.value("gridsquare"));
     query.bindValue(":my_grid", data.value("my_gridsquare"));
     query.bindValue(":date", QDate::fromString(data.value("qso_date"), "yyyyMMdd").toString(Qt::ISODate));
-    query.bindValue(":time_on", QTime::fromString(data.value("time_on"), "hhmmss").toString(Qt::ISODate));
-    query.bindValue(":time_off", QTime::fromString(data.value("time_off"), "hhmmss").toString(Qt::ISODate));
     query.bindValue(":frequency", data.value("freq"));
     query.bindValue(":band", data.value("band"));
     query.bindValue(":mode", data.value("mode"));
@@ -171,7 +173,33 @@ void Adif::insertContact(QMap<QString, QString>& data) {
     query.bindValue(":my_rig", data.value("my_rig"));
     query.bindValue(":comment", data.value("comment"));
     query.bindValue(":qsl_via", data.value("qsl_via"));
-    query.exec();
 
-    qDebug() << query.lastError();
+    QTime time_on = parseTime(data.value("time_on"));
+    QTime time_off = parseTime(data.value("time_off"));
+
+    if (time_on.isValid() && time_off.isNull()) {
+        time_off = time_on;
+    }
+    if (time_off.isValid() && time_on.isNull()) {
+        time_on = time_off;
+    }
+
+    query.bindValue(":time_on", time_on.toString(Qt::ISODate));
+    query.bindValue(":time_off", time_off.toString(Qt::ISODate));
+
+    query.exec();
+}
+
+
+QTime Adif::parseTime(QString time) {
+    switch (time.length()) {
+    case 4:
+        return QTime::fromString(time, "hhmm");
+
+    case 6:
+        return QTime::fromString(time, "hhmmss");
+
+    default:
+        return QTime();
+    }
 }

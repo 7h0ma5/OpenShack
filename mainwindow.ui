@@ -14,54 +14,55 @@
    <string>OpenShack</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QTabWidget" name="tabWidget_2">
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <property name="childrenCollapsible">
-       <bool>false</bool>
+      <property name="movable">
+       <bool>true</bool>
       </property>
-      <widget class="QTabWidget" name="tabWidget_2">
-       <property name="currentIndex">
-        <number>1</number>
-       </property>
-       <property name="movable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="tab_3">
-        <attribute name="title">
-         <string>Logbook</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="LogbookWidget" name="logbookWidget" native="true"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_4">
-        <attribute name="title">
-         <string>DX Cluster</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="DxWidget" name="dxWidget" native="true"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_5">
-        <attribute name="title">
-         <string>Map</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="MapWidget" name="mapWidget" native="true"/>
-         </item>
-        </layout>
-       </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Logbook</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="LogbookWidget" name="logbookWidget" native="true"/>
+        </item>
+       </layout>
       </widget>
-      <widget class="NewContactWidget" name="newContactWidget" native="true"/>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>DX Cluster</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="DxWidget" name="dxWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Map</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="MapWidget" name="mapWidget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="NewContactWidget" name="newContactWidget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
      </widget>
     </item>
    </layout>
@@ -277,8 +278,8 @@
    <slot>updateTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>459</y>
+     <x>408</x>
+     <y>622</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -293,8 +294,8 @@
    <slot>setTarget(double,double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>518</y>
+     <x>408</x>
+     <y>622</y>
     </hint>
     <hint type="destinationlabel">
      <x>398</x>
@@ -313,8 +314,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>399</x>
-     <y>518</y>
+     <x>408</x>
+     <y>622</y>
     </hint>
    </hints>
   </connection>
@@ -329,8 +330,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>399</x>
-     <y>518</y>
+     <x>408</x>
+     <y>622</y>
     </hint>
    </hints>
   </connection>
@@ -345,8 +346,8 @@
      <y>228</y>
     </hint>
     <hint type="destinationlabel">
-     <x>399</x>
-     <y>518</y>
+     <x>408</x>
+     <y>622</y>
     </hint>
    </hints>
   </connection>

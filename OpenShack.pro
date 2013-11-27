@@ -21,9 +21,9 @@ SOURCES += main.cpp\
     utils.cpp \
     rig.cpp \
     mapwidget.cpp \
-    rigwidget.cpp \
     hamqth.cpp \
-    cty.cpp
+    cty.cpp \
+    fldigi.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
@@ -34,17 +34,16 @@ HEADERS  += mainwindow.h \
     utils.h \
     rig.h \
     mapwidget.h \
-    rigwidget.h \
     hamqth.h \
-    cty.h
+    cty.h \
+    fldigi.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \
     newcontactwidget.ui \
     dxwidget.ui \
     logbookwidget.ui \
-    mapwidget.ui \
-    rigwidget.ui
+    mapwidget.ui
 
 OTHER_FILES +=
 

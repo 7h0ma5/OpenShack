@@ -29,6 +29,13 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     connect(&callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
             this, SLOT(callsignResult(const QMap<QString, QString>&)));
 
+    QSettings settings;
+    QString mode = settings.value("newcontact/mode", "CW").toString();
+    double freq = settings.value("newcontact/frequency", 3.5).toDouble();
+
+    ui->modeEdit->setCurrentText(mode);
+    ui->frequencyEdit->setValue(freq);
+
     resetContact();
 }
 
@@ -116,6 +123,7 @@ void NewContactWidget::frequencyChanged() {
 void NewContactWidget::modeChanged() {
     QString mode = ui->modeEdit->currentText();
     rig->setMode(mode);
+    setDefaultRst();
 }
 
 void NewContactWidget::gridChanged() {
@@ -140,6 +148,7 @@ void NewContactWidget::resetContact() {
     ui->qslViaEdit->clear();
     stopContactTimer();
     ui->callsignEdit->setFocus();
+    setDefaultRst();
 
     coordPrec = COORD_NONE;
     emit newTarget(0, 0);
@@ -244,6 +253,21 @@ void NewContactWidget::tuneDx(QString callsign, double frequency) {
     stopContactTimer();
 }
 
+void NewContactWidget::setDefaultRst() {
+    QString mode = ui->modeEdit->currentText();
+    if (mode == "SSB" || mode == "FM" || mode == "AM") {
+        ui->rstRcvdEdit->setText("59");
+        ui->rstSentEdit->setText("59");
+    }
+    else {
+        ui->rstRcvdEdit->setText("599");
+        ui->rstSentEdit->setText("599");
+    }
+}
+
 NewContactWidget::~NewContactWidget() {
+    QSettings settings;
+    settings.setValue("newcontact/mode", ui->modeEdit->currentText());
+    settings.setValue("newcontact/frequency", ui->frequencyEdit->value());
     delete ui;
 }

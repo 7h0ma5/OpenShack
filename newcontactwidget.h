@@ -46,6 +46,7 @@ public slots:
     void changeMode(QString mode);
     void changePower(double power);
     void tuneDx(QString callsign, double frequency);
+    void setDefaultRst();
 
 private:
     Rig* rig;

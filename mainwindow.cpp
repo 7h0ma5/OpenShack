@@ -5,6 +5,7 @@
 #include "settingsdialog.h"
 #include "ui_mainwindow.h"
 #include "adif.h"
+#include "fldigi.h"
 #include "rig.h"
 
 MainWindow::MainWindow(QWidget* parent) :
@@ -24,6 +25,9 @@ MainWindow::MainWindow(QWidget* parent) :
 
     ui->statusBar->addWidget(new QLabel(op, ui->statusBar));
     ui->statusBar->addWidget(new QLabel(grid, ui->statusBar));
+
+    Fldigi* fldigi = new Fldigi(this);
+    connect(fldigi, SIGNAL(contactAdded()), ui->logbookWidget, SLOT(updateTable()));
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

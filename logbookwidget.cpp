@@ -32,6 +32,7 @@ public:
     virtual QString displayText(const QVariant& value, const QLocale&) const {
         return format.arg(value.toString());
     }
+
 private:
     QString format;
 };
