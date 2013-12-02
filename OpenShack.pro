@@ -11,7 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = OpenShack
 TEMPLATE = app
 
-SOURCES += main.cpp\
+macx:ICON = data/icon.icns
+win32:RC_FILE += openshack.rc
+
+SOURCES += main.cpp \
     mainwindow.cpp \
     settingsdialog.cpp \
     newcontactwidget.cpp \
@@ -46,7 +49,8 @@ FORMS    += mainwindow.ui \
     mapwidget.ui
 
 OTHER_FILES += \
-    stylesheet.css
+    stylesheet.css \
+    openshack.rc
 
 RESOURCES += \
     i18n.qrc \

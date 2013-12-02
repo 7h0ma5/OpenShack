@@ -43,7 +43,7 @@ double coordDistance(double latA, double lonA, double latB, double lonB) {
     double dLat = (latB-latA)*M_PI/180;
     double dLon = (lonB-lonA)*M_PI/180;
     latA = latA*M_PI/180;
-    latB = latA*M_PI/180;
+    latB = latB*M_PI/180;
 
     double a = sin(dLat/2) * sin(dLat/2) +
                sin(dLon/2) * sin(dLon/2) * cos(latA) * cos(latB);
@@ -53,5 +53,12 @@ double coordDistance(double latA, double lonA, double latB, double lonB) {
 }
 
 int coordBearing(double latA, double lonA, double latB, double lonB) {
+    double dLon = (lonB-lonA)*M_PI/180;
+    latA = latA*M_PI/180;
+    latB = latB*M_PI/180;
 
+    double y = sin(dLon) * cos(latB);
+    double x = cos(latA) * sin(latB) - sin(latA) * cos(latB) * cos(dLon);
+
+    return (int)(180*atan2(y, x)/M_PI + 360) % 360;
 }

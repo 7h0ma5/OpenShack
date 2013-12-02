@@ -3,11 +3,11 @@
 #include "dxwidget.h"
 #include "ui_dxwidget.h"
 
-int DxTableModel::rowCount(const QModelIndex& parent) const {
+int DxTableModel::rowCount(const QModelIndex&) const {
     return dxData.count();
 }
 
-int DxTableModel::columnCount(const QModelIndex& parent) const {
+int DxTableModel::columnCount(const QModelIndex&) const {
     return 5;
 }
 

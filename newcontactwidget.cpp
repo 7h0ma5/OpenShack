@@ -219,8 +219,10 @@ void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision 
     gridToCoord(myGrid, myLat, myLon);
 
     double distance = coordDistance(myLat, myLon, lat, lon);
+    int bearing = coordBearing(myLat, myLon, lat, lon);
 
     ui->distanceInfo->setText(QString::number(distance, '.', 1) + " km");
+    ui->bearingInfo->setText(QString("%1°").arg(bearing));
 
     coordPrec = prec;
 

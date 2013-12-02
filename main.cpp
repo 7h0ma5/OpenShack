@@ -71,6 +71,10 @@ int main(int argc, char* argv[]) {
                "comment TEXT, qsl_via TEXT)");
 
     MainWindow w;
+
+    QIcon icon(":/icon.png");
+    w.setWindowIcon(icon);
+
     w.show();
 
     /*
