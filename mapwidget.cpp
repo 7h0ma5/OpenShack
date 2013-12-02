@@ -1,7 +1,11 @@
 #include <QGraphicsTextItem>
 #include <QTime>
+#include <QTimer>
 #include <QDebug>
+#include <QPainter>
+#include <QVector3D>
 #include <cmath>
+#include "utils.h"
 #include "mapwidget.h"
 #include "ui_mapwidget.h"
 
@@ -10,77 +14,181 @@ MapWidget::MapWidget(QWidget *parent) :
     ui(new Ui::MapWidget)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene(ui->mapView);
+    scene = new QGraphicsScene(this);
+    ui->mapView->setScene(scene);
+    ui->mapView->setStyleSheet("background-color: transparent;");
     redraw();
+
+    QTimer* timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(redraw()));
+    timer->start(60000);
 }
 
 void MapWidget::redraw() {
     scene->clear();
     drawMap();
-    drawDaylightOverlay();
+    drawNightOverlay();
 }
 
 void MapWidget::drawMap() {
     QPixmap pix(":/data/map/nasabluemarble.jpg");
     scene->addPixmap(pix);
     scene->setSceneRect(pix.rect());
-    ui->mapView->setScene(scene);
-    ui->mapView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
-void MapWidget::drawPoint(double lat, double lon) {
-    int x = (lon+180)/360*scene->width();
-    int y = scene->height()/2 - (lat/90)*(scene->height()/2);
-    scene->addEllipse(x, y, 5, 5, QPen(QColor(255, 0, 0)), QBrush(QColor(255, 0, 0), Qt::SolidPattern));
-    qDebug() << "draw point" << lat << lon << "to" << x << y;
+void MapWidget::drawPoint(QPoint point) {
+    scene->addEllipse(point.x()-2, point.y()-2, 4, 4,
+                      QPen(QColor(255, 0, 0)),
+                      QBrush(QColor(255, 0, 0),
+                             Qt::SolidPattern));
 }
 
-void MapWidget::drawLine(double latA, double lonA, double latB, double lonB) {
+void MapWidget::drawLine(QPoint pointA, QPoint pointB) {
     QPainterPath path;
+    path.moveTo(pointA);
 
-    int xA = (lonA+180)/360*scene->width();
-    int yA = scene->height()/2 - (latA/90)*(scene->height()/2);
+    double latA, lonA, latB, lonB;
+    pointToRad(pointA, latA, lonA);
+    pointToRad(pointB, latB, lonB);
 
-    int xB = (lonB+180)/360*scene->width();
-    int yB = scene->height()/2 - (latB/90)*(scene->height()/2);
+    double d = 2*asin(sqrt(pow(sin(latA-latB)/2, 2) + cos(latA)* cos(latB) * pow(sin((lonA-lonB)/2), 2)));
 
-    path.moveTo(xA,yA);
-    path.lineTo(xB, yB);
+    for (double f = 0; f < 1; f += 0.0001) {
+        double A = sin((1-f)*d)/sin(d);
+        double B = sin(f*d)/sin(d);
+        double x = A*cos(latA)*cos(lonA) + B*cos(latB)*cos(lonB);
+        double y = A*cos(latA)*sin(lonA) + B*cos(latB)*sin(lonB);
+        double z = A*sin(latA)           + B*sin(latB);
+        double lat = atan2(z, sqrt(x*x + y*y));
+        double lon = atan2(y, x);
 
+        QPoint p = radToPoint(lat, lon);
+        path.lineTo(p);
+        path.moveTo(p);
+    }
+
+    path.lineTo(pointB);
     path.closeSubpath();
 
     scene->addPath(path, QPen(QColor(255, 0, 0)), QBrush(QColor(255, 0, 0), Qt::SolidPattern));
 }
 
-void MapWidget::drawDaylightOverlay() {
-    int secondOfDay = QTime(0, 0, 0).secsTo(QTime::currentTime());
-    int dayOfYear = QDate::currentDate().dayOfYear();
-/*
-    double offset_x = (time.hour() * 3600 + time.minute() * 60 + time.second())/86400.0;
+void MapWidget::drawNightOverlay() {
+    QDateTime current = QDateTime::currentDateTimeUtc();
+    int secondOfDay = (QTime(0, 0, 0).secsTo(current.time()) + 43200) % 86400;
+    int dayOfYear = current.date().dayOfYear();
+    int daysInYear = QDate::isLeapYear(current.date().year()) ? 366 : 365;
+    int longestDay = QDate(current.date().year(), 6, 21).dayOfYear();
 
-    int equinox = QDate(0, 3, 20).dayOfYear();
-    double offset_sin = ((365 - equinox + date.dayOfYear()) % 365)/365.0;
-    double offset_y = sin(offset_sin*2*M_PI);
+    float tilt = 23.5 * cos(2.0*M_PI*((float)(dayOfYear-longestDay)/daysInYear));
 
-    drawPoint(90+(offset_y*180), 180-(offset_x*360));
+    float sunX = cos(2*M_PI*(secondOfDay/86400.0));
+    float sunY = -sin(2*M_PI*(secondOfDay/86400.0));
+    float sunZ = tan(2*M_PI*(tilt/360.0));
 
-    qDebug() << offset_x << offset_sin << offset_y;
-                */
+    QVector3D sun(sunX, sunY, sunZ);
+    sun.normalize();
+
+    // <plot sun position>
+    float theta = acos(sunZ);
+    float phi = atan(sunY/sunX);
+    int lon = phi/M_PI * 180 - 180;
+    int lat = 90 - theta/M_PI * 180;
+    drawPoint(coordToPoint(lat, lon));
+    // </plot sun position>
+
+    int maxX = scene->width();
+    int maxY = scene->height();
+
+    QImage night(":/data/map/nasaearthlights.jpg");
+    night.convertToFormat(QImage::Format_ARGB32);
+
+    QImage overlay(maxX, maxY, QImage::Format_ARGB32);
+
+    for (int x = 0; x < maxX; x++) {
+        for (int y = 0; y < maxY; y++) {
+            float phi = 2*M_PI*((float)x/(maxX-1)) - M_PI;
+            float theta = M_PI*((float)y/(maxY-1));
+
+            float posX = sin(theta)*cos(phi);
+            float posY = sin(theta)*sin(phi);
+            float posZ = cos(theta);
+
+            QVector3D pos(posX, posY, posZ);
+            pos.normalize();
+
+            float ill = QVector3D::dotProduct(sun, pos);
+            if (ill <= -0.1) {
+                overlay.setPixel(x, y, qRgba(0, 0, 0, 255));
+            }
+            else if (ill < 0.1) {
+                overlay.setPixel(x, y, qRgba(0, 0, 0, 255-(ill+0.1)*5*255));
+            }
+            else {
+                overlay.setPixel(x, y, qRgba(0, 0, 0, 0));
+            }
+        }
+    }
+
+    QPainter painter;
+    painter.begin(&overlay);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceAtop);
+    painter.drawImage(0, 0, night);
+    painter.end();
+
+    scene->addPixmap(QPixmap::fromImage(overlay));
+}
+
+void MapWidget::pointToRad(QPoint point, double& lat, double& lon) {
+    lat = M_PI/2 - (float)point.y()/(scene->height()-1)*M_PI;
+    lon = 2*M_PI*((float)point.x()/(scene->width()-1)) - M_PI;
+}
+
+void MapWidget::pointToCoord(QPoint point, double& lat, double& lon) {
+    lat = 90 - (point.y()/scene->height())*180;
+    lon = 360*(point.x()/scene->width()) - 180;
+}
+
+QPoint MapWidget::radToPoint(double lat, double lon) {
+    int x = (lon+M_PI)/(2*M_PI)*scene->width();
+    int y = scene->height()/2 - (2*lat/M_PI)*(scene->height()/2);
+    return QPoint(x, y);
+}
+
+QPoint MapWidget::coordToPoint(double lat, double lon) {
+    int x = (lon+180)/360*scene->width();
+    int y = scene->height()/2 - (lat/90)*(scene->height()/2);
+    return QPoint(x, y);
 }
 
 void MapWidget::setTarget(double lat, double lon) {
     redraw();
+    if (lat == 0 && lon == 0) return;
 
-    if (lat == 0 && lon == 0) {
-        return;
+    QSettings settings;
+    QString grid = settings.value("operator/grid").toString();
+
+    QPoint point = coordToPoint(lat, lon);
+    drawPoint(point);
+
+    double qthLat = 0, qthLon = 0;
+    bool res = gridToCoord(grid, qthLat, qthLon);
+
+    if (res) {
+        QPoint qth = coordToPoint(qthLat, qthLon);
+        drawPoint(qth);
+        drawLine(qth, point);
     }
-
-    qDebug() << lat << lon;
-    drawPoint(lat, lon);
 }
 
-void MapWidget::resizeEvent(QResizeEvent*) {
+void MapWidget::showEvent(QShowEvent* event) {
     ui->mapView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    QWidget::showEvent(event);
+}
+
+void MapWidget::resizeEvent(QResizeEvent* event) {
+    ui->mapView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    QWidget::resizeEvent(event);
 }
 
 MapWidget::~MapWidget()

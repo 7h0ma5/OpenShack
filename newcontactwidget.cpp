@@ -128,7 +128,7 @@ void NewContactWidget::modeChanged() {
 
 void NewContactWidget::gridChanged() {
     double lat, lon;
-    bool valid = grid_to_coord(ui->gridEdit->text(), lat, lon);
+    bool valid = gridToCoord(ui->gridEdit->text(), lat, lon);
     if (!valid) return;
     updateCoordinates(lat, lon, COORD_GRID);
 }
@@ -216,9 +216,9 @@ void NewContactWidget::updateCoordinates(double lat, double lon, CoordPrecision 
     QString myGrid = settings.value("operator/grid").toString();
 
     double myLat, myLon;
-    grid_to_coord(myGrid, myLat, myLon);
+    gridToCoord(myGrid, myLat, myLon);
 
-    double distance = coord_distance(myLat, myLon, lat, lon);
+    double distance = coordDistance(myLat, myLon, lat, lon);
 
     ui->distanceInfo->setText(QString::number(distance, '.', 1) + " km");
 

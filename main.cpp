@@ -14,6 +14,17 @@ int main(int argc, char* argv[]) {
     QCoreApplication::setOrganizationName("DL2IC");
     QCoreApplication::setApplicationName("OpenShack");
 
+    /*
+     * Load stylesheet
+     */
+    QFile style(":/stylesheet.css");
+    style.open(QFile::ReadOnly | QIODevice::Text);
+    qApp->setStyleSheet(style.readAll());
+    style.close();
+
+    /*
+     * Setup QTranslator
+     */
     QTranslator qtTranslator;
     qtTranslator.load("qt_" + QLocale::system().name(),
             QLibraryInfo::location(QLibraryInfo::TranslationsPath));
@@ -23,12 +34,18 @@ int main(int argc, char* argv[]) {
     translator.load(":/i18n/openshack_" + QLocale::system().name().left(2));
     app.installTranslator(&translator);
 
+    /*
+     * Create data directory
+     */
     QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 
     if (!dataDir.exists()) {
         dataDir.mkpath(dataDir.path());
     }
 
+    /*
+     * Open Database
+     */
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(dataDir.filePath("openshack.db3"));
@@ -56,6 +73,9 @@ int main(int argc, char* argv[]) {
     MainWindow w;
     w.show();
 
+    /*
+     * Start rig worker thread
+     */
     QThread* rigThread = new QThread;
     Rig* rig = Rig::instance();
     rig->moveToThread(rigThread);

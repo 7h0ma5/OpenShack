@@ -45,7 +45,8 @@ FORMS    += mainwindow.ui \
     logbookwidget.ui \
     mapwidget.ui
 
-OTHER_FILES +=
+OTHER_FILES += \
+    stylesheet.css
 
 RESOURCES += \
     i18n.qrc \

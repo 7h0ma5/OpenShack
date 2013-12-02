@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
+  <layout class="QGridLayout" name="gridLayout_6">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -111,7 +111,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>2</hour>
+           <hour>1</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>

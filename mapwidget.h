@@ -8,29 +8,37 @@ namespace Ui {
 class MapWidget;
 }
 
+class QVector2D;
+
 class MapWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MapWidget(QWidget *parent = 0);
+    explicit MapWidget(QWidget* parent = 0);
     ~MapWidget();
 
 public slots:
     void setTarget(double lat, double lon);
+    void redraw();
 
 protected:
+    void showEvent(QShowEvent* event);
     void resizeEvent(QResizeEvent* event);
 
 private:
-    void redraw();
     void drawMap();
-    void drawDaylightOverlay();
-    void drawPoint(double lat, double lon);
-    void drawLine(double latA, double lonA, double latB, double lonB);
+    void drawNightOverlay();
+    void drawPoint(QPoint point);
+    void drawLine(QPoint pointA, QPoint pointB);
+
+    void pointToRad(QPoint point, double& lat, double& lon);
+    void pointToCoord(QPoint point, double& lat, double& lon);
+    QPoint radToPoint(double lat, double lon);
+    QPoint coordToPoint(double lat, double lon);
 
     QGraphicsScene* scene;
-    Ui::MapWidget *ui;
+    Ui::MapWidget* ui;
 };
 
 #endif // MAPWIDGET_H

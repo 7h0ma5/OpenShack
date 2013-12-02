@@ -6,13 +6,13 @@
 #define EARTH_RADIUS 6371
 #define EARTH_CIRCUM 40075
 
-bool grid_validate(QString grid) {
+bool gridValidate(QString grid) {
     QRegExp regex("^[A-Za-z]{2}[0-9]{2}([A-Za-z]{2})?$");
     return regex.exactMatch(grid);
 }
 
-bool grid_to_coord(QString grid, double &lat, double &lon) {
-    if (!grid_validate(grid)) return false;
+bool gridToCoord(QString grid, double& lat, double& lon) {
+    if (!gridValidate(grid)) return false;
 
     grid = grid.toUpper();
 
@@ -39,7 +39,7 @@ bool grid_to_coord(QString grid, double &lat, double &lon) {
     return true;
 }
 
-double coord_distance(double latA, double lonA, double latB, double lonB) {
+double coordDistance(double latA, double lonA, double latB, double lonB) {
     double dLat = (latB-latA)*M_PI/180;
     double dLon = (lonB-lonA)*M_PI/180;
     latA = latA*M_PI/180;
@@ -52,6 +52,6 @@ double coord_distance(double latA, double lonA, double latB, double lonB) {
     return EARTH_RADIUS * c;
 }
 
-int coord_bearing(double latA, double lonA, double latB, double lonB) {
+int coordBearing(double latA, double lonA, double latB, double lonB) {
 
 }
