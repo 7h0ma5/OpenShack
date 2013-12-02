@@ -100,35 +100,43 @@ void MapWidget::drawNightOverlay() {
     int maxX = scene->width();
     int maxY = scene->height();
 
-    QImage night(":/data/map/nasaearthlights.jpg");
-    night.convertToFormat(QImage::Format_ARGB32);
-
     QImage overlay(maxX, maxY, QImage::Format_ARGB32);
+    uchar* buffer = overlay.bits();
 
-    for (int x = 0; x < maxX; x++) {
-        for (int y = 0; y < maxY; y++) {
+    for (int y = 0; y < maxY; y++) {
+        float theta = M_PI*((float)y/(maxY-1));
+        float posZ = cos(theta);
+        float sinTheta = sin(theta);
+
+        for (int x = 0; x < maxX; x++) {
             float phi = 2*M_PI*((float)x/(maxX-1)) - M_PI;
-            float theta = M_PI*((float)y/(maxY-1));
 
-            float posX = sin(theta)*cos(phi);
-            float posY = sin(theta)*sin(phi);
-            float posZ = cos(theta);
+            float posX = sinTheta*cos(phi);
+            float posY = sinTheta*sin(phi);
 
             QVector3D pos(posX, posY, posZ);
             pos.normalize();
 
+            buffer[0] = 0;
+            buffer[1] = 0;
+            buffer[2] = 0;
+
             float ill = QVector3D::dotProduct(sun, pos);
             if (ill <= -0.1) {
-                overlay.setPixel(x, y, qRgba(0, 0, 0, 255));
+                buffer[3] = 255;
             }
             else if (ill < 0.1) {
-                overlay.setPixel(x, y, qRgba(0, 0, 0, 255-(ill+0.1)*5*255));
+                buffer[3] = 255-(ill+0.1)*5*255;
             }
             else {
-                overlay.setPixel(x, y, qRgba(0, 0, 0, 0));
+                buffer[3] = 0;
             }
+            buffer += 4;
         }
     }
+
+    QImage night(":/data/map/nasaearthlights.jpg");
+    night.convertToFormat(QImage::Format_ARGB32);
 
     QPainter painter;
     painter.begin(&overlay);
