@@ -1,5 +1,6 @@
 #include <QSettings>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QLabel>
 #include "mainwindow.h"
 #include "settingsdialog.h"
@@ -66,6 +67,13 @@ void MainWindow::exportAdif() {
     Adif adif;
     int count = adif.exportToFile(filename);
     ui->statusBar->showMessage(QString("Exported %1 contacts.").arg(count), 5000);
+}
+
+void MainWindow::showAbout() {
+    QString aboutText = "<h1>OpenShack</h1>"
+                        "<p>&copy; 2013 Thomas Gatzweiler DL2IC</p>"
+                        "<p><a href='http://dl2ic.de'>www.dl2ic.de</a></p>";
+    QMessageBox::about(this, "About", aboutText);
 }
 
 MainWindow::~MainWindow() {

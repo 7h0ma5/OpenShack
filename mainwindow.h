@@ -21,6 +21,7 @@ private slots:
     void showSettings();
     void importAdif();
     void exportAdif();
+    void showAbout();
 
 private:
     Ui::MainWindow* ui;
