@@ -9,9 +9,9 @@ Rig* Rig::instance() {
 }
 
 void Rig::start() {
-    QTimer *timer = new QTimer(this);
+    QTimer* timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(500);
+    timer->start(1000);
 }
 
 void Rig::update() {
@@ -142,7 +142,7 @@ RigTypeModel::RigTypeModel(QObject* parent)
     rigList.sort();
 }
 
-int RigTypeModel::rowCount(const QModelIndex& parent) const {
+int RigTypeModel::rowCount(const QModelIndex&) const {
     return rigList.count();
 }
 
