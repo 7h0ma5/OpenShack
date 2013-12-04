@@ -148,7 +148,6 @@ int RigTypeModel::rowCount(const QModelIndex& parent) const {
 
 QVariant RigTypeModel::data(const QModelIndex& index, int role) const {
     if (role == Qt::DisplayRole) {
-        qDebug() << "value" << index.row();
         return rigList.value(index.row());
     }
     return QVariant();

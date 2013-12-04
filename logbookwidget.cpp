@@ -4,6 +4,17 @@
 #include "logbookwidget.h"
 #include "ui_logbookwidget.h"
 
+class CallsignDelegate : public QStyledItemDelegate {
+public:
+    CallsignDelegate(QObject *parent = 0) :
+        QStyledItemDelegate(parent) { }
+
+    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex& index) const {
+        QStyledItemDelegate::initStyleOption(option, index);
+        option->font.setBold(true);
+    }
+};
+
 class DateFormatDelegate : public QStyledItemDelegate {
 public:
     DateFormatDelegate(QObject *parent = 0) :
@@ -79,6 +90,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->setItemDelegateForColumn(1, new DateFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(2, new TimeFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(3, new TimeFormatDelegate(ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(4, new CallsignDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(13, new StringFormatDelegate("%1 MHz", ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(17, new StringFormatDelegate("%1 W", ui->contactTable));
 }
