@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -115,22 +115,22 @@
        </property>
        <item>
         <property name="text">
-         <string>db0sue.de:8000</string>
+         <string notr="true">db0sue.de:8000</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>telnet.reversebeacon.net:7300</string>
+         <string notr="true">telnet.reversebeacon.net:7300</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>dl4rck.ham-radio-op.net:8000</string>
+         <string notr="true">dl4rck.ham-radio-op.net:8000</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>db0erf.de:41113</string>
+         <string notr="true">db0erf.de:41113</string>
         </property>
        </item>
       </widget>

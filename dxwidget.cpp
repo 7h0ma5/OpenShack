@@ -23,11 +23,11 @@ QVariant DxTableModel::headerData(int section, Qt::Orientation orientation, int 
     if (role != Qt::DisplayRole || orientation != Qt::Horizontal) return QVariant();
 
     switch (section) {
-    case 0: return "Time";
-    case 1: return "Callsign";
-    case 2: return "Frequency";
-    case 3: return "Spotter";
-    case 4: return "Comment";
+    case 0: return tr("Time");
+    case 1: return tr("Callsign");
+    case 2: return tr("Frequency");
+    case 3: return tr("Spotter");
+    case 4: return tr("Comment");
     default: return QVariant();
     }
 }
@@ -80,7 +80,7 @@ void DxWidget::connectCluster() {
             this, SLOT(socketError(QAbstractSocket::SocketError)));
 
     ui->connectButton->setEnabled(false);
-    ui->connectButton->setText("Connecting");
+    ui->connectButton->setText(tr("Connecting..."));
 
     socket->connectToHost(host, port);
 }
@@ -88,7 +88,7 @@ void DxWidget::connectCluster() {
 void DxWidget::disconnectCluster() {
     ui->sendButton->setEnabled(false);
     ui->connectButton->setEnabled(true);
-    ui->connectButton->setText("Connect");
+    ui->connectButton->setText(tr("Connect"));
 
     socket->disconnect();
     socket->close();
@@ -156,13 +156,13 @@ void DxWidget::receive() {
 void DxWidget::socketError(QAbstractSocket::SocketError) {
     ui->sendButton->setEnabled(false);
     ui->connectButton->setEnabled(true);
-    ui->connectButton->setText("Connect");
+    ui->connectButton->setText(tr("Connect"));
 }
 
 void DxWidget::connected() {
     ui->sendButton->setEnabled(true);
     ui->connectButton->setEnabled(true);
-    ui->connectButton->setText("Disconnect");
+    ui->connectButton->setText(tr("Disconnect"));
 }
 
 void DxWidget::rawModeChanged() {

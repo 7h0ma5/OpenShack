@@ -59,25 +59,25 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     model->setTable("contacts");
     model->setEditStrategy(QSqlTableModel::OnFieldChange);
 
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Date"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Time on"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Time off"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Call"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("RST Sent"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("RST Rcvd"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("Name"));
-    model->setHeaderData(8, Qt::Horizontal, QObject::tr("Location"));
-    model->setHeaderData(9, Qt::Horizontal, QObject::tr("Locator"));
-    model->setHeaderData(10, Qt::Horizontal, QObject::tr("My Locator"));
-    model->setHeaderData(11, Qt::Horizontal, QObject::tr("CQ"));
-    model->setHeaderData(12, Qt::Horizontal, QObject::tr("ITU"));
-    model->setHeaderData(13, Qt::Horizontal, QObject::tr("Frequency"));
-    model->setHeaderData(14, Qt::Horizontal, QObject::tr("Band"));
-    model->setHeaderData(15, Qt::Horizontal, QObject::tr("Mode"));
-    model->setHeaderData(16, Qt::Horizontal, QObject::tr("Rig"));
-    model->setHeaderData(17, Qt::Horizontal, QObject::tr("Power"));
-    model->setHeaderData(18, Qt::Horizontal, QObject::tr("Comment"));
-    model->setHeaderData(19, Qt::Horizontal, QObject::tr("QSL via"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Date"));
+    model->setHeaderData(2, Qt::Horizontal, tr("Time on"));
+    model->setHeaderData(3, Qt::Horizontal, tr("Time off"));
+    model->setHeaderData(4, Qt::Horizontal, tr("Call"));
+    model->setHeaderData(5, Qt::Horizontal, tr("RST Sent"));
+    model->setHeaderData(6, Qt::Horizontal, tr("RST Rcvd"));
+    model->setHeaderData(7, Qt::Horizontal, tr("Name"));
+    model->setHeaderData(8, Qt::Horizontal, tr("Location"));
+    model->setHeaderData(9, Qt::Horizontal, tr("Locator"));
+    model->setHeaderData(10, Qt::Horizontal, tr("My Locator"));
+    model->setHeaderData(11, Qt::Horizontal, tr("CQ"));
+    model->setHeaderData(12, Qt::Horizontal, tr("ITU"));
+    model->setHeaderData(13, Qt::Horizontal, tr("Frequency"));
+    model->setHeaderData(14, Qt::Horizontal, tr("Band"));
+    model->setHeaderData(15, Qt::Horizontal, tr("Mode"));
+    model->setHeaderData(16, Qt::Horizontal, tr("Rig"));
+    model->setHeaderData(17, Qt::Horizontal, tr("Power"));
+    model->setHeaderData(18, Qt::Horizontal, tr("Comment"));
+    model->setHeaderData(19, Qt::Horizontal, tr("QSL via"));
 
     model->select();
 
@@ -98,7 +98,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
 void LogbookWidget::deleteContact()
 {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Delete", "Delete the selected contacts?",
+    reply = QMessageBox::question(this, tr("Delete"), tr("Delete the selected contacts?"),
                                   QMessageBox::Yes|QMessageBox::No);
 
     if (reply != QMessageBox::Yes) return;

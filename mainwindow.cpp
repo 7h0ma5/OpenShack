@@ -53,20 +53,20 @@ void MainWindow::showSettings() {
 void MainWindow::importAdif() {
     QString filename = QFileDialog::getOpenFileName(this, "ADIF File", "", "*.adi");
 
-    ui->statusBar->showMessage(QString("Importing %1...").arg(filename));
+    ui->statusBar->showMessage(tr("Importing %1...").arg(filename));
     Adif adif;
     int count = adif.importFromFile(filename);
-    ui->statusBar->showMessage(QString("Imported %1 contacts.").arg(count), 5000);
+    ui->statusBar->showMessage(tr("Imported %n contacts.", "", count), 5000);
     ui->logbookWidget->updateTable();
 }
 
 void MainWindow::exportAdif() {
     QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
 
-    ui->statusBar->showMessage(QString("Exporting %1...").arg(filename));
+    ui->statusBar->showMessage(tr("Exporting %1...").arg(filename));
     Adif adif;
     int count = adif.exportToFile(filename);
-    ui->statusBar->showMessage(QString("Exported %1 contacts.").arg(count), 5000);
+    ui->statusBar->showMessage(tr("Exported %n contacts.", "", count), 5000);
 }
 
 void MainWindow::showAbout() {

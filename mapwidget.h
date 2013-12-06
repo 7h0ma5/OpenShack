@@ -8,8 +8,6 @@ namespace Ui {
 class MapWidget;
 }
 
-class QVector2D;
-
 class MapWidget : public QWidget
 {
     Q_OBJECT

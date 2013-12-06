@@ -64,7 +64,7 @@ void NewContactWidget::callsignChanged() {
     query.exec();
 
     if (!query.next()) {
-        ui->contactInfo->setText("First Contact!");
+        ui->contactInfo->setText(tr("First Contact!"));
     }
     else {
         ui->nameEdit->setText(query.value(0).toString());

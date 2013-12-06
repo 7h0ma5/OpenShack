@@ -2,34 +2,175 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="de_DE">
 <context>
+    <name>DxTableModel</name>
+    <message>
+        <location filename="dxwidget.cpp" line="26"/>
+        <source>Time</source>
+        <translation>Zeit</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="27"/>
+        <source>Callsign</source>
+        <translation>Rufzeichen</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="28"/>
+        <source>Frequency</source>
+        <translation>Frequenz</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="29"/>
+        <source>Spotter</source>
+        <translation>Entdecker</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="30"/>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+</context>
+<context>
     <name>DxWidget</name>
     <message>
-        <location filename="dxwidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <location filename="dxwidget.ui" line="148"/>
+        <source>Raw</source>
+        <translation>Rohdaten</translation>
     </message>
     <message>
-        <location filename="dxwidget.ui" line="50"/>
+        <location filename="dxwidget.ui" line="161"/>
         <source>Send</source>
-        <translation type="unfinished">Senden</translation>
+        <translation>Senden</translation>
     </message>
     <message>
-        <location filename="dxwidget.ui" line="64"/>
-        <source>db0sue.de:8000</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="dxwidget.ui" line="72"/>
+        <location filename="dxwidget.ui" line="141"/>
+        <location filename="dxwidget.cpp" line="91"/>
+        <location filename="dxwidget.cpp" line="159"/>
         <source>Connect</source>
-        <translation type="unfinished">Verbinden</translation>
+        <translation>Verbinden</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="83"/>
+        <source>Connecting...</source>
+        <translation>Verbinden...</translation>
+    </message>
+    <message>
+        <location filename="dxwidget.cpp" line="165"/>
+        <source>Disconnect</source>
+        <translation>Trennen</translation>
     </message>
 </context>
 <context>
     <name>LogbookWidget</name>
     <message>
-        <location filename="logbookwidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <location filename="logbookwidget.ui" line="63"/>
+        <location filename="logbookwidget.cpp" line="101"/>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.ui" line="66"/>
+        <source>Del</source>
+        <translation>Entf</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="62"/>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="63"/>
+        <source>Time on</source>
+        <translation>Startzeit</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="64"/>
+        <source>Time off</source>
+        <translation>Endzeit</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="65"/>
+        <source>Call</source>
+        <translation>Rufzeichen</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="66"/>
+        <source>RST Sent</source>
+        <translation>RST Gesendet</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="67"/>
+        <source>RST Rcvd</source>
+        <translation>RST Empfangen</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="68"/>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="69"/>
+        <source>Location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="70"/>
+        <source>Locator</source>
+        <translation>Lokator</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="71"/>
+        <source>My Locator</source>
+        <translation>Mein Lokator</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="72"/>
+        <source>CQ</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="73"/>
+        <source>ITU</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="74"/>
+        <source>Frequency</source>
+        <translation>Frequenz</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="75"/>
+        <source>Band</source>
+        <translation>Band</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="76"/>
+        <source>Mode</source>
+        <translation>Betriebsart</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="77"/>
+        <source>Rig</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="78"/>
+        <source>Power</source>
+        <translation>Leistung</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="79"/>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="80"/>
+        <source>QSL via</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="logbookwidget.cpp" line="101"/>
+        <source>Delete the selected contacts?</source>
+        <translation>Die ausgewählten Kontakte löschen?</translation>
     </message>
 </context>
 <context>
@@ -37,54 +178,85 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>OpenShack</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="35"/>
-        <location filename="mainwindow.ui" line="100"/>
+        <location filename="mainwindow.ui" line="42"/>
         <source>Logbook</source>
-        <translation type="unfinished">Logbuch</translation>
+        <translation>Logbuch</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="63"/>
-        <location filename="mainwindow.ui" line="140"/>
+        <location filename="mainwindow.ui" line="124"/>
+        <location filename="mainwindow.ui" line="189"/>
+        <location filename="mainwindow.ui" line="250"/>
         <source>New Contact</source>
-        <translation type="unfinished">Neuer Kontakt</translation>
+        <translation>Neuer Kontakt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="109"/>
+        <location filename="mainwindow.ui" line="52"/>
         <source>Rig</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="115"/>
+        <location filename="mainwindow.ui" line="58"/>
         <source>Help</source>
-        <translation type="unfinished">Hilfe</translation>
+        <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="127"/>
+        <location filename="mainwindow.ui" line="64"/>
+        <source>Window</source>
+        <translation>Ansicht</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="97"/>
+        <location filename="mainwindow.ui" line="245"/>
+        <source>Map</source>
+        <translation>Karte</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="167"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">&amp;Beenden</translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="145"/>
+        <location filename="mainwindow.ui" line="170"/>
+        <source>Ctrl+Q</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="192"/>
+        <source>Ctrl+N</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="200"/>
         <source>Import ADIF</source>
-        <translation type="unfinished"></translation>
+        <translation>ADIF importieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="150"/>
+        <location filename="mainwindow.ui" line="208"/>
         <source>Export ADIF</source>
-        <translation type="unfinished"></translation>
+        <translation>ADIF exportieren</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="216"/>
         <source>Connect</source>
-        <translation type="unfinished">Verbinden</translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="160"/>
+        <location filename="mainwindow.ui" line="224"/>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
+        <translation>Über</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="232"/>
+        <source>Save Contact</source>
+        <translation>Kontakt speichern</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="235"/>
+        <source>Ctrl+S</source>
+        <translation></translation>
     </message>
     <message>
         <source>Callsign</source>
@@ -103,180 +275,296 @@
         <translation type="obsolete">QTH</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="73"/>
-        <source>Tab 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Contacts</source>
         <translation type="obsolete">Kontakte</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="45"/>
+        <location filename="mainwindow.ui" line="82"/>
+        <location filename="mainwindow.ui" line="240"/>
         <source>DX Cluster</source>
-        <translation type="unfinished">DX Cluster</translation>
+        <translation>DX Cluster</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="92"/>
+        <location filename="mainwindow.ui" line="34"/>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation>Datei</translation>
     </message>
     <message>
         <source>Quit</source>
         <translation type="obsolete">Beenden</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="132"/>
+        <location filename="mainwindow.ui" line="178"/>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="56"/>
+        <source>Importing %1...</source>
+        <translation>Importiere %1...</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="mainwindow.cpp" line="59"/>
+        <source>Imported %n contacts.</source>
+        <translation>
+            <numerusform>%n Kontake importiert.</numerusform>
+            <numerusform>%n Kontakte improtiert.</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="66"/>
+        <source>Exporting %1...</source>
+        <translation>Exportiere %1...</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="mainwindow.cpp" line="69"/>
+        <source>Exported %n contacts.</source>
+        <oldsource>Exported %1 contacts.</oldsource>
+        <translation>
+            <numerusform>%n Kontakt exportiert.</numerusform>
+            <numerusform>%n Kontakte exportiert.</numerusform>
+        </translation>
     </message>
 </context>
 <context>
     <name>NewContactWidget</name>
     <message>
-        <location filename="newcontactwidget.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <location filename="newcontactwidget.ui" line="30"/>
+        <source>Time Off</source>
+        <translation>Endzeit</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="34"/>
+        <location filename="newcontactwidget.ui" line="37"/>
         <source>Callsign</source>
-        <translation type="unfinished">Rufzeichen</translation>
+        <translation>Rufzeichen</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="47"/>
+        <location filename="newcontactwidget.ui" line="86"/>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="103"/>
+        <source>Time On</source>
+        <translation>Startzeit</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="139"/>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="150"/>
+        <source>RST Rcvd</source>
+        <translation>RST Empfangen</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="176"/>
+        <source>RST Sent</source>
+        <translation>RST Gesendet</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="283"/>
+        <source>OLIVIA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="288"/>
+        <source>HELL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="322"/>
+        <source>Power</source>
+        <translation>Leistung</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="329"/>
+        <source> W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="354"/>
+        <source>Rig</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="378"/>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="54"/>
+        <location filename="newcontactwidget.ui" line="408"/>
+        <source>Grid Locator</source>
+        <translation>Lokator</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="415"/>
+        <source>QTH</source>
+        <translation>QTH</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="444"/>
+        <source>CQ</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="451"/>
+        <source>ITU</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="481"/>
+        <source>DXCC</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="540"/>
+        <source>Contacts</source>
+        <translation>Kontakte</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="585"/>
+        <source>Distance</source>
+        <translation>Distanz</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="592"/>
+        <source>Bearing</source>
+        <translation>Richtung</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="599"/>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="615"/>
+        <source>QSL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="624"/>
+        <source>QSL via</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="631"/>
+        <source>Bureau</source>
+        <translation>Büro</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="638"/>
+        <source>Direct</source>
+        <translation>Direkt</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="645"/>
+        <source>LoTW</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="652"/>
+        <source>eQSL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="660"/>
+        <location filename="newcontactwidget.ui" line="676"/>
+        <source>Contest</source>
+        <translation>Kontest</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="669"/>
+        <source>Rx Serial</source>
+        <translation>Nummer empfangen</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="689"/>
+        <source>LZ DX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="697"/>
+        <source>Tx Serial</source>
+        <translation>Nummer gesendet</translation>
+    </message>
+    <message>
+        <location filename="newcontactwidget.ui" line="296"/>
         <source>Frequency</source>
-        <translation type="unfinished">Frequenz</translation>
+        <translation>Frequenz</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="81"/>
-        <source>Station RST</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="95"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="105"/>
+        <location filename="newcontactwidget.ui" line="488"/>
         <source>Band</source>
-        <translation type="unfinished">Band</translation>
+        <translation>Band</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="183"/>
         <source>My RST</source>
-        <translation type="unfinished">Mein RST</translation>
+        <translation type="obsolete">Mein RST</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="190"/>
+        <location filename="newcontactwidget.ui" line="195"/>
         <source>59</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="197"/>
         <source>Locator</source>
-        <translation type="unfinished">Lokator</translation>
+        <translation type="obsolete">Lokator</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="207"/>
+        <location filename="newcontactwidget.ui" line="205"/>
         <source>Mode</source>
-        <translation type="unfinished">Betriebsart</translation>
+        <translation>Betriebsart</translation>
     </message>
     <message>
-        <location filename="newcontactwidget.ui" line="215"/>
-        <source>CW</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="220"/>
-        <source>USB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="225"/>
-        <source>LSB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="230"/>
-        <source>AM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="235"/>
-        <source>FM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="240"/>
-        <source>PSK31</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="newcontactwidget.ui" line="245"/>
-        <source>RTTY</source>
-        <translation type="unfinished"></translation>
+        <location filename="newcontactwidget.cpp" line="67"/>
+        <source>First Contact!</source>
+        <translation>Erster Kontakt!</translation>
     </message>
 </context>
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="main.cpp" line="33"/>
+        <location filename="main.cpp" line="55"/>
         <source>OpenShack Error</source>
-        <translation type="unfinished">OpenShack Fehler</translation>
+        <translation>OpenShack Fehler</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="34"/>
+        <location filename="main.cpp" line="56"/>
         <source>Could not connect to database.</source>
-        <translation type="unfinished">Keine Verbindung zur Datenbank möglich.</translation>
+        <translation>Keine Verbindung zur Datenbank möglich.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="logbookwidget.cpp" line="15"/>
         <source>Call</source>
-        <translation type="unfinished">Rufzeichen</translation>
+        <translation type="obsolete">Rufzeichen</translation>
     </message>
     <message>
         <source>RST</source>
         <translation type="obsolete">RST</translation>
     </message>
     <message>
-        <location filename="logbookwidget.cpp" line="16"/>
-        <source>RX RST</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="logbookwidget.cpp" line="17"/>
-        <source>TX RST</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="logbookwidget.cpp" line="18"/>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation type="obsolete">Name</translation>
     </message>
     <message>
-        <location filename="logbookwidget.cpp" line="19"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation type="obsolete">Ort</translation>
     </message>
     <message>
-        <location filename="logbookwidget.cpp" line="20"/>
         <source>Locator</source>
-        <translation type="unfinished">Lokator</translation>
+        <translation type="obsolete">Lokator</translation>
     </message>
     <message>
-        <location filename="logbookwidget.cpp" line="21"/>
         <source>Time</source>
-        <translation type="unfinished">Zeit</translation>
+        <translation type="obsolete">Zeit</translation>
     </message>
 </context>
 <context>
@@ -284,47 +572,67 @@
     <message>
         <location filename="settingsdialog.ui" line="14"/>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="27"/>
         <source>Operator</source>
-        <translation type="unfinished">Betreiber</translation>
+        <translation>Betreiber</translation>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="38"/>
         <source>Callsign</source>
-        <translation type="unfinished">Rufzeichen</translation>
+        <translation>Rufzeichen</translation>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="48"/>
         <source>Locator</source>
-        <translation type="unfinished">Lokator</translation>
+        <translation>Lokator</translation>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="61"/>
         <source>Rig</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="settingsdialog.ui" line="72"/>
         <source>Model</source>
-        <translation type="unfinished">Modell</translation>
+        <translation>Modell</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="82"/>
+        <location filename="settingsdialog.ui" line="79"/>
         <source>Baudrate</source>
-        <translation type="unfinished">Baudrate</translation>
+        <translation>Baudrate</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="102"/>
+        <location filename="settingsdialog.ui" line="99"/>
         <source>Port</source>
-        <translation type="unfinished">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="109"/>
+        <location filename="settingsdialog.ui" line="106"/>
         <source>/dev/tty1</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="119"/>
+        <source>Callbook</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="125"/>
+        <source>HamQTH</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="131"/>
+        <source>Username</source>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="141"/>
+        <source>Password</source>
+        <translation>Passwort</translation>
     </message>
 </context>
 </TS>

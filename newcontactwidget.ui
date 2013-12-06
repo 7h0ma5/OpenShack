@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_8">
    <item row="0" column="0">
@@ -111,12 +111,12 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>0</hour>
+           <hour>22</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
            <month>12</month>
-           <day>31</day>
+           <day>30</day>
           </datetime>
          </property>
          <property name="calendarPopup">
@@ -498,7 +498,7 @@
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -511,7 +511,7 @@
           </font>
          </property>
          <property name="text">
-          <string>80m</string>
+          <string notr="true">80m</string>
          </property>
         </widget>
        </item>
@@ -524,7 +524,7 @@
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -569,7 +569,7 @@
           </font>
          </property>
          <property name="text">
-          <string/>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -663,22 +663,12 @@
          <item row="3" column="2">
           <widget class="QLineEdit" name="lineEdit_3"/>
          </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Tx Serial</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_3">
            <property name="text">
             <string>Rx Serial</string>
            </property>
           </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_2"/>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_4">
@@ -700,6 +690,16 @@
             </property>
            </item>
           </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Tx Serial</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="lineEdit_2"/>
          </item>
         </layout>
        </widget>
