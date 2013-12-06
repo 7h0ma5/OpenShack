@@ -11,15 +11,16 @@
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("DL2IC");
-    QCoreApplication::setApplicationName("OpenShack");
+    app.setApplicationVersion(VERSION);
+    app.setOrganizationName("DL2IC");
+    app.setApplicationName("OpenShack");
 
     /*
      * Load stylesheet
      */
     QFile style(":/stylesheet.css");
     style.open(QFile::ReadOnly | QIODevice::Text);
-    qApp->setStyleSheet(style.readAll());
+    app.setStyleSheet(style.readAll());
     style.close();
 
     /*
@@ -70,6 +71,9 @@ int main(int argc, char* argv[]) {
                "my_rig TEXT, tx_power TEXT,"
                "comment TEXT, qsl_via TEXT)");
 
+    /*
+     * Create MainWindow
+     */
     MainWindow w;
 
     QIcon icon(":/icon.png");

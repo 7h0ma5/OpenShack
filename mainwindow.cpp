@@ -70,9 +70,13 @@ void MainWindow::exportAdif() {
 }
 
 void MainWindow::showAbout() {
-    QString aboutText = "<h1>OpenShack</h1>"
+    QString aboutText = "<h1>OpenShack %1</h1>"
                         "<p>&copy; 2013 Thomas Gatzweiler DL2IC</p>"
                         "<p><a href='http://dl2ic.de'>www.dl2ic.de</a></p>";
+
+    QString version = QCoreApplication::applicationVersion();
+    aboutText = aboutText.arg(version);
+
     QMessageBox::about(this, "About", aboutText);
 }
 

@@ -10,6 +10,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = OpenShack
 TEMPLATE = app
+VERSION = 1.0.0
+
+DEFINES += VERSION=\\\"$$VERSION\\\"
 
 macx:ICON = data/icon.icns
 win32:RC_FILE += openshack.rc
