@@ -14,6 +14,15 @@ TEMPLATE = app
 macx:ICON = data/icon.icns
 win32:RC_FILE += openshack.rc
 
+unix {
+  isEmpty(PREFIX) {
+    PREFIX = /usr/local
+  }
+
+  INSTALLS += target
+  target.path = $$PREFIX/bin
+}
+
 SOURCES += main.cpp \
     mainwindow.cpp \
     settingsdialog.cpp \
@@ -28,7 +37,7 @@ SOURCES += main.cpp \
     cty.cpp \
     fldigi.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
     settingsdialog.h \
     newcontactwidget.h \
     dxwidget.h \
@@ -41,7 +50,7 @@ HEADERS  += mainwindow.h \
     cty.h \
     fldigi.h
 
-FORMS    += mainwindow.ui \
+FORMS += mainwindow.ui \
     settingsdialog.ui \
     newcontactwidget.ui \
     dxwidget.ui \
