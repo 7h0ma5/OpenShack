@@ -8,13 +8,13 @@ QT       += core gui sql network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = OpenShack
+TARGET = openshack
 TEMPLATE = app
 VERSION = 1.0.0
 
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
-macx:ICON = data/icon.icns
+macx:ICON = data/openshack.icns
 win32:RC_FILE += openshack.rc
 
 unix {
@@ -22,8 +22,15 @@ unix {
     PREFIX = /usr/local
   }
 
-  INSTALLS += target
   target.path = $$PREFIX/bin
+
+  desktop.path = $$PREFIX/share/applications/
+  desktop.files += $${TARGET}.desktop
+
+  icon.path = $$PREFIX/share/icons/hicolor/256x256/apps
+  icon.files += data/$${TARGET}.png
+
+  INSTALLS += target desktop icon
 }
 
 isEmpty(QMAKE_LRELEASE) {
@@ -74,7 +81,8 @@ FORMS += mainwindow.ui \
 
 OTHER_FILES += \
     stylesheet.css \
-    openshack.rc
+    openshack.rc \
+    openshack.desktop
 
 RESOURCES += \
     i18n.qrc \
