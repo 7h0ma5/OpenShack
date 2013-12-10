@@ -1,4 +1,5 @@
 #include "logformat.h"
+#include "data/cty.h"
 
 LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
 
@@ -15,15 +16,28 @@ void LogFormat::setDefaults(QMap<QString, QString>& defaults) {
 int LogFormat::runImport() {
     this->importStart();
 
+    Cty cty;
+
     int count = 0;
     QMap<QString, QString> contact;
 
     while (true) {
-        if (defaults) {
-            contact.unite(*defaults);
+        if (!this->importNext(contact)) break;
+
+        foreach (QString key, defaults->keys()) {
+            if (contact[key].isEmpty()) {
+                contact[key] = defaults->value(key);
+            }
         }
 
-        if (!this->importNext(contact)) break;
+        Dxcc* dxcc = cty.lookup(contact["call"]);
+
+        if (contact["ituz"].isEmpty()) {
+            contact["ituz"] = QString::number(dxcc->ituZone);
+        }
+        if (contact["cqz"].isEmpty()) {
+            contact["cqz"] = QString::number(dxcc->cqZone);
+        }
 
         QSqlQuery query;
         query.prepare("INSERT INTO contacts (call, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"

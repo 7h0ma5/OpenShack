@@ -31,7 +31,18 @@ void ImportDialog::import() {
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream in(&file);
 
+    QMap<QString, QString> defaults;
+
+    if (ui->gridCheckBox->isChecked()) {
+        defaults["my_grid"] = ui->gridEdit->text();
+    }
+
+    if (ui->commentCheckBox->isChecked()) {
+        defaults["comment"] = ui->commentEdit->text();
+    }
+
     Adif adif(in);
+    adif.setDefaults(defaults);
     int count = adif.runImport();
 
     ui->statusLabel->setText(tr("Imported %n contacts.", "", count));
