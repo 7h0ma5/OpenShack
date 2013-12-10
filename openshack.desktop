@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OpenShack
+Comment=Amateur Radio Logbook
+Exec=openshack
+Icon=openshack
+Categories=Utility;HamRadio;
