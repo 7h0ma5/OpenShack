@@ -11,8 +11,9 @@ ImportDialog::ImportDialog(QWidget *parent) :
 
     QSettings settings;
 
-    ui->fromDateEdit->setDate(QDate::currentDate());
-    ui->toDateEdit->setDate(QDate::currentDate());
+    ui->allCheckBox->setChecked(true);
+    ui->startDateEdit->setDate(QDate::currentDate());
+    ui->endDateEdit->setDate(QDate::currentDate());
     ui->gridEdit->setText(settings.value("operator/grid").toString());
 }
 
@@ -22,8 +23,8 @@ void ImportDialog::browse() {
 }
 
 void ImportDialog::toggleAll() {
-    ui->fromDateEdit->setEnabled(!ui->allCheckBox->isChecked());
-    ui->toDateEdit->setEnabled(!ui->allCheckBox->isChecked());
+    ui->startDateEdit->setEnabled(!ui->allCheckBox->isChecked());
+    ui->endDateEdit->setEnabled(!ui->allCheckBox->isChecked());
 }
 
 void ImportDialog::import() {
@@ -43,6 +44,11 @@ void ImportDialog::import() {
 
     Adif adif(in);
     adif.setDefaults(defaults);
+
+    if (!ui->allCheckBox->isChecked()) {
+        adif.setDateRange(ui->startDateEdit->date(), ui->endDateEdit->date());
+    }
+
     int count = adif.runImport();
 
     ui->statusLabel->setText(tr("Imported %n contacts.", "", count));

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Import</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
@@ -85,7 +85,7 @@
         </item>
         <item>
          <property name="text">
-          <string>CSV</string>
+          <string notr="true">CSV</string>
          </property>
         </item>
        </widget>
@@ -114,36 +114,42 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="2">
-       <widget class="QLabel" name="toLabel">
+       <widget class="QLabel" name="endDateLabel">
         <property name="text">
-         <string>To</string>
+         <string>End</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QDateEdit" name="fromDateEdit">
+       <widget class="QDateEdit" name="startDateEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="fromLabel">
+       <widget class="QLabel" name="startDateLabel">
         <property name="text">
-         <string>From</string>
+         <string>Start</string>
         </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QDateEdit" name="toDateEdit">
+       <widget class="QDateEdit" name="endDateEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

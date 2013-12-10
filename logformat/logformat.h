@@ -14,6 +14,7 @@ public:
     int runImport();
     int runExport();
     void setDefaults(QMap<QString, QString>& defaults);
+    void setDateRange(QDate start, QDate end);
 
 protected:
     virtual void importStart() {}
@@ -26,6 +27,11 @@ protected:
 
     QTextStream& stream;
     QMap<QString, QString>* defaults;
+
+private:
+    bool inDateRange(QString date);
+    bool inDateRange(QDate date);
+    QDate startDate, endDate;
 };
 
 #endif // LOGFORMAT_H

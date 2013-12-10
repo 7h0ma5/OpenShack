@@ -13,6 +13,11 @@ void LogFormat::setDefaults(QMap<QString, QString>& defaults) {
     this->defaults = &defaults;
 }
 
+void LogFormat::setDateRange(QDate start, QDate end) {
+    this->startDate = start;
+    this->endDate = end;
+}
+
 int LogFormat::runImport() {
     this->importStart();
 
@@ -23,6 +28,13 @@ int LogFormat::runImport() {
 
     while (true) {
         if (!this->importNext(contact)) break;
+
+        if (!endDate.isNull()) {
+            if (!inDateRange(contact["date"])) {
+                contact.clear();
+                continue;
+            }
+        }
 
         foreach (QString key, defaults->keys()) {
             if (contact[key].isEmpty()) {
@@ -90,3 +102,12 @@ int LogFormat::runExport() {
     this->exportEnd();
     return count;
 }
+
+bool LogFormat::inDateRange(QString date) {
+    return inDateRange(QDate::fromString(date, Qt::ISODate));
+}
+
+bool LogFormat::inDateRange(QDate date) {
+    return date >= startDate && date <= endDate;
+}
+
