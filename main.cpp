@@ -6,7 +6,7 @@
 #include <QStandardPaths>
 #include <QDebug>
 #include "mainwindow.h"
-#include "rig.h"
+#include "interface/rig.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);

@@ -1,7 +1,7 @@
 #include <QtSql/QtSql>
 #include <QShortcut>
 #include <QDebug>
-#include "rig.h"
+#include "interface/rig.h"
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
 #include "utils.h"

@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>810</width>
-     <height>27</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -161,7 +161,9 @@
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -172,7 +174,9 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="preferences-desktop"/>
+    <iconset theme="preferences-desktop">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -183,7 +187,9 @@
   </action>
   <action name="actionNewContact">
    <property name="icon">
-    <iconset theme="document-new"/>
+    <iconset theme="document-new">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>New Contact</string>
@@ -194,7 +200,9 @@
   </action>
   <action name="actionImport">
    <property name="icon">
-    <iconset theme="document-open"/>
+    <iconset theme="document-open">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Import ADIF</string>
@@ -202,7 +210,9 @@
   </action>
   <action name="actionExport">
    <property name="icon">
-    <iconset theme="document-save"/>
+    <iconset theme="document-save">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Export ADIF</string>
@@ -210,7 +220,9 @@
   </action>
   <action name="actionConnect">
    <property name="icon">
-    <iconset theme="network-wired"/>
+    <iconset theme="network-wired">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Connect</string>
@@ -218,7 +230,9 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about"/>
+    <iconset theme="help-about">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -226,7 +240,9 @@
   </action>
   <action name="actionSaveContact">
    <property name="icon">
-    <iconset theme="document-save"/>
+    <iconset theme="document-save">
+     <normaloff/>
+    </iconset>
    </property>
    <property name="text">
     <string>Save Contact</string>
@@ -256,7 +272,7 @@
   <customwidget>
    <class>NewContactWidget</class>
    <extends>QWidget</extends>
-   <header>newcontactwidget.h</header>
+   <header>widget/newcontactwidget.h</header>
    <container>1</container>
    <slots>
     <signal>contactAdded()</signal>
@@ -269,7 +285,7 @@
   <customwidget>
    <class>LogbookWidget</class>
    <extends>QWidget</extends>
-   <header>logbookwidget.h</header>
+   <header>widget/logbookwidget.h</header>
    <container>1</container>
    <slots>
     <slot>updateTable()</slot>
@@ -278,7 +294,7 @@
   <customwidget>
    <class>DxWidget</class>
    <extends>QWidget</extends>
-   <header>dxwidget.h</header>
+   <header>widget/dxwidget.h</header>
    <container>1</container>
    <slots>
     <signal>tuneDx(QString,double)</signal>
@@ -287,7 +303,7 @@
   <customwidget>
    <class>MapWidget</class>
    <extends>QWidget</extends>
-   <header>mapwidget.h</header>
+   <header>widget/mapwidget.h</header>
    <container>1</container>
    <slots>
     <slot>setTarget(double,double)</slot>

@@ -3,11 +3,12 @@
 #include <QMessageBox>
 #include <QLabel>
 #include "mainwindow.h"
-#include "settingsdialog.h"
 #include "ui_mainwindow.h"
-#include "adif.h"
-#include "fldigi.h"
-#include "rig.h"
+#include "dialog/settingsdialog.h"
+#include "dialog/importdialog.h"
+#include "logformat/adif.h"
+#include "interface/fldigi.h"
+#include "interface/rig.h"
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -51,21 +52,21 @@ void MainWindow::showSettings() {
 }
 
 void MainWindow::importAdif() {
-    QString filename = QFileDialog::getOpenFileName(this, "ADIF File", "", "*.adi");
-
-    ui->statusBar->showMessage(tr("Importing %1...").arg(filename));
-    Adif adif;
-    int count = adif.importFromFile(filename);
-    ui->statusBar->showMessage(tr("Imported %n contacts.", "", count), 5000);
+    ImportDialog dialog;
+    dialog.exec();
     ui->logbookWidget->updateTable();
 }
 
 void MainWindow::exportAdif() {
     QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
 
+    QFile file(filename);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream stream(&file);
+
     ui->statusBar->showMessage(tr("Exporting %1...").arg(filename));
-    Adif adif;
-    int count = adif.exportToFile(filename);
+    Adif adif(stream);
+    int count = adif.runExport();
     ui->statusBar->showMessage(tr("Exported %n contacts.", "", count), 5000);
 }
 

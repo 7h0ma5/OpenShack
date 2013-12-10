@@ -28,37 +28,42 @@ unix {
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    settingsdialog.cpp \
-    newcontactwidget.cpp \
-    dxwidget.cpp \
-    logbookwidget.cpp \
-    adif.cpp \
-    utils.cpp \
-    rig.cpp \
-    mapwidget.cpp \
-    hamqth.cpp \
-    cty.cpp \
-    fldigi.cpp
+    widget/newcontactwidget.cpp \
+    widget/dxwidget.cpp \
+    widget/logbookwidget.cpp \
+    widget/mapwidget.cpp \
+    interface/rig.cpp \
+    interface/fldigi.cpp \
+    callbook/hamqth.cpp \
+    db/cty.cpp \
+    dialog/settingsdialog.cpp \
+    dialog/importdialog.cpp \
+    logformat/logformat.cpp \
+    logformat/adif.cpp \
+    utils.cpp
 
 HEADERS += mainwindow.h \
-    settingsdialog.h \
-    newcontactwidget.h \
-    dxwidget.h \
-    logbookwidget.h \
-    adif.h \
-    utils.h \
-    rig.h \
-    mapwidget.h \
-    hamqth.h \
-    cty.h \
-    fldigi.h
+    widget/newcontactwidget.h \
+    widget/dxwidget.h \
+    widget/logbookwidget.h \
+    widget/mapwidget.h \
+    interface/rig.h \
+    interface/fldigi.h \
+    callbook/hamqth.h \
+    db/cty.h \
+    dialog/settingsdialog.h \
+    dialog/importdialog.h \
+    logformat/logformat.h \
+    logformat/adif.h \
+    utils.h
 
 FORMS += mainwindow.ui \
-    settingsdialog.ui \
-    newcontactwidget.ui \
-    dxwidget.ui \
-    logbookwidget.ui \
-    mapwidget.ui
+    widget/newcontactwidget.ui \
+    widget/dxwidget.ui \
+    widget/logbookwidget.ui \
+    widget/mapwidget.ui \
+    dialog/settingsdialog.ui \
+    dialog/importdialog.ui
 
 OTHER_FILES += \
     stylesheet.css \
