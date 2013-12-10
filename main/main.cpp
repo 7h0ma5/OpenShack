@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
      */
     MainWindow w;
 
-    QIcon icon(":/icon.png");
+    QIcon icon(":/res/icon.png");
     w.setWindowIcon(icon);
 
     w.show();

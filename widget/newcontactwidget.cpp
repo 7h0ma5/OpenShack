@@ -4,7 +4,7 @@
 #include "interface/rig.h"
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
-#include "utils.h"
+#include "main/utils.h"
 
 NewContactWidget::NewContactWidget(QWidget *parent) :
     QWidget(parent),

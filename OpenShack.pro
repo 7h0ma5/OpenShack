@@ -14,8 +14,8 @@ VERSION = 1.0.0
 
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
-macx:ICON = data/openshack.icns
-win32:RC_FILE += openshack.rc
+macx:ICON = res/openshack.icns
+win32:RC_FILE += res/openshack.rc
 
 unix {
   isEmpty(PREFIX) {
@@ -28,7 +28,7 @@ unix {
   desktop.files += $${TARGET}.desktop
 
   icon.path = $$PREFIX/share/icons/hicolor/256x256/apps
-  icon.files += data/$${TARGET}.png
+  icon.files += res/$${TARGET}.png
 
   INSTALLS += target desktop icon
 }
@@ -45,8 +45,8 @@ updateqm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += updateqm
 PRE_TARGETDEPS += compiler_updateqm_make_all
 
-SOURCES += main.cpp \
-    mainwindow.cpp \
+SOURCES += main/main.cpp \
+    main/mainwindow.cpp \
     widget/newcontactwidget.cpp \
     widget/dxwidget.cpp \
     widget/logbookwidget.cpp \
@@ -54,14 +54,14 @@ SOURCES += main.cpp \
     interface/rig.cpp \
     interface/fldigi.cpp \
     callbook/hamqth.cpp \
-    db/cty.cpp \
+    data/cty.cpp \
     dialog/settingsdialog.cpp \
     dialog/importdialog.cpp \
     logformat/logformat.cpp \
     logformat/adif.cpp \
-    utils.cpp
+    main/utils.cpp
 
-HEADERS += mainwindow.h \
+HEADERS += main/mainwindow.h \
     widget/newcontactwidget.h \
     widget/dxwidget.h \
     widget/logbookwidget.h \
@@ -69,14 +69,14 @@ HEADERS += mainwindow.h \
     interface/rig.h \
     interface/fldigi.h \
     callbook/hamqth.h \
-    db/cty.h \
+    data/cty.h \
     dialog/settingsdialog.h \
     dialog/importdialog.h \
     logformat/logformat.h \
     logformat/adif.h \
-    utils.h
+    main/utils.h
 
-FORMS += mainwindow.ui \
+FORMS += main/mainwindow.ui \
     widget/newcontactwidget.ui \
     widget/dxwidget.ui \
     widget/logbookwidget.ui \
@@ -85,15 +85,15 @@ FORMS += mainwindow.ui \
     dialog/importdialog.ui
 
 OTHER_FILES += \
-    stylesheet.css \
-    openshack.rc \
-    openshack.desktop
+    res/stylesheet.css \
+    res/openshack.rc \
+    res/openshack.desktop
 
 RESOURCES += \
-    i18n.qrc \
-    data.qrc
+    i18n/i18n.qrc \
+    res/res.qrc
 
-TRANSLATIONS = openshack_de.ts
+TRANSLATIONS = i18n/openshack_de.ts
 
 win32: LIBS += -L$$PWD/../lib/ -lhamlib-2
 else:unix: LIBS += -L$/usr/lib/ -lhamlib

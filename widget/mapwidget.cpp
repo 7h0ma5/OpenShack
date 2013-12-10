@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QVector3D>
 #include <cmath>
-#include "utils.h"
+#include "main/utils.h"
 #include "mapwidget.h"
 #include "ui_mapwidget.h"
 
@@ -31,7 +31,7 @@ void MapWidget::redraw() {
 }
 
 void MapWidget::drawMap() {
-    QPixmap pix(":/data/map/nasabluemarble.jpg");
+    QPixmap pix(":/res/map/nasabluemarble.jpg");
     scene->addPixmap(pix);
     scene->setSceneRect(pix.rect());
 }
@@ -135,7 +135,7 @@ void MapWidget::drawNightOverlay() {
         }
     }
 
-    QImage night(":/data/map/nasaearthlights.jpg");
+    QImage night(":/res/map/nasaearthlights.jpg");
     night.convertToFormat(QImage::Format_ARGB32);
 
     QPainter painter;

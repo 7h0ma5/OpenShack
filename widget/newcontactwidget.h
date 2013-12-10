@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "callbook/hamqth.h"
-#include "db/cty.h"
+#include "data/cty.h"
 
 namespace Ui {
 class NewContactWidget;
