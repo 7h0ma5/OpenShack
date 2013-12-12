@@ -75,7 +75,10 @@ void MainWindow::exportLog() {
 void MainWindow::showAbout() {
     QString aboutText = "<h1>OpenShack %1</h1>"
                         "<p>&copy; 2013 Thomas Gatzweiler DL2IC</p>"
-                        "<p><a href='http://dl2ic.de'>www.dl2ic.de</a></p>";
+                        "<p><a href='http://dl2ic.de'>www.dl2ic.de</a></p>"
+                        "<p>Icon by <a href='http://www.iconshock.com'>Icon Shock</a><br />"
+                        "Satellite images by <a href='http://www.nasa.gov'>NASA</p>";
+
 
     QString version = QCoreApplication::applicationVersion();
     aboutText = aboutText.arg(version);
