@@ -46,6 +46,12 @@ QString DxTableModel::getFrequency(const QModelIndex& index) {
     return dxData.at(index.row()).at(2);
 }
 
+void DxTableModel::clear() {
+    beginResetModel();
+    dxData.clear();
+    endResetModel();
+}
+
 DxWidget::DxWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::DxWidget) {
@@ -82,6 +88,11 @@ void DxWidget::connectCluster() {
     ui->connectButton->setEnabled(false);
     ui->connectButton->setText(tr("Connecting..."));
 
+    ui->log->clear();
+    ui->dxTable->clearSelection();
+    dxTableModel->clear();
+    ui->dxTable->repaint();
+
     socket->connectToHost(host, port);
 }
 
@@ -113,7 +124,7 @@ void DxWidget::receive() {
     QStringList lines = data.split(QRegExp("(\a|\n|\r)+"));
 
     foreach (QString line, lines) {
-        if (line.startsWith("login")) {
+        if (line.startsWith("login") || line.contains(QRegExp("enter your call(sign)?:"))) {
             QByteArray call = settings.value("operator/callsign").toByteArray();
             call.append("\n");
             socket->write(call);

@@ -20,6 +20,7 @@ public:
     void addEntry(QStringList entry);
     QString getCallsign(const QModelIndex& index);
     QString getFrequency(const QModelIndex& index);
+    void clear();
 
 private:
     QList<QStringList> dxData;
