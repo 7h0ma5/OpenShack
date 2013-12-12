@@ -1,7 +1,8 @@
 #include <QSettings>
+#include <QStringListModel>
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
-#include "interface/rig.h"
+#include "model/rigtypemodel.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -10,7 +11,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->setupUi(this);
 
     RigTypeModel* rigTypeModel = new RigTypeModel(this);
-    ui->rigModelSelect->setModel(rigTypeModel);
+    ui->hamlibModelSelect->setModel(rigTypeModel);
+
+    QStringListModel* rigModel = new QStringListModel();
+    ui->rigListView->setModel(rigModel);
 
     readSettings();
 }
@@ -20,14 +24,33 @@ void SettingsDialog::save() {
     accept();
 }
 
+void SettingsDialog::addRig() {
+    if (ui->rigNameEdit->text().isEmpty()) return;
+
+    QStringListModel* model = (QStringListModel*)ui->rigListView->model();
+    QStringList rigs = model->stringList();
+    rigs << ui->rigNameEdit->text();
+    model->setStringList(rigs);
+    ui->rigNameEdit->clear();
+}
+
+void SettingsDialog::deleteRig() {
+    foreach (QModelIndex index, ui->rigListView->selectionModel()->selectedRows()) {
+        ui->rigListView->model()->removeRow(index.row());
+    }
+    ui->rigListView->clearSelection();
+}
+
 void SettingsDialog::readSettings() {
     QSettings settings;
     ui->callsignEdit->setText(settings.value("operator/callsign").toString());
     ui->locatorEdit->setText(settings.value("operator/grid").toString());
+    QStringList rigs = settings.value("operator/rigs").toStringList();
+    ((QStringListModel*)ui->rigListView->model())->setStringList(rigs);
 
-    ui->rigModelSelect->setCurrentIndex(settings.value("rig/modelrow").toInt());
-    ui->rigPortEdit->setText(settings.value("rig/port").toString());
-    ui->rigBaudEdit->setValue(settings.value("rig/baudrate").toInt());
+    ui->hamlibModelSelect->setCurrentIndex(settings.value("hamlib/modelrow").toInt());
+    ui->hamlibPortEdit->setText(settings.value("hamlib/port").toString());
+    ui->hamlibBaudEdit->setValue(settings.value("hamlib/baudrate").toInt());
 
     ui->hamQthUsernameEdit->setText(settings.value("hamqth/username").toString());
     ui->hamQthPasswordEdit->setText(settings.value("hamqth/password").toString());
@@ -38,13 +61,15 @@ void SettingsDialog::writeSettings() {
 
     settings.setValue("operator/callsign", ui->callsignEdit->text());
     settings.setValue("operator/grid", ui->locatorEdit->text());
+    QStringList rigs = ((QStringListModel*)ui->rigListView->model())->stringList();
+    settings.setValue("operator/rigs", rigs);
 
-    int row = ui->rigModelSelect->currentIndex();
-    QModelIndex index = ui->rigModelSelect->model()->index(row, 0);
-    settings.setValue("rig/model", index.internalId());
-    settings.setValue("rig/modelrow", row);
-    settings.setValue("rig/port", ui->rigPortEdit->text());
-    settings.setValue("rig/baudrate", ui->rigBaudEdit->value());
+    int row = ui->hamlibModelSelect->currentIndex();
+    QModelIndex index = ui->hamlibModelSelect->model()->index(row, 0);
+    settings.setValue("hamlib/model", index.internalId());
+    settings.setValue("hamlib/modelrow", row);
+    settings.setValue("hamlib/port", ui->hamlibPortEdit->text());
+    settings.setValue("hamlib/baudrate", ui->hamlibBaudEdit->value());
 
     settings.setValue("hamqth/username", ui->hamQthUsernameEdit->text());
     settings.setValue("hamqth/password", ui->hamQthPasswordEdit->text());

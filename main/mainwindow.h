@@ -16,6 +16,9 @@ public:
 
     void closeEvent(QCloseEvent* event);
 
+signals:
+    void settingsChanged();
+
 private slots:
     void rigConnect();
     void showSettings();

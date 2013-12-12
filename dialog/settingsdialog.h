@@ -16,6 +16,8 @@ public:
 
 public slots:
     void save();
+    void addRig();
+    void deleteRig();
 
 private:
     void readSettings();

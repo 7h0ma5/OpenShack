@@ -59,7 +59,8 @@ SOURCES += main/main.cpp \
     dialog/importdialog.cpp \
     logformat/logformat.cpp \
     logformat/adif.cpp \
-    main/utils.cpp
+    main/utils.cpp \
+    model/rigtypemodel.cpp
 
 HEADERS += main/mainwindow.h \
     widget/newcontactwidget.h \
@@ -74,7 +75,8 @@ HEADERS += main/mainwindow.h \
     dialog/importdialog.h \
     logformat/logformat.h \
     logformat/adif.h \
-    main/utils.h
+    main/utils.h \
+    model/rigtypemodel.h
 
 FORMS += main/mainwindow.ui \
     widget/newcontactwidget.ui \

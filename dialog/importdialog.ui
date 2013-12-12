@@ -78,16 +78,6 @@
           <string notr="true">ADIF 2</string>
          </property>
         </item>
-        <item>
-         <property name="text">
-          <string notr="true">ADIF 3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">CSV</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item row="0" column="0">

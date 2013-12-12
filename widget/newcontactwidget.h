@@ -31,6 +31,7 @@ signals:
     void newTarget(double lat, double lon);
 
 public slots:
+    void reloadSettings();
     void callsignChanged();
     void frequencyChanged();
     void modeChanged();

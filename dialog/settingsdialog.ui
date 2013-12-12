@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>596</width>
-    <height>378</height>
+    <height>377</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,37 +28,75 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <layout class="QFormLayout" name="formLayout">
-         <property name="fieldGrowthPolicy">
-          <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>General</string>
          </property>
-         <item row="0" column="0">
-          <widget class="QLabel" name="callsignLabel">
-           <property name="text">
-            <string>Callsign</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="callsignEdit"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="locatorLabel">
-           <property name="text">
-            <string>Locator</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="locatorEdit"/>
-         </item>
-        </layout>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <layout class="QFormLayout" name="formLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="callsignLabel">
+              <property name="text">
+               <string>Callsign</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="callsignEdit"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="locatorLabel">
+              <property name="text">
+               <string>Locator</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="locatorEdit"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Rigs</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="rigNameEdit"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="deleteRigButton">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="addRigButton">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="4">
+           <widget class="QListView" name="rigListView"/>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Rig</string>
+       <string>Hamlib</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
@@ -67,21 +105,21 @@
           <enum>QFormLayout::FieldsStayAtSizeHint</enum>
          </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="rigModelLabel">
+          <widget class="QLabel" name="hamlibModelLabel">
            <property name="text">
             <string>Model</string>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="rigBaudLabel">
+          <widget class="QLabel" name="hamlibBaudLabel">
            <property name="text">
             <string>Baudrate</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QSpinBox" name="rigBaudEdit">
+          <widget class="QSpinBox" name="hamlibBaudEdit">
            <property name="minimum">
             <number>75</number>
            </property>
@@ -94,21 +132,21 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="rigPortLabel">
+          <widget class="QLabel" name="hamlibPortLabel">
            <property name="text">
             <string>Port</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="rigPortEdit">
+          <widget class="QLineEdit" name="hamlibPortEdit">
            <property name="text">
             <string>/dev/tty1</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QComboBox" name="rigModelSelect"/>
+          <widget class="QComboBox" name="hamlibModelSelect"/>
          </item>
         </layout>
        </item>
@@ -212,8 +250,42 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>addRigButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>addRig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>304</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>297</x>
+     <y>188</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteRigButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>deleteRig()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>520</x>
+     <y>304</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>297</x>
+     <y>188</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>save()</slot>
+  <slot>addRig()</slot>
+  <slot>deleteRig()</slot>
  </slots>
 </ui>

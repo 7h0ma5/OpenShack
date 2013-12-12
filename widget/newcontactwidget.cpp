@@ -29,14 +29,33 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     connect(&callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
             this, SLOT(callsignResult(const QMap<QString, QString>&)));
 
+    QStringListModel* rigModel = new QStringListModel(this);
+    ui->rigEdit->setModel(rigModel);
+
+    reloadSettings();
+
     QSettings settings;
     QString mode = settings.value("newcontact/mode", "CW").toString();
     double freq = settings.value("newcontact/frequency", 3.5).toDouble();
+    QString rig = settings.value("newcontact/rig").toString();
 
     ui->modeEdit->setCurrentText(mode);
     ui->frequencyEdit->setValue(freq);
+    ui->rigEdit->setCurrentText(rig);
 
     resetContact();
+}
+
+void NewContactWidget::reloadSettings() {
+    QString selectedRig = ui->rigEdit->currentText();
+    QSettings settings;
+    QStringList rigs = settings.value("operator/rigs").toStringList();
+    QStringListModel* model = (QStringListModel*)ui->rigEdit->model();
+    model->setStringList(rigs);
+
+    if (!selectedRig.isEmpty()) {
+        ui->rigEdit->setCurrentText(selectedRig);
+    }
 }
 
 void NewContactWidget::callsignChanged() {
@@ -271,5 +290,6 @@ NewContactWidget::~NewContactWidget() {
     QSettings settings;
     settings.setValue("newcontact/mode", ui->modeEdit->currentText());
     settings.setValue("newcontact/frequency", ui->frequencyEdit->value());
+    settings.setValue("newcontact/rig", ui->rigEdit->currentText());
     delete ui;
 }

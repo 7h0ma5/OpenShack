@@ -280,6 +280,7 @@
     <slot>resetContact()</slot>
     <slot>saveContact()</slot>
     <slot>tuneDx(QString,double)</slot>
+    <slot>reloadSettings()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -520,8 +521,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>settingsChanged()</signal>
+   <receiver>newContactWidget</receiver>
+   <slot>reloadSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>607</x>
+     <y>500</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
+  <signal>settingsChanged()</signal>
   <slot>saveContact()</slot>
   <slot>resetContact()</slot>
   <slot>showSettings()</slot>

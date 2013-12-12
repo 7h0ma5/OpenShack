@@ -48,7 +48,9 @@ void MainWindow::rigConnect() {
 
 void MainWindow::showSettings() {
     SettingsDialog sw;
-    sw.exec();
+    if (sw.exec() == QDialog::Accepted) {
+        emit settingsChanged();
+    }
 }
 
 void MainWindow::importAdif() {

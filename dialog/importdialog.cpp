@@ -15,6 +15,13 @@ ImportDialog::ImportDialog(QWidget *parent) :
     ui->startDateEdit->setDate(QDate::currentDate());
     ui->endDateEdit->setDate(QDate::currentDate());
     ui->gridEdit->setText(settings.value("operator/grid").toString());
+
+    QStringList rigs = settings.value("operator/rigs").toStringList();
+    QStringListModel* rigModel = new QStringListModel(rigs, this);
+    ui->rigSelect->setModel(rigModel);
+    if (!ui->rigSelect->currentText().isEmpty()) {
+        ui->rigCheckBox->setChecked(true);
+    }
 }
 
 void ImportDialog::browse() {
@@ -36,6 +43,10 @@ void ImportDialog::import() {
 
     if (ui->gridCheckBox->isChecked()) {
         defaults["my_grid"] = ui->gridEdit->text();
+    }
+
+    if (ui->rigCheckBox->isChecked()) {
+        defaults["my_rig"] = ui->rigSelect->currentText();
     }
 
     if (ui->commentCheckBox->isChecked()) {

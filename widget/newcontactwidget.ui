@@ -111,7 +111,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>22</hour>
+           <hour>21</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -340,13 +340,7 @@
         </widget>
        </item>
        <item row="1" column="5">
-        <widget class="QComboBox" name="rigEdit">
-         <item>
-          <property name="text">
-           <string notr="true">FT-450D</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QComboBox" name="rigEdit"/>
        </item>
        <item row="0" column="5">
         <widget class="QLabel" name="rigLabel">
