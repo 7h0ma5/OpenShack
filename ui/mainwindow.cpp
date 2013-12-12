@@ -4,11 +4,11 @@
 #include <QLabel>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "dialog/settingsdialog.h"
-#include "dialog/importdialog.h"
-#include "logformat/adif.h"
-#include "interface/fldigi.h"
-#include "interface/rig.h"
+#include "ui/settingsdialog.h"
+#include "ui/importdialog.h"
+#include "core/adif.h"
+#include "core/fldigi.h"
+#include "core/rig.h"
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),

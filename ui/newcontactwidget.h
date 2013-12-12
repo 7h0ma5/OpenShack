@@ -2,8 +2,8 @@
 #define NEWCONTACTWIDGET_H
 
 #include <QWidget>
-#include "callbook/hamqth.h"
-#include "data/cty.h"
+#include "core/hamqth.h"
+#include "core/cty.h"
 
 namespace Ui {
 class NewContactWidget;

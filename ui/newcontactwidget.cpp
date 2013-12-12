@@ -1,10 +1,10 @@
 #include <QtSql/QtSql>
 #include <QShortcut>
 #include <QDebug>
-#include "interface/rig.h"
+#include "core/rig.h"
+#include "core/utils.h"
 #include "newcontactwidget.h"
 #include "ui_newcontactwidget.h"
-#include "main/utils.h"
 
 NewContactWidget::NewContactWidget(QWidget *parent) :
     QWidget(parent),

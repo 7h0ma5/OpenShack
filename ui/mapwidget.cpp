@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QVector3D>
 #include <cmath>
-#include "main/utils.h"
+#include "core/utils.h"
 #include "mapwidget.h"
 #include "ui_mapwidget.h"
 

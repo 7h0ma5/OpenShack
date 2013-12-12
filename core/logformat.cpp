@@ -1,5 +1,5 @@
 #include "logformat.h"
-#include "data/cty.h"
+#include "cty.h"
 
 LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
 

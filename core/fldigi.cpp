@@ -2,7 +2,7 @@
 #include <QtXml>
 #include <QtDebug>
 #include "fldigi.h"
-#include "logformat/adif.h"
+#include "adif.h"
 
 Fldigi::Fldigi(QObject *parent) :
     QTcpServer(parent)

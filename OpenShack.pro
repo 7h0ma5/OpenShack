@@ -45,46 +45,46 @@ updateqm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += updateqm
 PRE_TARGETDEPS += compiler_updateqm_make_all
 
-SOURCES += main/main.cpp \
-    main/mainwindow.cpp \
-    widget/newcontactwidget.cpp \
-    widget/dxwidget.cpp \
-    widget/logbookwidget.cpp \
-    widget/mapwidget.cpp \
-    interface/rig.cpp \
-    interface/fldigi.cpp \
-    callbook/hamqth.cpp \
-    data/cty.cpp \
-    dialog/settingsdialog.cpp \
-    dialog/importdialog.cpp \
-    logformat/logformat.cpp \
-    logformat/adif.cpp \
-    main/utils.cpp \
-    model/rigtypemodel.cpp
+SOURCES += core/main.cpp \
+    core/rig.cpp \
+    core/fldigi.cpp \
+    core/hamqth.cpp \
+    core/cty.cpp \
+    core/logformat.cpp \
+    core/adif.cpp \
+    core/utils.cpp \
+    core/rigtypemodel.cpp \
+    ui/mainwindow.cpp \
+    ui/newcontactwidget.cpp \
+    ui/dxwidget.cpp \
+    ui/logbookwidget.cpp \
+    ui/mapwidget.cpp \
+    ui/settingsdialog.cpp \
+    ui/importdialog.cpp
 
-HEADERS += main/mainwindow.h \
-    widget/newcontactwidget.h \
-    widget/dxwidget.h \
-    widget/logbookwidget.h \
-    widget/mapwidget.h \
-    interface/rig.h \
-    interface/fldigi.h \
-    callbook/hamqth.h \
-    data/cty.h \
-    dialog/settingsdialog.h \
-    dialog/importdialog.h \
-    logformat/logformat.h \
-    logformat/adif.h \
-    main/utils.h \
-    model/rigtypemodel.h
+HEADERS += core/rig.h \
+    core/fldigi.h \
+    core/hamqth.h \
+    core/cty.h \
+    core/logformat.h \
+    core/adif.h \
+    core/utils.h \
+    core/rigtypemodel.h \
+    ui/mainwindow.h \
+    ui/newcontactwidget.h \
+    ui/dxwidget.h \
+    ui/logbookwidget.h \
+    ui/mapwidget.h \
+    ui/settingsdialog.h \
+    ui/importdialog.h
 
-FORMS += main/mainwindow.ui \
-    widget/newcontactwidget.ui \
-    widget/dxwidget.ui \
-    widget/logbookwidget.ui \
-    widget/mapwidget.ui \
-    dialog/settingsdialog.ui \
-    dialog/importdialog.ui
+FORMS += ui/mainwindow.ui \
+    ui/newcontactwidget.ui \
+    ui/dxwidget.ui \
+    ui/logbookwidget.ui \
+    ui/mapwidget.ui \
+    ui/settingsdialog.ui \
+    ui/importdialog.ui
 
 OTHER_FILES += \
     res/stylesheet.css \

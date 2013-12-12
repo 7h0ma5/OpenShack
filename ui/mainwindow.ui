@@ -272,7 +272,7 @@
   <customwidget>
    <class>NewContactWidget</class>
    <extends>QWidget</extends>
-   <header>widget/newcontactwidget.h</header>
+   <header>ui/newcontactwidget.h</header>
    <container>1</container>
    <slots>
     <signal>contactAdded()</signal>
@@ -286,7 +286,7 @@
   <customwidget>
    <class>LogbookWidget</class>
    <extends>QWidget</extends>
-   <header>widget/logbookwidget.h</header>
+   <header>ui/logbookwidget.h</header>
    <container>1</container>
    <slots>
     <slot>updateTable()</slot>
@@ -295,7 +295,7 @@
   <customwidget>
    <class>DxWidget</class>
    <extends>QWidget</extends>
-   <header>widget/dxwidget.h</header>
+   <header>ui/dxwidget.h</header>
    <container>1</container>
    <slots>
     <signal>tuneDx(QString,double)</signal>
@@ -304,7 +304,7 @@
   <customwidget>
    <class>MapWidget</class>
    <extends>QWidget</extends>
-   <header>widget/mapwidget.h</header>
+   <header>ui/mapwidget.h</header>
    <container>1</container>
    <slots>
     <slot>setTarget(double,double)</slot>

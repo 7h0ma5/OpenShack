@@ -1,7 +1,7 @@
 #include <QFileDialog>
 #include "importdialog.h"
 #include "ui_importdialog.h"
-#include "logformat/adif.h"
+#include "core/adif.h"
 
 ImportDialog::ImportDialog(QWidget *parent) :
     QDialog(parent),
