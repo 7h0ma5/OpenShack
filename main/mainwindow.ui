@@ -205,7 +205,7 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Import ADIF</string>
+    <string>Import</string>
    </property>
   </action>
   <action name="actionExport">
@@ -215,7 +215,7 @@
     </iconset>
    </property>
    <property name="text">
-    <string>Export ADIF</string>
+    <string>Export</string>
    </property>
   </action>
   <action name="actionConnect">
@@ -349,7 +349,7 @@
    <sender>actionExport</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>exportAdif()</slot>
+   <slot>exportLog()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -365,7 +365,7 @@
    <sender>actionImport</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>importAdif()</slot>
+   <slot>importLog()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -543,8 +543,8 @@
   <slot>saveContact()</slot>
   <slot>resetContact()</slot>
   <slot>showSettings()</slot>
-  <slot>importAdif()</slot>
-  <slot>exportAdif()</slot>
+  <slot>importLog()</slot>
+  <slot>exportLog()</slot>
   <slot>showAbout()</slot>
  </slots>
 </ui>

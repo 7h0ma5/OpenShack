@@ -22,8 +22,8 @@ signals:
 private slots:
     void rigConnect();
     void showSettings();
-    void importAdif();
-    void exportAdif();
+    void importLog();
+    void exportLog();
     void showAbout();
 
 private:

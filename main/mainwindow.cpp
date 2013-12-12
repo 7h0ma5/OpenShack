@@ -53,13 +53,13 @@ void MainWindow::showSettings() {
     }
 }
 
-void MainWindow::importAdif() {
+void MainWindow::importLog() {
     ImportDialog dialog;
     dialog.exec();
     ui->logbookWidget->updateTable();
 }
 
-void MainWindow::exportAdif() {
+void MainWindow::exportLog() {
     QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
 
     QFile file(filename);
