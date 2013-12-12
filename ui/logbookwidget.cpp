@@ -86,6 +86,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
     ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->contactTable->horizontalHeader()->setSectionsMovable(true);
 
     ui->contactTable->setItemDelegateForColumn(1, new DateFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(2, new TimeFormatDelegate(ui->contactTable));
@@ -93,6 +94,10 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->setItemDelegateForColumn(4, new CallsignDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(13, new StringFormatDelegate("%1 MHz", ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(17, new StringFormatDelegate("%1 W", ui->contactTable));
+
+    QSettings settings;
+    QByteArray logbookState = settings.value("logbook/state").toByteArray();
+    ui->contactTable->horizontalHeader()->restoreState(logbookState);
 }
 
 void LogbookWidget::deleteContact()
@@ -114,7 +119,9 @@ void LogbookWidget::updateTable() {
     model->select();
 }
 
-LogbookWidget::~LogbookWidget()
-{
+LogbookWidget::~LogbookWidget() {
+    QSettings settings;
+    QByteArray logbookState = ui->contactTable->horizontalHeader()->saveState();
+    settings.setValue("logbook/state", logbookState);
     delete ui;
 }
