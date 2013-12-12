@@ -230,17 +230,32 @@
          </item>
          <item>
           <property name="text">
+           <string notr="true">RTTY</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string notr="true">PSK31</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string notr="true">QPSK31</string>
+           <string notr="true">PSK63</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string notr="true">RTTY</string>
+           <string notr="true">PSK125</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">HELL</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">OLIVIA</string>
           </property>
          </item>
          <item>
@@ -250,17 +265,47 @@
          </item>
          <item>
           <property name="text">
-           <string notr="true">JT65A</string>
+           <string notr="true">DOMINO</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string notr="true">JT65B</string>
+           <string notr="true">DSTAR</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string notr="true">JT65C</string>
+           <string notr="true">MT63</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">MFSK8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">MFSK16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">QPSK31</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">QPSK63</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">QPSK125</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">ROS</string>
           </property>
          </item>
          <item>
@@ -275,17 +320,22 @@
          </item>
          <item>
           <property name="text">
-           <string notr="true">MT63</string>
+           <string notr="true">THRB</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>OLIVIA</string>
+           <string notr="true">THRBX</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>HELL</string>
+           <string notr="true">WSPR</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">WINMOR</string>
           </property>
          </item>
         </widget>
