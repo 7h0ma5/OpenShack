@@ -2,7 +2,7 @@
 #include "cty.h"
 
 LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
-
+    this->defaults = 0;
 }
 
 LogFormat::~LogFormat() {
@@ -36,18 +36,20 @@ int LogFormat::runImport() {
             }
         }
 
-        foreach (QString key, defaults->keys()) {
-            if (contact[key].isEmpty()) {
-                contact[key] = defaults->value(key);
+        if (defaults) {
+            foreach (QString key, defaults->keys()) {
+                if (contact[key].isEmpty()) {
+                    contact[key] = defaults->value(key);
+                }
             }
         }
 
         Dxcc* dxcc = cty.lookup(contact["call"]);
 
-        if (contact["ituz"].isEmpty()) {
+        if (contact["ituz"].isEmpty() && dxcc) {
             contact["ituz"] = QString::number(dxcc->ituZone);
         }
-        if (contact["cqz"].isEmpty()) {
+        if (contact["cqz"].isEmpty() && dxcc) {
             contact["cqz"] = QString::number(dxcc->cqZone);
         }
 

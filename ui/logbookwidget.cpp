@@ -85,6 +85,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->hideColumn(0);
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
+
     ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->contactTable->horizontalHeader()->setSectionsMovable(true);
 
@@ -100,8 +101,7 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->horizontalHeader()->restoreState(logbookState);
 }
 
-void LogbookWidget::deleteContact()
-{
+void LogbookWidget::deleteContact() {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, tr("Delete"), tr("Delete the selected contacts?"),
                                   QMessageBox::Yes|QMessageBox::No);

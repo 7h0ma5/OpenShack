@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = openshack
 TEMPLATE = app
-VERSION = 1.0.0
+VERSION = 0.1.0
 
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
