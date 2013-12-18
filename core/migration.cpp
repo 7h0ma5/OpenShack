@@ -103,7 +103,7 @@ bool Migration::migrate1() {
                       "rst_sent TEXT, rst_rcvd TEXT,"
                       "name TEXT, qth TEXT, grid TEXT, my_grid TEXT,"
                       "cqz INTEGER, ituz INTEGER,"
-                      "frequency TEXT, band TEXT, mode TEXT,"
-                      "my_rig TEXT, tx_power TEXT,"
+                      "frequency REAL, band TEXT, mode TEXT,"
+                      "my_rig TEXT, tx_power REAL,"
                       "comment TEXT, qsl_via TEXT)");
 }

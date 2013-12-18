@@ -62,3 +62,19 @@ int coordBearing(double latA, double lonA, double latB, double lonB) {
 
     return (int)(180*atan2(y, x)/M_PI + 360) % 360;
 }
+
+QString freqToBand(double freq) {
+    if (freq <= 2.0 && freq >= 1.8) return "160m";
+    else if (freq <= 3.8 && freq >= 3.5) return "80m";
+    else if (freq <= 7.5 && freq >= 7.0) return "40m";
+    else if (freq <= 10.150 && freq >= 10.1) return"30m";
+    else if (freq <= 14.350 && freq >= 14.0) return "20m";
+    else if (freq <= 18.168 && freq >= 18.068) return "17m";
+    else if (freq <= 21.450 && freq >= 21.000) return "15m";
+    else if (freq <= 24.990 && freq >= 24.890) return "12m";
+    else if (freq <= 29.700 && freq >= 28.000) return "10m";
+    else if (freq <= 52 && freq >= 50) return "6m";
+    else if (freq <= 148 && freq >= 144) return "2m";
+    else if (freq <= 440 && freq >= 430) return "70cm";
+    else return QString();
+}

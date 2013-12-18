@@ -9,7 +9,7 @@ class LogFormat
 {
 public:
     LogFormat(QTextStream& stream);
-    ~LogFormat();
+    virtual ~LogFormat();
 
     int runImport();
     int runExport();

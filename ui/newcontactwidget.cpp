@@ -119,20 +119,11 @@ void NewContactWidget::callsignResult(const QMap<QString, QString>& data) {
 
 void NewContactWidget::frequencyChanged() {
     double freq = ui->frequencyEdit->value();
-    QString band = "OOB!";
+    QString band = freqToBand(freq);
 
-    if (freq <= 2.0 && freq >= 1.8) band = "160m";
-    else if (freq <= 3.8 && freq >= 3.5) band = "80m";
-    else if (freq <= 7.5 && freq >= 7.0) band = "40m";
-    else if (freq <= 10.150 && freq >= 10.1) band = "30m";
-    else if (freq <= 14.350 && freq >= 14.0) band = "20m";
-    else if (freq <= 18.168 && freq >= 18.068) band = "17m";
-    else if (freq <= 21.450 && freq >= 21.000) band = "15m";
-    else if (freq <= 24.990 && freq >= 24.890) band = "12m";
-    else if (freq <= 29.700 && freq >= 28.000) band = "10m";
-    else if (freq <= 52 && freq >= 50)  band = "6m";
-    else if (freq <= 148 && freq >= 144) band = "2m";
-    else if (freq <= 440 && freq >= 430) band = "70cm";
+    if (band.isEmpty()) {
+        band = "OOM!";
+    }
 
     ui->bandText->setText(band);
 
@@ -191,12 +182,12 @@ void NewContactWidget::saveContact() {
     query.bindValue(":date", ui->dateEdit->date().toString(Qt::ISODate));
     query.bindValue(":time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
     query.bindValue(":time_off", ui->timeOffEdit->time().toString(Qt::ISODate));
-    query.bindValue(":frequency", QString::number(ui->frequencyEdit->value(), '.', 4));
+    query.bindValue(":frequency", ui->frequencyEdit->value());
     query.bindValue(":band", ui->bandText->text());
     query.bindValue(":mode", ui->modeEdit->currentText());
     query.bindValue(":cqz", ui->cqEdit->text());
     query.bindValue(":ituz", ui->ituEdit->text());
-    query.bindValue(":tx_power", QString::number(ui->powerEdit->value(), '.', 2));
+    query.bindValue(":tx_power", ui->powerEdit->value());
     query.bindValue(":my_rig", ui->rigEdit->currentText());
     query.bindValue(":comment", ui->commentEdit->text());
     query.bindValue(":qsl_via", ui->qslViaEdit->text());

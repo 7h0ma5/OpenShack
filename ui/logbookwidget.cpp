@@ -1,5 +1,6 @@
 #include <QtSql>
 #include <QMessageBox>
+#include <QDoubleSpinBox>
 #include <QStyledItemDelegate>
 #include "logbookwidget.h"
 #include "ui_logbookwidget.h"
@@ -20,7 +21,7 @@ public:
     DateFormatDelegate(QObject *parent = 0) :
         QStyledItemDelegate(parent) { }
 
-    virtual QString displayText(const QVariant& value, const QLocale& locale) const {
+    QString displayText(const QVariant& value, const QLocale& locale) const {
         return value.toDate().toString(locale.dateFormat(QLocale::ShortFormat));
     }
 };
@@ -30,22 +31,59 @@ public:
     TimeFormatDelegate(QObject *parent = 0) :
         QStyledItemDelegate(parent) { }
 
-    virtual QString displayText(const QVariant& value, const QLocale& locale) const {
+    QString displayText(const QVariant& value, const QLocale& locale) const {
         return value.toTime().toString(locale.timeFormat(QLocale::ShortFormat));
     }
 };
 
-class StringFormatDelegate : public QStyledItemDelegate {
+class UnitFormatDelegate : public QStyledItemDelegate {
 public:
-    StringFormatDelegate(QString format, QObject *parent = 0) :
-        QStyledItemDelegate(parent), format(format) { }
+    UnitFormatDelegate(QString unit, int precision, double step, QObject* parent = 0) :
+        unit(unit), precision(precision), step(step), QStyledItemDelegate(parent) { }
 
-    virtual QString displayText(const QVariant& value, const QLocale&) const {
-        return format.arg(value.toString());
+    QString displayText(const QVariant& value, const QLocale&) const {
+        return QString("%1 %2").arg(value.toString(), unit);
+    }
+
+    QWidget* createEditor(QWidget* parent,
+                          const QStyleOptionViewItem&,
+                          const QModelIndex&) const
+    {
+        qDebug() << "error";
+        QDoubleSpinBox* editor = new QDoubleSpinBox(parent);
+        editor->setDecimals(precision);
+        editor->setRange(0, 1e12);
+        editor->setSingleStep(step);
+        return editor;
+    }
+
+    void updateEditorGeometry(QWidget* editor,
+                              const QStyleOptionViewItem& option,
+                              const QModelIndex&) const
+    {
+        editor->setGeometry(option.rect);
+    }
+
+    void setEditorData(QWidget* editor, const QModelIndex& index) const
+    {
+        double value = index.model()->data(index, Qt::EditRole).toDouble();
+        QDoubleSpinBox* spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->setValue(value);
+    }
+
+    void setModelData(QWidget* editor, QAbstractItemModel* model,
+                      const QModelIndex& index) const
+    {
+        QDoubleSpinBox* spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
     }
 
 private:
-    QString format;
+    QString unit;
+    int precision;
+    double step;
 };
 
 
@@ -85,7 +123,6 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->hideColumn(0);
     ui->contactTable->addAction(ui->deleteContact);
     ui->contactTable->sortByColumn(0);
-
     ui->contactTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->contactTable->horizontalHeader()->setSectionsMovable(true);
 
@@ -93,8 +130,8 @@ LogbookWidget::LogbookWidget(QWidget *parent) :
     ui->contactTable->setItemDelegateForColumn(2, new TimeFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(3, new TimeFormatDelegate(ui->contactTable));
     ui->contactTable->setItemDelegateForColumn(4, new CallsignDelegate(ui->contactTable));
-    ui->contactTable->setItemDelegateForColumn(13, new StringFormatDelegate("%1 MHz", ui->contactTable));
-    ui->contactTable->setItemDelegateForColumn(17, new StringFormatDelegate("%1 W", ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(13, new UnitFormatDelegate("MHz", 6, 0.001, ui->contactTable));
+    ui->contactTable->setItemDelegateForColumn(17, new UnitFormatDelegate("W", 2, 1, ui->contactTable));
 
     QSettings settings;
     QByteArray logbookState = settings.value("logbook/state").toByteArray();
