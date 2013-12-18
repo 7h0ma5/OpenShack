@@ -7,10 +7,10 @@
 
 class CallsignDelegate : public QStyledItemDelegate {
 public:
-    CallsignDelegate(QObject *parent = 0) :
+    CallsignDelegate(QObject* parent = 0) :
         QStyledItemDelegate(parent) { }
 
-    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex& index) const {
+    void initStyleOption(QStyleOptionViewItem* option, const QModelIndex& index) const {
         QStyledItemDelegate::initStyleOption(option, index);
         option->font.setBold(true);
     }
@@ -18,7 +18,7 @@ public:
 
 class DateFormatDelegate : public QStyledItemDelegate {
 public:
-    DateFormatDelegate(QObject *parent = 0) :
+    DateFormatDelegate(QObject* parent = 0) :
         QStyledItemDelegate(parent) { }
 
     QString displayText(const QVariant& value, const QLocale& locale) const {
@@ -28,7 +28,7 @@ public:
 
 class TimeFormatDelegate : public QStyledItemDelegate {
 public:
-    TimeFormatDelegate(QObject *parent = 0) :
+    TimeFormatDelegate(QObject* parent = 0) :
         QStyledItemDelegate(parent) { }
 
     QString displayText(const QVariant& value, const QLocale& locale) const {
@@ -40,6 +40,11 @@ class UnitFormatDelegate : public QStyledItemDelegate {
 public:
     UnitFormatDelegate(QString unit, int precision, double step, QObject* parent = 0) :
         unit(unit), precision(precision), step(step), QStyledItemDelegate(parent) { }
+
+    void initStyleOption(QStyleOptionViewItem* option, const QModelIndex& index) const {
+        QStyledItemDelegate::initStyleOption(option, index);
+        option->displayAlignment = Qt::AlignVCenter | Qt::AlignRight;
+    }
 
     QString displayText(const QVariant& value, const QLocale&) const {
         return QString("%1 %2").arg(value.toString(), unit);
