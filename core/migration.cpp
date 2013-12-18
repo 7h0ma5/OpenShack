@@ -4,7 +4,8 @@
 #include "core/migration.h"
 
 /**
- * @brief
+ * Migrate the database to the latest schema version.
+ * Returns true on success.
  */
 bool Migration::run() {
     int currentVersion = getVersion();
@@ -32,6 +33,9 @@ bool Migration::run() {
     return true;
 }
 
+/**
+ * Returns the current user_version of the database.
+ */
 int Migration::getVersion() {
     QSqlQuery query("PRAGMA user_version");
 
@@ -44,6 +48,10 @@ int Migration::getVersion() {
     }
 }
 
+/**
+ * Changes the user_version of the database to version.
+ * Returns true of the operation was successful.
+ */
 bool Migration::setVersion(int version) {
     QString queryString = QString("PRAGMA user_version = %1").arg(version);
     QSqlQuery query(queryString);
@@ -57,9 +65,12 @@ bool Migration::setVersion(int version) {
     }
 }
 
+/**
+ * Migrate the database to the given version.
+ * Returns true if the operation was successful.
+ */
 bool Migration::migrate(int toVersion) {
     qDebug() << "migrate to" << toVersion;
-    QThread::sleep(5);
 
     QSqlDatabase db = QSqlDatabase::database();
     if (!db.transaction()) {
