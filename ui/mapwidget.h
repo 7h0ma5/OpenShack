@@ -18,6 +18,7 @@ public:
 
 public slots:
     void setTarget(double lat, double lon);
+    void clear();
     void redraw();
 
 protected:
@@ -25,8 +26,7 @@ protected:
     void resizeEvent(QResizeEvent* event);
 
 private:
-    void drawMap();
-    void drawNightOverlay();
+    void redrawNightOverlay();
     void drawPoint(QPoint point);
     void drawLine(QPoint pointA, QPoint pointB);
 
@@ -35,6 +35,8 @@ private:
     QPoint radToPoint(double lat, double lon);
     QPoint coordToPoint(double lat, double lon);
 
+    QGraphicsPixmapItem* nightOverlay;
+    QList<QGraphicsItem*> items;
     QGraphicsScene* scene;
     Ui::MapWidget* ui;
 };

@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 
     // Migrate database
     Migration m;
-    if (m.run()) {
+    if (!m.run()) {
         QMessageBox::critical(NULL, QMessageBox::tr("OpenShack Error"),
                               QMessageBox::tr("Database migration failed."));
         return 1;

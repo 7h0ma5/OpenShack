@@ -17,30 +17,38 @@ MapWidget::MapWidget(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->mapView->setScene(scene);
     ui->mapView->setStyleSheet("background-color: transparent;");
-    redraw();
+
+    QPixmap pix(":/res/map/nasabluemarble.jpg");
+    scene->addPixmap(pix);
+    scene->setSceneRect(pix.rect());
+
+    nightOverlay = new QGraphicsPixmapItem();
+    scene->addItem(nightOverlay);
+    redrawNightOverlay();
 
     QTimer* timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(redraw()));
     timer->start(60000);
 }
 
-void MapWidget::redraw() {
-    scene->clear();
-    drawMap();
-    drawNightOverlay();
+void MapWidget::clear() {
+    QMutableListIterator<QGraphicsItem*> i(items);
+    while (i.hasNext()) {
+        QGraphicsItem* item = i.next();
+        scene->removeItem(item);
+        i.remove();
+    }
 }
 
-void MapWidget::drawMap() {
-    QPixmap pix(":/res/map/nasabluemarble.jpg");
-    scene->addPixmap(pix);
-    scene->setSceneRect(pix.rect());
+void MapWidget::redraw() {
+    redrawNightOverlay();
 }
 
 void MapWidget::drawPoint(QPoint point) {
-    scene->addEllipse(point.x()-2, point.y()-2, 4, 4,
-                      QPen(QColor(255, 0, 0)),
-                      QBrush(QColor(255, 0, 0),
-                             Qt::SolidPattern));
+    items << scene->addEllipse(point.x()-2, point.y()-2, 4, 4,
+                               QPen(QColor(255, 0, 0)),
+                               QBrush(QColor(255, 0, 0),
+                                      Qt::SolidPattern));
 }
 
 void MapWidget::drawLine(QPoint pointA, QPoint pointB) {
@@ -70,10 +78,11 @@ void MapWidget::drawLine(QPoint pointA, QPoint pointB) {
     path.lineTo(pointB);
     path.closeSubpath();
 
-    scene->addPath(path, QPen(QColor(255, 0, 0)), QBrush(QColor(255, 0, 0), Qt::SolidPattern));
+    items << scene->addPath(path, QPen(QColor(255, 0, 0)),
+                            QBrush(QColor(255, 0, 0), Qt::SolidPattern));
 }
 
-void MapWidget::drawNightOverlay() {
+void MapWidget::redrawNightOverlay() {
     QDateTime current = QDateTime::currentDateTimeUtc();
     int secondOfDay = (QTime(0, 0, 0).secsTo(current.time()) + 43200) % 86400;
     int dayOfYear = current.date().dayOfYear();
@@ -144,7 +153,7 @@ void MapWidget::drawNightOverlay() {
     painter.drawImage(0, 0, night);
     painter.end();
 
-    scene->addPixmap(QPixmap::fromImage(overlay));
+    nightOverlay->setPixmap(QPixmap::fromImage(overlay));
 }
 
 void MapWidget::pointToRad(QPoint point, double& lat, double& lon) {
@@ -170,7 +179,8 @@ QPoint MapWidget::coordToPoint(double lat, double lon) {
 }
 
 void MapWidget::setTarget(double lat, double lon) {
-    redraw();
+    clear();
+
     if (lat == 0 && lon == 0) return;
 
     QSettings settings;
