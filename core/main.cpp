@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QStandardPaths>
 #include <QDebug>
+#include "migration.h"
 #include "ui/mainwindow.h"
 #include "rig.h"
 
@@ -58,18 +59,9 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    // Create tables
-    QSqlQuery query;
-    query.exec("CREATE TABLE IF NOT EXISTS contacts"
-               "(id INTEGER PRIMARY KEY,"
-               "date TEXT, time_on TEXT, time_off TEXT,"
-               "call TEXT NOT NULL,"
-               "rst_sent TEXT, rst_rcvd TEXT,"
-               "name TEXT, qth TEXT, grid TEXT, my_grid TEXT,"
-               "cqz INTEGER, ituz INTEGER,"
-               "frequency TEXT, band TEXT, mode TEXT,"
-               "my_rig TEXT, tx_power TEXT,"
-               "comment TEXT, qsl_via TEXT)");
+    // Migrate database
+    Migration m;
+    m.run();
 
     /*
      * Create MainWindow

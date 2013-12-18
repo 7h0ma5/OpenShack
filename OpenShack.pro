@@ -60,7 +60,8 @@ SOURCES += core/main.cpp \
     ui/logbookwidget.cpp \
     ui/mapwidget.cpp \
     ui/settingsdialog.cpp \
-    ui/importdialog.cpp
+    ui/importdialog.cpp \
+    core/migration.cpp
 
 HEADERS += core/rig.h \
     core/fldigi.h \
@@ -76,7 +77,8 @@ HEADERS += core/rig.h \
     ui/logbookwidget.h \
     ui/mapwidget.h \
     ui/settingsdialog.h \
-    ui/importdialog.h
+    ui/importdialog.h \
+    core/migration.h
 
 FORMS += ui/mainwindow.ui \
     ui/newcontactwidget.ui \
