@@ -56,12 +56,16 @@ int main(int argc, char* argv[]) {
     if (!db.open()) {
         QMessageBox::critical(NULL, QMessageBox::tr("OpenShack Error"),
                               QMessageBox::tr("Could not connect to database."));
-        return 0;
+        return 1;
     }
 
     // Migrate database
     Migration m;
-    m.run();
+    if (m.run()) {
+        QMessageBox::critical(NULL, QMessageBox::tr("OpenShack Error"),
+                              QMessageBox::tr("Database migration failed."));
+        return 1;
+    }
 
     /*
      * Create MainWindow

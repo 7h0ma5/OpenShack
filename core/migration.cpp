@@ -3,6 +3,9 @@
 #include <QDebug>
 #include "core/migration.h"
 
+/**
+ * @brief
+ */
 bool Migration::run() {
     int currentVersion = getVersion();
 
