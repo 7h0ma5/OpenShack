@@ -25,7 +25,7 @@ unix {
   target.path = $$PREFIX/bin
 
   desktop.path = $$PREFIX/share/applications/
-  desktop.files += $${TARGET}.desktop
+  desktop.files += res/$${TARGET}.desktop
 
   icon.path = $$PREFIX/share/icons/hicolor/256x256/apps
   icon.files += res/$${TARGET}.png
