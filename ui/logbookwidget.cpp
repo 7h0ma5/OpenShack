@@ -39,7 +39,7 @@ public:
 class UnitFormatDelegate : public QStyledItemDelegate {
 public:
     UnitFormatDelegate(QString unit, int precision, double step, QObject* parent = 0) :
-        unit(unit), precision(precision), step(step), QStyledItemDelegate(parent) { }
+        QStyledItemDelegate(parent), unit(unit), precision(precision), step(step) { }
 
     void initStyleOption(QStyleOptionViewItem* option, const QModelIndex& index) const {
         QStyledItemDelegate::initStyleOption(option, index);
