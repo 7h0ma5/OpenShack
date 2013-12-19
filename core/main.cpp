@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     /*
      * Load stylesheet
      */
-    QFile style(":/stylesheet.css");
+    QFile style(":/res/stylesheet.css");
     style.open(QFile::ReadOnly | QIODevice::Text);
     app.setStyleSheet(style.readAll());
     style.close();
