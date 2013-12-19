@@ -54,7 +54,6 @@ public:
                           const QStyleOptionViewItem&,
                           const QModelIndex&) const
     {
-        qDebug() << "error";
         QDoubleSpinBox* editor = new QDoubleSpinBox(parent);
         editor->setDecimals(precision);
         editor->setRange(0, 1e12);
