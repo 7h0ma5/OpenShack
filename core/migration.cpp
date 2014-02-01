@@ -37,13 +37,13 @@ bool Migration::run() {
  * Returns the current user_version of the database.
  */
 int Migration::getVersion() {
-    QSqlQuery query("PRAGMA user_version");
+    QSqlQuery query("SELECT version FROM schema_versions "
+                    "ORDER BY version DESC LIMIT 1");
 
     if (query.first()) {
         return query.value(0).toInt();
     }
     else {
-        qWarning() << "pragma user_version failed" << query.lastError();
         return 0;
     }
 }
@@ -53,11 +53,14 @@ int Migration::getVersion() {
  * Returns true of the operation was successful.
  */
 bool Migration::setVersion(int version) {
-    QString queryString = QString("PRAGMA user_version = %1").arg(version);
-    QSqlQuery query(queryString);
+    QSqlQuery query;
+    query.prepare("INSERT INTO schema_versions (version, updated)"
+                  "VALUES (:version, UTC_TIMESTAMP())");
+
+    query.bindValue(":version", version);
 
     if (!query.exec()) {
-        qWarning() << "pragma set user_version failed" << query.lastError();
+        qWarning() << "setting schema version failed" << query.lastError();
         return false;
     }
     else {
@@ -95,15 +98,24 @@ bool Migration::migrate(int toVersion) {
 }
 
 bool Migration::migrate1() {
+    bool result = true;
+
     QSqlQuery query;
-    return query.exec("CREATE TABLE IF NOT EXISTS contacts"
-                      "(id INTEGER PRIMARY KEY,"
-                      "date TEXT, time_on TEXT, time_off TEXT,"
-                      "call TEXT NOT NULL,"
-                      "rst_sent TEXT, rst_rcvd TEXT,"
-                      "name TEXT, qth TEXT, grid TEXT, my_grid TEXT,"
-                      "cqz INTEGER, ituz INTEGER,"
-                      "frequency REAL, band TEXT, mode TEXT,"
-                      "my_rig TEXT, tx_power REAL,"
-                      "comment TEXT, qsl_via TEXT)");
+
+    result &= query.exec("CREATE TABLE IF NOT EXISTS schema_versions"
+                         "(version INT PRIMARY KEY,"
+                         "updated DATETIME NOT NULL)");
+
+    result &= query.exec("CREATE TABLE IF NOT EXISTS contacts"
+                         "(id INT AUTO_INCREMENT PRIMARY KEY,"
+                         "date DATE NOT NULL, time_on TIME NOT NULL, time_off TIME,"
+                         "callsign VARCHAR(25) NOT NULL,"
+                         "rst_sent VARCHAR(25), rst_rcvd VARCHAR(25),"
+                         "name VARCHAR(50), qth VARCHAR(75), grid VARCHAR(12), my_grid VARCHAR(12),"
+                         "cqz INTEGER, ituz INTEGER,"
+                         "frequency DECIMAL(12,6) UNSIGNED, band VARCHAR(10), mode VARCHAR(10),"
+                         "my_rig VARCHAR(25), tx_power DECIMAL(8,2) UNSIGNED,"
+                         "comment TEXT, qsl_via VARCHAR(25))");
+
+    return result;
 }

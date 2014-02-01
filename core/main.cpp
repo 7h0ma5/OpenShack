@@ -6,6 +6,7 @@
 #include <QStandardPaths>
 #include <QDebug>
 #include "migration.h"
+#include "ui/dbdialog.h"
 #include "ui/mainwindow.h"
 #include "rig.h"
 
@@ -45,17 +46,27 @@ int main(int argc, char* argv[]) {
         dataDir.mkpath(dataDir.path());
     }
 
+    DbDialog dbDialog;
+    if (!dbDialog.exec()) {
+        return 0;
+    }
+
     /*
      * Open Database
      */
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(dataDir.filePath("openshack.db3"));
+    QSettings settings;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName(settings.value("db/hostname").toString());
+    db.setPort(settings.value("db/port").toInt());
+    db.setDatabaseName(settings.value("db/dbname").toString());
+    db.setUserName(settings.value("db/username").toString());
+    db.setPassword(settings.value("db/password").toString());
 
     // Quit if the connection to the DB fails
     if (!db.open()) {
         QMessageBox::critical(NULL, QMessageBox::tr("OpenShack Error"),
                               QMessageBox::tr("Could not connect to database."));
+        qDebug() << db.lastError();
         return 1;
     }
 

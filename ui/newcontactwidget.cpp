@@ -167,12 +167,12 @@ void NewContactWidget::resetContact() {
 void NewContactWidget::saveContact() {
     QSettings settings;
     QSqlQuery query;
-    query.prepare("INSERT INTO contacts (call, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
+    query.prepare("INSERT INTO contacts (callsign, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
                   "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
-                  "VALUES (:call, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
+                  "VALUES (:callsign, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
                   ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
 
-    query.bindValue(":call", ui->callsignEdit->text());
+    query.bindValue(":callsign", ui->callsignEdit->text());
     query.bindValue(":rst_sent", ui->rstSentEdit->text());
     query.bindValue(":rst_rcvd", ui->rstRcvdEdit->text());
     query.bindValue(":name", ui->nameEdit->text());
@@ -191,14 +191,15 @@ void NewContactWidget::saveContact() {
     query.bindValue(":my_rig", ui->rigEdit->currentText());
     query.bindValue(":comment", ui->commentEdit->text());
     query.bindValue(":qsl_via", ui->qslViaEdit->text());
-    query.exec();
 
-    resetContact();
-
-    qDebug() << query.lastQuery();
-    qDebug() << query.lastError();
-
-    emit contactAdded();
+    if (query.exec()) {
+        resetContact();
+        emit contactAdded();
+    }
+    else {
+        qDebug() << query.lastQuery();
+        qDebug() << query.lastError();
+    }
 }
 
 void NewContactWidget::startContactTimer() {

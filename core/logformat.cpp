@@ -54,12 +54,12 @@ int LogFormat::runImport() {
         }
 
         QSqlQuery query;
-        query.prepare("INSERT INTO contacts (call, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
+        query.prepare("INSERT INTO contacts (callsign, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
                   "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
-                  "VALUES (:call, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
+                  "VALUES (:callsign, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
                   ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
 
-        query.bindValue(":call",      contact.value("call", "NOCALL"));
+        query.bindValue(":callsign",  contact.value("call", "NOCALL"));
         query.bindValue(":rst_rcvd",  contact.value("rst_rcvd"));
         query.bindValue(":rst_sent",  contact.value("rst_sent"));
         query.bindValue(":name",      contact.value("name"));

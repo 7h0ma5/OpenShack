@@ -15,7 +15,7 @@ void Adif::exportContact(QSqlQuery& query) {
     QTime time_on = QTime::fromString(query.value("time_on").toString(), Qt::ISODate);
     QTime time_off = QTime::fromString(query.value("time_off").toString(), Qt::ISODate);
 
-    writeField("call", query.value("call").toString());
+    writeField("call", query.value("callsign").toString());
     writeField("qso_date", date.toString("yyyyMMdd"), "D");
     writeField("time_on", time_on.toString("hhmmss"), "T");
     writeField("time_off", time_off.toString("hhmmss"), "T");
