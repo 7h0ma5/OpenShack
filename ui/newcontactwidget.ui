@@ -94,7 +94,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>19</hour>
+           <hour>18</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -774,17 +774,11 @@
         <attribute name="title">
          <string>Comment</string>
         </attribute>
-        <layout class="QFormLayout" name="formLayout">
-         <property name="fieldGrowthPolicy">
-          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-         </property>
-         <item row="0" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="0" column="0">
           <widget class="QPlainTextEdit" name="commentEdit"/>
          </item>
         </layout>
-        <zorder>verticalSpacer</zorder>
-        <zorder>verticalSpacer</zorder>
-        <zorder>commentEdit</zorder>
        </widget>
       </widget>
      </item>

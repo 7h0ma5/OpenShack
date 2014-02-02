@@ -32,8 +32,12 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     QStringListModel* rigModel = new QStringListModel(this);
     ui->rigEdit->setModel(rigModel);
 
+    readSettings();
     reloadSettings();
+    resetContact();
+}
 
+void NewContactWidget::readSettings() {
     QSettings settings;
     QString mode = settings.value("newcontact/mode", "CW").toString();
     double freq = settings.value("newcontact/frequency", 3.5).toDouble();
@@ -42,8 +46,13 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     ui->modeEdit->setCurrentText(mode);
     ui->frequencyEdit->setValue(freq);
     ui->rigEdit->setCurrentText(rig);
+}
 
-    resetContact();
+void NewContactWidget::writeSettings() {
+    QSettings settings;
+    settings.setValue("newcontact/mode", ui->modeEdit->currentText());
+    settings.setValue("newcontact/frequency", ui->frequencyEdit->value());
+    settings.setValue("newcontact/rig", ui->rigEdit->currentText());
 }
 
 void NewContactWidget::reloadSettings() {
@@ -71,11 +80,27 @@ void NewContactWidget::callsignChanged() {
 
     if (callsign.isEmpty()) {
         stopContactTimer();
-        return;
     }
+    else {
+        startContactTimer();
+        queryDatabase(callsign);
+        queryDxcc(callsign);
+        callbook.queryCallsign(callsign);
+    }
+}
 
-    startContactTimer();
 
+void NewContactWidget::queryDxcc(QString callsign) {
+    Dxcc* dxcc = cty.lookup(callsign);
+    if (dxcc) {
+         ui->dxccInfo->setText(dxcc->name);
+         ui->cqEdit->setText(QString::number(dxcc->cqZone));
+         ui->ituEdit->setText(QString::number(dxcc->ituZone));
+         updateCoordinates(dxcc->lat, dxcc->lon, COORD_DXCC);
+    }
+}
+
+void NewContactWidget::queryDatabase(QString callsign) {
     QSqlQuery query;
     query.prepare("SELECT name, qth, grid FROM contacts "
                   "WHERE callsign = :callsign ORDER BY date DESC LIMIT 1");
@@ -86,16 +111,6 @@ void NewContactWidget::callsignChanged() {
         ui->nameEdit->setText(query.value(0).toString());
         ui->qthEdit->setText(query.value(1).toString());
         ui->gridEdit->setText(query.value(2).toString());
-    }
-
-    callbook.queryCallsign(callsign);
-
-    Dxcc* dxcc = cty.lookup(callsign);
-    if (dxcc) {
-         ui->dxccInfo->setText(dxcc->name);
-         ui->cqEdit->setText(QString::number(dxcc->cqZone));
-         ui->ituEdit->setText(QString::number(dxcc->ituZone));
-         updateCoordinates(dxcc->lat, dxcc->lon, COORD_DXCC);
     }
 }
 
@@ -278,9 +293,6 @@ void NewContactWidget::setDefaultRst() {
 }
 
 NewContactWidget::~NewContactWidget() {
-    QSettings settings;
-    settings.setValue("newcontact/mode", ui->modeEdit->currentText());
-    settings.setValue("newcontact/frequency", ui->frequencyEdit->value());
-    settings.setValue("newcontact/rig", ui->rigEdit->currentText());
+    writeSettings();
     delete ui;
 }

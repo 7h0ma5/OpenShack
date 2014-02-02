@@ -50,6 +50,12 @@ public slots:
     void setDefaultRst();
 
 private:
+    void queryDatabase(QString callsign);
+    void queryDxcc(QString callsign);
+    void readSettings();
+    void writeSettings();
+
+private:
     Rig* rig;
     QString callsign;
     Cty cty;
