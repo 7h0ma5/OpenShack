@@ -1,5 +1,5 @@
 #ifndef LOOKBOOKWIDGET_H
-#define LOOKBOOKWIDGE_H
+#define LOOKBOOKWIDGET_H
 
 #include <QWidget>
 

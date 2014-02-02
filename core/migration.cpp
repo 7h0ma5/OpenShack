@@ -10,9 +10,12 @@
 bool Migration::run() {
     int currentVersion = getVersion();
 
-    if (currentVersion >= latestVersion) {
+    if (currentVersion == latestVersion) {
         qDebug() << "database already up to date";
         return true;
+    }
+    else {
+        qCritical() << "database from the future";
     }
 
     while (true) {

@@ -1,4 +1,5 @@
 #include "logformat.h"
+#include "utils.h"
 #include "cty.h"
 
 LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
@@ -21,6 +22,8 @@ void LogFormat::setDateRange(QDate start, QDate end) {
 int LogFormat::runImport() {
     this->importStart();
 
+    QSettings settings;
+    QString my_grid = settings.value("operator/grid").toString();
     Cty cty;
 
     int count = 0;
@@ -51,6 +54,12 @@ int LogFormat::runImport() {
         }
         if (contact["cqz"].isEmpty() && dxcc) {
             contact["cqz"] = QString::number(dxcc->cqZone);
+        }
+        if (contact["band"].isEmpty() && !contact["freq"].isEmpty()) {
+            contact["band"] = freqToBand(contact["freq"].toDouble());
+        }
+        if (contact["my_grid"].isEmpty()) {
+            contact["my_grid"] = my_grid;
         }
 
         QSqlQuery query;

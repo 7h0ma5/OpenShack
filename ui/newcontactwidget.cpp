@@ -77,19 +77,15 @@ void NewContactWidget::callsignChanged() {
     startContactTimer();
 
     QSqlQuery query;
-    query.prepare("SELECT name, qth, grid, date FROM contacts "
-                  "WHERE callsign = :callsign ORDER BY date DESC");
+    query.prepare("SELECT name, qth, grid FROM contacts "
+                  "WHERE callsign = :callsign ORDER BY date DESC LIMIT 1");
     query.bindValue(":callsign", callsign);
     query.exec();
 
-    if (!query.next()) {
-        ui->contactInfo->setText(tr("First Contact!"));
-    }
-    else {
+    if (query.next()){
         ui->nameEdit->setText(query.value(0).toString());
         ui->qthEdit->setText(query.value(1).toString());
         ui->gridEdit->setText(query.value(2).toString());
-        ui->contactInfo->setText(query.value(3).toString());
     }
 
     callbook.queryCallsign(callsign);
@@ -152,17 +148,17 @@ void NewContactWidget::resetContact() {
     ui->qthEdit->clear();
     ui->gridEdit->clear();
     ui->commentEdit->clear();
-    ui->contactInfo->clear();
     ui->dxccInfo->clear();
     ui->distanceInfo->clear();
+    ui->bearingInfo->clear();
     ui->qslViaEdit->clear();
     ui->cqEdit->clear();
     ui->ituEdit->clear();
 
     stopContactTimer();
-    ui->callsignEdit->setFocus();
     setDefaultRst();
 
+    ui->callsignEdit->setFocus();
     coordPrec = COORD_NONE;
     emit newTarget(0, 0);
 }
@@ -192,7 +188,7 @@ void NewContactWidget::saveContact() {
     query.bindValue(":ituz", ui->ituEdit->text());
     query.bindValue(":tx_power", ui->powerEdit->value());
     query.bindValue(":my_rig", ui->rigEdit->currentText());
-    query.bindValue(":comment", ui->commentEdit->text());
+    query.bindValue(":comment", ui->commentEdit->toPlainText());
     query.bindValue(":qsl_via", ui->qslViaEdit->text());
 
     if (query.exec()) {
