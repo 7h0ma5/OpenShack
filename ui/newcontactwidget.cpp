@@ -78,8 +78,8 @@ void NewContactWidget::callsignChanged() {
 
     QSqlQuery query;
     query.prepare("SELECT name, qth, grid, date FROM contacts "
-                  "WHERE call = :call ORDER BY ID DESC");
-    query.bindValue(":call", callsign);
+                  "WHERE callsign = :callsign ORDER BY date DESC");
+    query.bindValue(":callsign", callsign);
     query.exec();
 
     if (!query.next()) {
@@ -156,6 +156,9 @@ void NewContactWidget::resetContact() {
     ui->dxccInfo->clear();
     ui->distanceInfo->clear();
     ui->qslViaEdit->clear();
+    ui->cqEdit->clear();
+    ui->ituEdit->clear();
+
     stopContactTimer();
     ui->callsignEdit->setFocus();
     setDefaultRst();
