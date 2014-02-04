@@ -32,8 +32,8 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
     QStringListModel* rigModel = new QStringListModel(this);
     ui->rigEdit->setModel(rigModel);
 
-    readSettings();
     reloadSettings();
+    readSettings();
     resetContact();
 }
 
