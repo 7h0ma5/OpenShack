@@ -8,12 +8,13 @@ public:
     Adif(QTextStream& stream) : LogFormat(stream) {}
 
 private:
-    bool importNext(QMap<QString, QString>& contact);
-    void exportContact(QSqlQuery& query);
+    bool importNext(QSqlRecord& contact);
+    void exportContact(QSqlRecord& record);
     void exportStart();
 
     void writeField(QString name, QString value, QString type="");
     void readField(QString& field, QString& value);
+    bool readContact(QMap<QString, QString>& contact);
     QTime parseTime(QString time);
 };
 

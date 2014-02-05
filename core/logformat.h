@@ -3,7 +3,8 @@
 
 #include <QtCore>
 #include <QMap>
-#include <QtSql>
+
+class QSqlRecord;
 
 class LogFormat
 {
@@ -19,11 +20,11 @@ public:
 protected:
     virtual void importStart() {}
     virtual void importEnd() {}
-    virtual bool importNext(QMap<QString, QString>&) { return false; }
+    virtual bool importNext(QSqlRecord&) { return false; }
 
     virtual void exportStart() {}
     virtual void exportEnd() {}
-    virtual void exportContact(QSqlQuery&) {}
+    virtual void exportContact(QSqlRecord&) {}
 
     QTextStream& stream;
     QMap<QString, QString>* defaults;

@@ -1,3 +1,4 @@
+#include <QtSql>
 #include "logformat.h"
 #include "utils.h"
 #include "cty.h"
@@ -22,76 +23,52 @@ void LogFormat::setDateRange(QDate start, QDate end) {
 int LogFormat::runImport() {
     this->importStart();
 
-    QSettings settings;
-    QString my_grid = settings.value("operator/grid").toString();
     Cty cty;
 
     int count = 0;
-    QMap<QString, QString> contact;
+
+    QSqlTableModel model;
+    model.setTable("contacts");
+    QSqlRecord record = model.record();
 
     while (true) {
-        if (!this->importNext(contact)) break;
+        record.clearValues();
+
+        if (!this->importNext(record)) break;
 
         if (!endDate.isNull()) {
-            if (!inDateRange(contact["date"])) {
-                contact.clear();
+            if (!inDateRange(record.value("date").toDate())) {
                 continue;
             }
         }
 
         if (defaults) {
             foreach (QString key, defaults->keys()) {
-                if (contact[key].isEmpty()) {
-                    contact[key] = defaults->value(key);
+                if (record.value(key).isNull()) {
+                    record.setValue(key, defaults->value(key));
                 }
             }
         }
 
-        Dxcc* dxcc = cty.lookup(contact["call"]);
+        Dxcc* dxcc = cty.lookup(record.value("callsign").toString());
 
-        if (contact["ituz"].isEmpty() && dxcc) {
-            contact["ituz"] = QString::number(dxcc->ituZone);
+        if (record.value("ituz").isNull() && dxcc) {
+            record.setValue("ituz", QString::number(dxcc->ituZone));
         }
-        if (contact["cqz"].isEmpty() && dxcc) {
-            contact["cqz"] = QString::number(dxcc->cqZone);
+        if (record.value("cqz").isNull() && dxcc) {
+            record.setValue("cqz", QString::number(dxcc->cqZone));
         }
-        if (contact["band"].isEmpty() && !contact["freq"].isEmpty()) {
-            contact["band"] = freqToBand(contact["freq"].toDouble());
-        }
-        if (contact["my_grid"].isEmpty()) {
-            contact["my_grid"] = my_grid;
+        if (record.value("band").isNull() && !record.value("freq").isNull()) {
+            double freq = record.value("freq").toDouble();
+            record.setValue("band", freqToBand(freq));
         }
 
-        QSqlQuery query;
-        query.prepare("INSERT INTO contacts (callsign, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
-                  "VALUES (:callsign, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
+        record.setValue("id", QVariant());
+        model.insertRecord(-1, record);
+        model.submit();
+        qDebug() << model.lastError();
 
-        query.bindValue(":callsign",  contact.value("call", "NOCALL"));
-        query.bindValue(":rst_rcvd",  contact.value("rst_rcvd"));
-        query.bindValue(":rst_sent",  contact.value("rst_sent"));
-        query.bindValue(":name",      contact.value("name"));
-        query.bindValue(":qth",       contact.value("qth"));
-        query.bindValue(":grid",      contact.value("grid"));
-        query.bindValue(":my_grid",   contact.value("my_grid"));
-        query.bindValue(":date",      contact.value("date"));
-        query.bindValue(":frequency", contact.value("freq"));
-        query.bindValue(":band",      contact.value("band"));
-        query.bindValue(":mode",      contact.value("mode"));
-        query.bindValue(":cqz",       contact.value("cqz"));
-        query.bindValue(":ituz",      contact.value("ituz"));
-        query.bindValue(":tx_power",  contact.value("tx_power"));
-        query.bindValue(":my_rig",    contact.value("my_rig"));
-        query.bindValue(":comment",   contact.value("comment"));
-        query.bindValue(":qsl_via",   contact.value("qsl_via"));
-        query.bindValue(":time_on",   contact.value("time_on"));
-        query.bindValue(":time_off",  contact.value("time_off"));
-
-        query.exec();
         count++;
-
-        contact.clear();
     }
 
     this->importEnd();
@@ -106,7 +83,8 @@ int LogFormat::runExport() {
 
     int count = 0;
     while (query.next()) {
-        this->exportContact(query);
+        QSqlRecord record = query.record();
+        this->exportContact(record);
         count++;
     }
 

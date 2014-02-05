@@ -120,6 +120,7 @@ QByteArray Fldigi::listMethods() {
 
 QByteArray Fldigi::addRecord(QString data) {
     QByteArray out;
+    QSettings settings;
 
     QXmlStreamWriter xml(&out);
     xml.writeStartDocument();
@@ -132,6 +133,9 @@ QByteArray Fldigi::addRecord(QString data) {
     xml.writeEndElement();
     xml.writeEndElement();
     xml.writeEndDocument();
+
+    QMap<QString, QString> defaults;
+    defaults["my_grid"] = settings.value("operator/grid").toString();
 
     QTextStream in(&data);
     Adif adif(in);

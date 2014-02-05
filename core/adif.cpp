@@ -10,32 +10,30 @@ void Adif::exportStart() {
     stream << "<EOH>\n\n";
 }
 
-void Adif::exportContact(QSqlQuery& query) {
-    QDate date = QDate::fromString(query.value("date").toString(), Qt::ISODate);
-    QTime time_on = QTime::fromString(query.value("time_on").toString(), Qt::ISODate);
-    QTime time_off = QTime::fromString(query.value("time_off").toString(), Qt::ISODate);
+void Adif::exportContact(QSqlRecord& record) {
+    QDate date = QDate::fromString(record.value("date").toString(), Qt::ISODate);
+    QTime time_on = QTime::fromString(record.value("time_on").toString(), Qt::ISODate);
+    QTime time_off = QTime::fromString(record.value("time_off").toString(), Qt::ISODate);
 
-    writeField("call", query.value("callsign").toString());
+    writeField("call", record.value("callsign").toString());
     writeField("qso_date", date.toString("yyyyMMdd"), "D");
     writeField("time_on", time_on.toString("hhmmss"), "T");
     writeField("time_off", time_off.toString("hhmmss"), "T");
-    writeField("rst_rcvd", query.value("rst_rcvd").toString());
-    writeField("rst_sent", query.value("rst_sent").toString());
-    writeField("name", query.value("name").toString());
-    writeField("qth", query.value("qth").toString());
-    writeField("gridsquare", query.value("grid").toString());
-    writeField("my_gridsquare", query.value("my_grid").toString());
-    writeField("cqz", query.value("cqz").toString());
-    writeField("ituz", query.value("ituz").toString());
-    writeField("freq", query.value("frequency").toString(), "N");
-    writeField("freq_rx", query.value("frequency").toString(), "N");
-    writeField("band", query.value("band").toString());
-    writeField("band_rx", query.value("band").toString());
-    writeField("mode", query.value("mode").toString());
-    writeField("tx_pwr", query.value("tx_power").toString());
-    writeField("my_rig", query.value("my_rig").toString());
-    writeField("comment", query.value("comment").toString());
-    writeField("qsl_via", query.value("qsl_via").toString());
+    writeField("rst_rcvd", record.value("rst_rcvd").toString());
+    writeField("rst_sent", record.value("rst_sent").toString());
+    writeField("name", record.value("name").toString());
+    writeField("qth", record.value("qth").toString());
+    writeField("gridsquare", record.value("grid").toString());
+    writeField("my_gridsquare", record.value("my_grid").toString());
+    writeField("cqz", record.value("cqz").toString());
+    writeField("ituz", record.value("ituz").toString());
+    writeField("freq", record.value("frequency").toString(), "N");
+    writeField("band", record.value("band").toString());
+    writeField("mode", record.value("mode").toString());
+    writeField("tx_pwr", record.value("tx_power").toString());
+    writeField("my_rig", record.value("my_rig").toString());
+    writeField("comment", record.value("comment").toString());
+    writeField("qsl_via", record.value("qsl_via").toString());
 
     stream << "<eor>\n\n";
 }
@@ -102,18 +100,15 @@ void Adif::readField(QString& field, QString& value) {
     }
 }
 
-bool Adif::importNext(QMap<QString, QString>& contact) {
+bool Adif::readContact(QMap<QString, QString>& contact) {
     QString field;
     QString value;
-
-    bool success = false;
 
     while (!stream.atEnd()) {
         readField(field, value);
 
         if (field == "eor") {
-            success = true;
-            break;
+            return true;
         }
 
         if (!value.isEmpty()) {
@@ -121,12 +116,35 @@ bool Adif::importNext(QMap<QString, QString>& contact) {
         }
     }
 
-    if (!success) return false;
+    return false;
+}
 
-    contact["grid"] = contact.value("gridsquare");
-    contact["my_grid"] = contact.value("my_gridsquare");
-    contact["tx_power"] = contact.value("tx_pwr");
-    contact["date"] = QDate::fromString(contact.value("qso_date"), "yyyyMMdd").toString(Qt::ISODate);
+bool Adif::importNext(QSqlRecord& record) {
+    QMap<QString, QString> contact;
+
+    if (!readContact(contact)) {
+        return false;
+    }
+
+    record.setValue("callsign", contact.value("call", "NOCALL"));
+    record.setValue("rst_rcvd", contact.value("rst_rcvd"));
+    record.setValue("rst_sent", contact.value("rst_sent"));
+    record.setValue("name", contact.value("name"));
+    record.setValue("qth", contact.value("qth"));
+    record.setValue("grid", contact.value("gridsquare"));
+    record.setValue("my_grid", contact.value("my_gridsquare"));
+    record.setValue("cqz", contact.value("cqz"));
+    record.setValue("ituz", contact.value("ituz"));
+    record.setValue("frequency", contact.value("freq"));
+    record.setValue("band", contact.value("band"));
+    record.setValue("mode", contact.value("mode"));
+    record.setValue("tx_power", contact.value("tx_pwr"));
+    record.setValue("my_rig", contact.value("my_rig"));
+    record.setValue("comment", contact.value("comment"));
+    record.setValue("qsl_via", contact.value("qsl_via"));
+
+    QDate date = QDate::fromString(contact.value("qso_date"), "yyyyMMdd");
+    record.setValue("date", date);
 
     QTime time_on = parseTime(contact.value("time_on"));
     QTime time_off = parseTime(contact.value("time_off"));
@@ -138,8 +156,8 @@ bool Adif::importNext(QMap<QString, QString>& contact) {
         time_on = time_off;
     }
 
-    contact["time_on"] = time_on.toString(Qt::ISODate);
-    contact["time_off"] = time_off.toString(Qt::ISODate);
+    record.setValue("time_on", time_on);
+    record.setValue("time_off", time_off);
 
     return true;
 }
