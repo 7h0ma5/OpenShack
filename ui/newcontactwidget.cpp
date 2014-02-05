@@ -180,39 +180,41 @@ void NewContactWidget::resetContact() {
 
 void NewContactWidget::saveContact() {
     QSettings settings;
-    QSqlQuery query;
-    query.prepare("INSERT INTO contacts (callsign, rst_sent, rst_rcvd, name, qth, grid, my_grid, date,"
-                  "time_on, time_off, frequency, band, mode, cqz, ituz, tx_power, my_rig, comment, qsl_via) "
-                  "VALUES (:callsign, :rst_sent, :rst_rcvd, :name, :qth, :grid, :my_grid, :date,"
-                  ":time_on, :time_off, :frequency, :band, :mode, :cqz, :ituz, :tx_power, :my_rig, :comment, :qsl_via)");
+    QSqlTableModel model;
+    model.setTable("contacts");
 
-    query.bindValue(":callsign", ui->callsignEdit->text());
-    query.bindValue(":rst_sent", ui->rstSentEdit->text());
-    query.bindValue(":rst_rcvd", ui->rstRcvdEdit->text());
-    query.bindValue(":name", ui->nameEdit->text());
-    query.bindValue(":qth", ui->qthEdit->text());
-    query.bindValue(":grid", ui->gridEdit->text());
-    query.bindValue(":my_grid", settings.value("operator/grid"));
-    query.bindValue(":date", ui->dateEdit->date().toString(Qt::ISODate));
-    query.bindValue(":time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
-    query.bindValue(":time_off", ui->timeOffEdit->time().toString(Qt::ISODate));
-    query.bindValue(":frequency", ui->frequencyEdit->value());
-    query.bindValue(":band", ui->bandText->text());
-    query.bindValue(":mode", ui->modeEdit->currentText());
-    query.bindValue(":cqz", ui->cqEdit->text());
-    query.bindValue(":ituz", ui->ituEdit->text());
-    query.bindValue(":tx_power", ui->powerEdit->value());
-    query.bindValue(":my_rig", ui->rigEdit->currentText());
-    query.bindValue(":comment", ui->commentEdit->toPlainText());
-    query.bindValue(":qsl_via", ui->qslViaEdit->text());
+    QSqlRecord record = model.record();
+    record.setValue("id", QVariant());
+    record.setValue("callsign", ui->callsignEdit->text());
+    record.setValue("callsign", ui->callsignEdit->text());
+    record.setValue("rst_sent", ui->rstSentEdit->text());
+    record.setValue("rst_rcvd", ui->rstRcvdEdit->text());
+    record.setValue("name", ui->nameEdit->text());
+    record.setValue("qth", ui->qthEdit->text());
+    record.setValue("grid", ui->gridEdit->text());
+    record.setValue("my_grid", settings.value("operator/grid"));
+    record.setValue("date", ui->dateEdit->date().toString(Qt::ISODate));
+    record.setValue("time_on", ui->timeOnEdit->time().toString(Qt::ISODate));
+    record.setValue("time_off", ui->timeOffEdit->time().toString(Qt::ISODate));
+    record.setValue("frequency", ui->frequencyEdit->value());
+    record.setValue("band", ui->bandText->text());
+    record.setValue("mode", ui->modeEdit->currentText());
+    record.setValue("cqz", ui->cqEdit->text());
+    record.setValue("ituz", ui->ituEdit->text());
+    record.setValue("tx_power", ui->powerEdit->value());
+    record.setValue("my_rig", ui->rigEdit->currentText());
+    record.setValue("comment", ui->commentEdit->toPlainText());
+    record.setValue("qsl_via", ui->qslViaEdit->text());
 
-    if (query.exec()) {
+    model.insertRecord(-1, record);
+    model.submitAll();
+
+    if (model.submitAll()) {
         resetContact();
         emit contactAdded();
     }
     else {
-        qDebug() << query.lastQuery();
-        qDebug() << query.lastError();
+        qDebug() << model.lastError();
     }
 }
 

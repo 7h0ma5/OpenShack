@@ -65,7 +65,7 @@ int LogFormat::runImport() {
 
         record.setValue("id", QVariant());
         model.insertRecord(-1, record);
-        model.submit();
+        model.submitAll();
 
         count++;
     }
