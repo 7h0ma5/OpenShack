@@ -11,7 +11,6 @@ Fldigi::Fldigi(QObject *parent) :
 }
 
 void Fldigi::incomingConnection(int socket) {
-    qDebug("new connection");
     QTcpSocket* sock = new QTcpSocket(this);
     connect(sock, SIGNAL(readyRead()), this, SLOT(readClient()));
     connect(sock, SIGNAL(disconnected()), this, SLOT(discardClient()));
@@ -140,6 +139,7 @@ QByteArray Fldigi::addRecord(QString data) {
 
     QTextStream in(&data);
     Adif adif(in);
+    adif.setDefaults(defaults);
     int count = adif.runImport();
 
     if (count) {

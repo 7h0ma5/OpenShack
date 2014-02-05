@@ -58,15 +58,14 @@ int LogFormat::runImport() {
         if (record.value("cqz").isNull() && dxcc) {
             record.setValue("cqz", QString::number(dxcc->cqZone));
         }
-        if (record.value("band").isNull() && !record.value("freq").isNull()) {
-            double freq = record.value("freq").toDouble();
+        if (record.value("band").isNull() && !record.value("frequency").isNull()) {
+            double freq = record.value("frequency").toDouble();
             record.setValue("band", freqToBand(freq));
         }
 
         record.setValue("id", QVariant());
         model.insertRecord(-1, record);
         model.submit();
-        qDebug() << model.lastError();
 
         count++;
     }
