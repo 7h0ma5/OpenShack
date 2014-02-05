@@ -42,10 +42,12 @@ void NewContactWidget::readSettings() {
     QString mode = settings.value("newcontact/mode", "CW").toString();
     double freq = settings.value("newcontact/frequency", 3.5).toDouble();
     QString rig = settings.value("newcontact/rig").toString();
+    double power = settings.value("newcontact/power", 100).toDouble();
 
     ui->modeEdit->setCurrentText(mode);
     ui->frequencyEdit->setValue(freq);
     ui->rigEdit->setCurrentText(rig);
+    ui->powerEdit->setValue(power);
 }
 
 void NewContactWidget::writeSettings() {
@@ -53,6 +55,7 @@ void NewContactWidget::writeSettings() {
     settings.setValue("newcontact/mode", ui->modeEdit->currentText());
     settings.setValue("newcontact/frequency", ui->frequencyEdit->value());
     settings.setValue("newcontact/rig", ui->rigEdit->currentText());
+    settings.setValue("newcontact/power", ui->powerEdit->value());
 }
 
 void NewContactWidget::reloadSettings() {
@@ -186,7 +189,6 @@ void NewContactWidget::saveContact() {
     QSqlRecord record = model.record();
     record.setValue("id", QVariant());
     record.setValue("callsign", ui->callsignEdit->text());
-    record.setValue("callsign", ui->callsignEdit->text());
     record.setValue("rst_sent", ui->rstSentEdit->text());
     record.setValue("rst_rcvd", ui->rstRcvdEdit->text());
     record.setValue("name", ui->nameEdit->text());
@@ -199,23 +201,25 @@ void NewContactWidget::saveContact() {
     record.setValue("frequency", ui->frequencyEdit->value());
     record.setValue("band", ui->bandText->text());
     record.setValue("mode", ui->modeEdit->currentText());
-    record.setValue("cqz", ui->cqEdit->text());
-    record.setValue("ituz", ui->ituEdit->text());
+    record.setValue("cqz", ui->cqEdit->text().toInt());
+    record.setValue("ituz", ui->ituEdit->text().toInt());
     record.setValue("tx_power", ui->powerEdit->value());
     record.setValue("my_rig", ui->rigEdit->currentText());
     record.setValue("comment", ui->commentEdit->toPlainText());
     record.setValue("qsl_via", ui->qslViaEdit->text());
 
-    model.insertRecord(-1, record);
-    model.submitAll();
-
-    if (model.submitAll()) {
-        resetContact();
-        emit contactAdded();
-    }
-    else {
+    if (!model.insertRecord(-1, record)) {
         qDebug() << model.lastError();
+        return;
     }
+
+    if (!model.submitAll()) {
+        qDebug() << model.lastError();
+        return;
+    }
+
+    resetContact();
+    emit contactAdded();
 }
 
 void NewContactWidget::startContactTimer() {

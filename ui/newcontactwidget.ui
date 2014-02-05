@@ -19,811 +19,835 @@
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_8">
-   <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="3">
-        <widget class="QLabel" name="timeOffLabel">
-         <property name="text">
-          <string>Time Off</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QTimeEdit" name="timeOnEdit">
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="displayFormat">
-          <string notr="true">hh:mm:ss</string>
-         </property>
-         <property name="calendarPopup">
-          <bool>true</bool>
-         </property>
-         <property name="timeSpec">
-          <enum>Qt::UTC</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QTimeEdit" name="timeOffEdit">
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="displayFormat">
-          <string notr="true">hh:mm:ss</string>
-         </property>
-         <property name="timeSpec">
-          <enum>Qt::UTC</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="dateLabel">
-         <property name="text">
-          <string>Date</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="timeOnLabel">
-         <property name="text">
-          <string>Time On</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QDateEdit" name="dateEdit">
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="dateTime">
-          <datetime>
-           <hour>16</hour>
-           <minute>0</minute>
-           <second>0</second>
-           <year>1999</year>
-           <month>12</month>
-           <day>30</day>
-          </datetime>
-         </property>
-         <property name="calendarPopup">
-          <bool>true</bool>
-         </property>
-         <property name="timeSpec">
-          <enum>Qt::UTC</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QPushButton" name="stopContactTimerButton">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="text">
-          <string>Stop</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="1">
-        <widget class="QLabel" name="rstSentLabel">
-         <property name="text">
-          <string>RST Sent</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="rstRcvdLabel">
-         <property name="text">
-          <string>RST Rcvd</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLineEdit" name="rstRcvdEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string notr="true">59</string>
-         </property>
-         <property name="maxLength">
-          <number>25</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="rstSentEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>59</string>
-         </property>
-         <property name="maxLength">
-          <number>25</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="modeLabel">
-         <property name="text">
-          <string>Mode</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QComboBox" name="modeEdit">
-         <item>
-          <property name="text">
-           <string notr="true">CW</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">SSB</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">AM</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">FM</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">RTTY</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">PSK31</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">PSK63</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">PSK125</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">HELL</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">OLIVIA</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">JT65</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">DOMINO</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">DSTAR</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">MT63</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">MFSK8</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">MFSK16</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">QPSK31</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">QPSK63</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">QPSK125</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">ROS</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">SSTV</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">THOR</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">THRB</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">THRBX</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">WSPR</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">WINMOR</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="callsignLabel">
-         <property name="text">
-          <string>Callsign</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="frequencyLabel">
-         <property name="text">
-          <string>Frequency</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QDoubleSpinBox" name="frequencyEdit">
-         <property name="suffix">
-          <string notr="true"> MHz</string>
-         </property>
-         <property name="decimals">
-          <number>5</number>
-         </property>
-         <property name="maximum">
-          <double>20000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.001000000000000</double>
-         </property>
-         <property name="value">
-          <double>3.500000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="callsignEdit">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="maxLength">
-          <number>25</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="nameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLineEdit" name="gridEdit">
-         <property name="maxLength">
-          <number>12</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLineEdit" name="cqEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="gridLabel">
-         <property name="text">
-          <string>Grid Locator</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="qthLabel">
-         <property name="text">
-          <string>QTH</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="nameEdit">
-         <property name="maxLength">
-          <number>50</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="qthEdit">
-         <property name="maxLength">
-          <number>75</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QLineEdit" name="ituEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="cqLabel">
-         <property name="text">
-          <string>CQ</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="ituLabel">
-         <property name="text">
-          <string>ITU</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_6">
-       <item row="0" column="2">
-        <widget class="QLabel" name="dxccLabel">
-         <property name="font">
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>DXCC</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="bandLabel">
-         <property name="text">
-          <string>Band</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="bandText">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string notr="true">80m</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="dxccInfo">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="distanceInfo">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="bearingInfo">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="distanceLabel">
-         <property name="font">
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Distance</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="bearingLabel">
-         <property name="text">
-          <string>Bearing</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QTabWidget" name="tabWidget">
-       <property name="currentIndex">
-        <number>0</number>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="3">
+      <widget class="QLabel" name="timeOffLabel">
+       <property name="text">
+        <string>Time Off</string>
        </property>
-       <widget class="QWidget" name="stationTab">
-        <attribute name="title">
-         <string>My Station</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_9">
-         <item row="0" column="0">
-          <widget class="QLabel" name="rigLabel">
-           <property name="text">
-            <string>Rig</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>408</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="6" column="0">
-          <spacer name="verticalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0">
-          <widget class="QComboBox" name="rigEdit"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QDoubleSpinBox" name="powerEdit">
-           <property name="suffix">
-            <string> W</string>
-           </property>
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <double>500.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>100.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="powerLabel">
-           <property name="text">
-            <string>Power</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="qslTab">
-        <attribute name="title">
-         <string>QSL</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="1" column="4">
-          <widget class="QCheckBox" name="checkBox_4">
-           <property name="text">
-            <string>eQSL</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QCheckBox" name="checkBox_3">
-           <property name="text">
-            <string>LoTW</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="checkBox">
-           <property name="text">
-            <string>Bureau</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="qslViaEdit">
-           <property name="maxLength">
-            <number>25</number>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QCheckBox" name="checkBox_2">
-           <property name="text">
-            <string>Direct</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="qslViaLabel">
-           <property name="text">
-            <string>QSL via</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="5">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="contactTab">
-        <attribute name="title">
-         <string>Contest</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="3" column="2">
-          <widget class="QLineEdit" name="lineEdit_3"/>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Rx Serial</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Contest</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QComboBox" name="comboBox">
-           <item>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>LZ DX</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Tx Serial</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="4">
-          <widget class="QLineEdit" name="lineEdit_2"/>
-         </item>
-         <item row="4" column="0" colspan="5">
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="commentTab">
-        <attribute name="title">
-         <string>Comment</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="0">
-          <widget class="QPlainTextEdit" name="commentEdit"/>
-         </item>
-        </layout>
-       </widget>
       </widget>
      </item>
-     <item>
-      <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="enabled">
+     <item row="1" column="2">
+      <widget class="QTimeEdit" name="timeOnEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="displayFormat">
+        <string notr="true">hh:mm:ss</string>
+       </property>
+       <property name="calendarPopup">
         <bool>true</bool>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QTimeEdit" name="timeOffEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="displayFormat">
+        <string notr="true">hh:mm:ss</string>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="dateLabel">
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="timeOnLabel">
+       <property name="text">
+        <string>Time On</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDateEdit" name="dateEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>15</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>1999</year>
+         <month>12</month>
+         <day>30</day>
+        </datetime>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="stopContactTimerButton">
+       <property name="enabled">
+        <bool>false</bool>
        </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
-       <property name="styleSheet">
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <widget class="QLabel" name="rstSentLabel">
+       <property name="text">
+        <string>RST Sent</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="rstRcvdLabel">
+       <property name="text">
+        <string>RST Rcvd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="rstRcvdEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string notr="true">59</string>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="rstSentEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>59</string>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="modeLabel">
+       <property name="text">
+        <string>Mode</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QComboBox" name="modeEdit">
+       <item>
+        <property name="text">
+         <string notr="true">CW</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">SSB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">AM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">FM</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">RTTY</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">PSK31</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">PSK63</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">PSK125</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">HELL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">OLIVIA</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">JT65</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">DOMINO</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">DSTAR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">MT63</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">MFSK8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">MFSK16</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">QPSK31</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">QPSK63</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">QPSK125</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">ROS</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">SSTV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">THOR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">THRB</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">THRBX</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">WSPR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">WINMOR</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="callsignLabel">
+       <property name="text">
+        <string>Callsign</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="frequencyLabel">
+       <property name="text">
+        <string>Frequency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QDoubleSpinBox" name="frequencyEdit">
+       <property name="suffix">
+        <string notr="true"> MHz</string>
+       </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <double>20000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.001000000000000</double>
+       </property>
+       <property name="value">
+        <double>3.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="callsignEdit">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="gridEdit">
+       <property name="maxLength">
+        <number>12</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="cqEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="gridLabel">
+       <property name="text">
+        <string>Grid Locator</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="qthLabel">
+       <property name="text">
+        <string>QTH</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="nameEdit">
+       <property name="maxLength">
+        <number>50</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="qthEdit">
+       <property name="maxLength">
+        <number>75</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLineEdit" name="ituEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="cqLabel">
+       <property name="text">
+        <string>CQ</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="ituLabel">
+       <property name="text">
+        <string>ITU</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="2">
+      <widget class="QLabel" name="dxccLabel">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>DXCC</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="bandLabel">
+       <property name="text">
+        <string>Band</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="bandText">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true">80m</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="dxccInfo">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
         <string notr="true"/>
        </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="distanceInfo">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
        </property>
-       <property name="centerButtons">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="bearingInfo">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="distanceLabel">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Distance</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="bearingLabel">
+       <property name="text">
+        <string>Bearing</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="stationTab">
+      <attribute name="title">
+       <string>My Station</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <widget class="QLabel" name="rigLabel">
+         <property name="text">
+          <string>Rig</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>408</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="rigEdit"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="powerEdit">
+         <property name="suffix">
+          <string> W</string>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>500.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>100.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="powerLabel">
+         <property name="text">
+          <string>Power</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="qslTab">
+      <attribute name="title">
+       <string>QSL</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="4">
+        <widget class="QCheckBox" name="checkBox_4">
+         <property name="text">
+          <string>eQSL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="checkBox_3">
+         <property name="text">
+          <string>LoTW</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="checkBox">
+         <property name="text">
+          <string>Bureau</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="qslViaEdit">
+         <property name="maxLength">
+          <number>25</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>Direct</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="qslViaLabel">
+         <property name="text">
+          <string>QSL via</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="5">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="contactTab">
+      <attribute name="title">
+       <string>Contest</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Rx Serial</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Contest</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LZ DX</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Tx Serial</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+       <item row="4" column="0" colspan="5">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="commentTab">
+      <attribute name="title">
+       <string>Comment</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="commentEdit"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="resetButton">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveButton">
+       <property name="text">
+        <string>Save</string>
+       </property>
+       <property name="default">
         <bool>true</bool>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -840,7 +864,6 @@
   <tabstop>frequencyEdit</tabstop>
   <tabstop>cqEdit</tabstop>
   <tabstop>ituEdit</tabstop>
-  <tabstop>tabWidget</tabstop>
   <tabstop>rigEdit</tabstop>
   <tabstop>powerEdit</tabstop>
   <tabstop>qslViaEdit</tabstop>
@@ -855,38 +878,6 @@
  </tabstops>
  <resources/>
  <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>NewContactWidget</receiver>
-   <slot>saveContact()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>508</x>
-     <y>203</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>438</x>
-     <y>352</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>NewContactWidget</receiver>
-   <slot>resetContact()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>508</x>
-     <y>203</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>370</x>
-     <y>352</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>callsignEdit</sender>
    <signal>editingFinished()</signal>
@@ -964,6 +955,38 @@
     <hint type="destinationlabel">
      <x>516</x>
      <y>263</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>resetButton</sender>
+   <signal>clicked()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>resetContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>577</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>saveContact()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>658</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>212</y>
     </hint>
    </hints>
   </connection>
