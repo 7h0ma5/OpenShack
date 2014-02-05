@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>705</width>
-    <height>406</height>
+    <height>426</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -94,7 +94,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>17</hour>
+           <hour>16</hour>
            <minute>0</minute>
            <second>0</second>
            <year>1999</year>
@@ -158,6 +158,9 @@
          <property name="text">
           <string notr="true">59</string>
          </property>
+         <property name="maxLength">
+          <number>25</number>
+         </property>
         </widget>
        </item>
        <item row="1" column="1">
@@ -178,7 +181,7 @@
           <string>59</string>
          </property>
          <property name="maxLength">
-          <number>8</number>
+          <number>25</number>
          </property>
         </widget>
        </item>
@@ -377,6 +380,9 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="maxLength">
+          <number>25</number>
+         </property>
         </widget>
        </item>
       </layout>
@@ -393,7 +399,7 @@
        <item row="1" column="2">
         <widget class="QLineEdit" name="gridEdit">
          <property name="maxLength">
-          <number>32767</number>
+          <number>12</number>
          </property>
         </widget>
        </item>
@@ -410,6 +416,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
          </property>
         </widget>
        </item>
@@ -428,10 +437,18 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLineEdit" name="nameEdit"/>
+        <widget class="QLineEdit" name="nameEdit">
+         <property name="maxLength">
+          <number>50</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="qthEdit"/>
+        <widget class="QLineEdit" name="qthEdit">
+         <property name="maxLength">
+          <number>75</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="4">
         <widget class="QLineEdit" name="ituEdit">
@@ -446,6 +463,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
          </property>
         </widget>
        </item>
@@ -678,7 +698,11 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLineEdit" name="qslViaEdit"/>
+          <widget class="QLineEdit" name="qslViaEdit">
+           <property name="maxLength">
+            <number>25</number>
+           </property>
+          </widget>
          </item>
          <item row="1" column="2">
           <widget class="QCheckBox" name="checkBox_2">
