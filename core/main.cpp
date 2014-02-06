@@ -20,7 +20,7 @@ static void loadStylesheet(QApplication* app) {
 static void setupTranslator(QApplication* app) {
     QTranslator* qtTranslator = new QTranslator(app);
     qtTranslator->load("qt_" + QLocale::system().name(),
-            QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app->installTranslator(qtTranslator);
 
     QTranslator* translator = new QTranslator(app);
@@ -44,7 +44,14 @@ static bool openDatabase() {
     db.setDatabaseName(settings.value("db/dbname").toString());
     db.setUserName(settings.value("db/username").toString());
     db.setPassword(settings.value("db/password").toString());
-    return db.open();
+
+    if (!db.open()) {
+        qCritical() << db.lastError();
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 static bool migrateDatabase() {
