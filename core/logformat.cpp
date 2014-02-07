@@ -36,7 +36,7 @@ int LogFormat::runImport() {
 
         if (!this->importNext(record)) break;
 
-        if (!endDate.isNull()) {
+        if (dateRangeSet()) {
             if (!inDateRange(record.value("date").toDate())) {
                 continue;
             }
@@ -77,7 +77,18 @@ int LogFormat::runImport() {
 int LogFormat::runExport() {
     this->exportStart();
 
-    QSqlQuery query("SELECT * FROM contacts");
+    QSqlQuery query;
+    if (dateRangeSet()) {
+        query.prepare("SELECT * FROM contacts"
+                      " WHERE (date BETWEEN :start_date AND :end_date)"
+                      " ORDER BY date DESC, time_on DESC");
+        query.bindValue(":start_date", startDate);
+        query.bindValue(":end_date", endDate);
+    }
+    else {
+        query.prepare("SELECT * FROM contacts ORDER BY date DESC, time_on DESC");
+    }
+
     query.exec();
 
     int count = 0;
@@ -89,6 +100,10 @@ int LogFormat::runExport() {
 
     this->exportEnd();
     return count;
+}
+
+bool LogFormat::dateRangeSet() {
+    return !startDate.isNull() && !endDate.isNull();
 }
 
 bool LogFormat::inDateRange(QString date) {

@@ -6,7 +6,7 @@
 #include "ui_mainwindow.h"
 #include "ui/settingsdialog.h"
 #include "ui/importdialog.h"
-#include "core/adif.h"
+#include "ui/exportdialog.h"
 #include "core/fldigi.h"
 #include "core/rig.h"
 
@@ -60,16 +60,8 @@ void MainWindow::importLog() {
 }
 
 void MainWindow::exportLog() {
-    QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
-
-    QFile file(filename);
-    file.open(QFile::WriteOnly | QFile::Text);
-    QTextStream stream(&file);
-
-    ui->statusBar->showMessage(tr("Exporting %1...").arg(filename));
-    Adif adif(stream);
-    int count = adif.runExport();
-    ui->statusBar->showMessage(tr("Exported %n contacts.", "", count), 5000);
+    ExportDialog dialog;
+    dialog.exec();
 }
 
 void MainWindow::showAbout() {

@@ -7,8 +7,7 @@ namespace Ui {
 class ImportDialog;
 }
 
-class ImportDialog : public QDialog
-{
+class ImportDialog : public QDialog {
     Q_OBJECT
 
 public:
@@ -18,7 +17,7 @@ public:
 public slots:
     void browse();
     void toggleAll();
-    void import();
+    void runImport();
 
 private:
     Ui::ImportDialog *ui;

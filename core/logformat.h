@@ -30,6 +30,7 @@ protected:
     QMap<QString, QString>* defaults;
 
 private:
+    bool dateRangeSet();
     bool inDateRange(QString date);
     bool inDateRange(QDate date);
     QDate startDate, endDate;

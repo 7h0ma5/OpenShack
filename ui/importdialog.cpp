@@ -34,7 +34,7 @@ void ImportDialog::toggleAll() {
     ui->endDateEdit->setEnabled(!ui->allCheckBox->isChecked());
 }
 
-void ImportDialog::import() {
+void ImportDialog::runImport() {
     QFile file(ui->fileEdit->text());
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream in(&file);

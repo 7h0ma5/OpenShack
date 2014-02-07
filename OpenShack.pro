@@ -62,7 +62,8 @@ SOURCES += core/main.cpp \
     ui/settingsdialog.cpp \
     ui/importdialog.cpp \
     core/migration.cpp \
-    ui/dbdialog.cpp
+    ui/dbdialog.cpp \
+    ui/exportdialog.cpp
 
 HEADERS += core/rig.h \
     core/fldigi.h \
@@ -80,7 +81,8 @@ HEADERS += core/rig.h \
     ui/settingsdialog.h \
     ui/importdialog.h \
     core/migration.h \
-    ui/dbdialog.h
+    ui/dbdialog.h \
+    ui/exportdialog.h
 
 FORMS += ui/mainwindow.ui \
     ui/newcontactwidget.ui \
@@ -89,7 +91,8 @@ FORMS += ui/mainwindow.ui \
     ui/mapwidget.ui \
     ui/settingsdialog.ui \
     ui/importdialog.ui \
-    ui/dbdialog.ui
+    ui/dbdialog.ui \
+    ui/exportdialog.ui
 
 OTHER_FILES += \
     res/stylesheet.css \
