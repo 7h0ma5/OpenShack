@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>705</width>
-    <height>426</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,123 +19,32 @@
   <property name="windowTitle">
    <string notr="true">Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_10">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout_6">
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>2</number>
+     </property>
      <item row="0" column="3">
-      <widget class="QLabel" name="timeOffLabel">
-       <property name="text">
-        <string>Time Off</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QTimeEdit" name="timeOnEdit">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="displayFormat">
-        <string notr="true">hh:mm:ss</string>
-       </property>
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-       <property name="timeSpec">
-        <enum>Qt::UTC</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QTimeEdit" name="timeOffEdit">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="displayFormat">
-        <string notr="true">hh:mm:ss</string>
-       </property>
-       <property name="timeSpec">
-        <enum>Qt::UTC</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="dateLabel">
-       <property name="text">
-        <string>Date</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="timeOnLabel">
-       <property name="text">
-        <string>Time On</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QDateEdit" name="dateEdit">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="dateTime">
-        <datetime>
-         <hour>15</hour>
-         <minute>0</minute>
-         <second>0</second>
-         <year>1999</year>
-         <month>12</month>
-         <day>30</day>
-        </datetime>
-       </property>
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-       <property name="timeSpec">
-        <enum>Qt::UTC</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QPushButton" name="stopContactTimerButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
+      <widget class="QLabel" name="dxccLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
        <property name="text">
-        <string>Stop</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="1">
-      <widget class="QLabel" name="rstSentLabel">
-       <property name="text">
-        <string>RST Sent</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="rstRcvdLabel">
-       <property name="text">
-        <string>RST Rcvd</string>
+        <string>DXCC</string>
        </property>
       </widget>
      </item>
@@ -149,12 +58,37 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>50</width>
+         <width>60</width>
          <height>16777215</height>
         </size>
        </property>
        <property name="text">
         <string notr="true">59</string>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="callsignEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="maxLength">
         <number>25</number>
@@ -171,7 +105,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>50</width>
+         <width>60</width>
          <height>16777215</height>
         </size>
        </property>
@@ -183,14 +117,243 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="modeLabel">
+     <item row="0" column="0">
+      <widget class="QLabel" name="callsignLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Mode</string>
+        <string>Callsign</string>
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="rstSentLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>RST Sent</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="rstRcvdLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>RST Rcvd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item row="1" column="3">
+      <widget class="QLabel" name="dxccInfo">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>2</number>
+     </property>
+     <item row="1" column="3">
+      <widget class="QLabel" name="distanceInfo">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="nameLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="gridEdit">
+       <property name="maxLength">
+        <number>12</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="gridLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Grid Locator</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="qthLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>QTH</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="nameEdit">
+       <property name="maxLength">
+        <number>50</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="qthEdit">
+       <property name="maxLength">
+        <number>75</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLabel" name="bearingInfo">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="distanceLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Distance</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="bearingLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Bearing</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>2</number>
+     </property>
+     <item row="1" column="2">
       <widget class="QComboBox" name="modeEdit">
        <item>
         <property name="text">
@@ -325,83 +488,76 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QLabel" name="callsignLabel">
+      <widget class="QLabel" name="cqLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Callsign</string>
+        <string>CQ</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="modeLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Mode</string>
        </property>
       </widget>
      </item>
      <item row="0" column="4">
+      <widget class="QLabel" name="bandLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Band</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="ituLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>ITU</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
       <widget class="QLabel" name="frequencyLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Frequency</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
-      <widget class="QDoubleSpinBox" name="frequencyEdit">
-       <property name="suffix">
-        <string notr="true"> MHz</string>
-       </property>
-       <property name="decimals">
-        <number>5</number>
-       </property>
-       <property name="maximum">
-        <double>20000.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.001000000000000</double>
-       </property>
-       <property name="value">
-        <double>3.500000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="callsignEdit">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="maxLength">
-        <number>25</number>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0">
-      <widget class="QLabel" name="nameLabel">
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="gridEdit">
-       <property name="maxLength">
-        <number>12</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
       <widget class="QLineEdit" name="cqEdit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -420,35 +576,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="gridLabel">
-       <property name="text">
-        <string>Grid Locator</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="qthLabel">
-       <property name="text">
-        <string>QTH</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLineEdit" name="nameEdit">
-       <property name="maxLength">
-        <number>50</number>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="qthEdit">
-       <property name="maxLength">
-        <number>75</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
       <widget class="QLineEdit" name="ituEdit">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -467,22 +595,40 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="cqLabel">
-       <property name="text">
-        <string>CQ</string>
+     <item row="1" column="3">
+      <widget class="QDoubleSpinBox" name="frequencyEdit">
+       <property name="suffix">
+        <string notr="true"> MHz</string>
+       </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <double>20000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.001000000000000</double>
+       </property>
+       <property name="value">
+        <double>3.500000000000000</double>
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="ituLabel">
+     <item row="1" column="4">
+      <widget class="QLabel" name="bandText">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>ITU</string>
+        <string notr="true">80m</string>
        </property>
       </widget>
      </item>
      <item row="1" column="5">
-      <spacer name="horizontalSpacer_3">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -496,109 +642,143 @@
      </item>
     </layout>
    </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_6">
-     <item row="0" column="2">
-      <widget class="QLabel" name="dxccLabel">
+   <item row="3" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>2</number>
+     </property>
+     <item row="0" column="3">
+      <widget class="QLabel" name="timeOffLabel">
        <property name="font">
         <font>
+         <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
        <property name="text">
-        <string>DXCC</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="bandLabel">
-       <property name="text">
-        <string>Band</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLabel" name="bandText">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string notr="true">80m</string>
+        <string>Time Off</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLabel" name="dxccInfo">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
+      <widget class="QTimeEdit" name="timeOnEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
        </property>
-       <property name="text">
-        <string notr="true"/>
+       <property name="displayFormat">
+        <string notr="true">hh:mm:ss</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="distanceInfo">
-       <property name="minimumSize">
+     <item row="1" column="3">
+      <widget class="QTimeEdit" name="timeOffEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="displayFormat">
+        <string notr="true">hh:mm:ss</string>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>100</width>
-         <height>0</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string notr="true"/>
-       </property>
-      </widget>
+      </spacer>
      </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="bearingInfo">
+     <item row="0" column="1">
+      <widget class="QLabel" name="dateLabel">
        <property name="font">
         <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string notr="true"/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="distanceLabel">
-       <property name="font">
-        <font>
+         <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
        <property name="text">
-        <string>Distance</string>
+        <string>Date</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="bearingLabel">
+     <item row="0" column="2">
+      <widget class="QLabel" name="timeOnLabel">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Bearing</string>
+        <string>Time On</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QDateEdit" name="dateEdit">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>13</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>1999</year>
+         <month>12</month>
+         <day>30</day>
+        </datetime>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="timeSpec">
+        <enum>Qt::UTC</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="stopContactTimerButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string>Stop</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item>
+   <item row="4" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
@@ -608,8 +788,19 @@
        <string>My Station</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_9">
+       <property name="horizontalSpacing">
+        <number>10</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="rigLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Rig</string>
          </property>
@@ -662,6 +853,11 @@
        </item>
        <item row="0" column="1">
         <widget class="QLabel" name="powerLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Power</string>
          </property>
@@ -674,6 +870,12 @@
        <string>QSL</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
+       <property name="horizontalSpacing">
+        <number>10</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
        <item row="1" column="4">
         <widget class="QCheckBox" name="checkBox_4">
          <property name="text">
@@ -711,6 +913,11 @@
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="qslViaLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>QSL via</string>
          </property>
@@ -731,16 +938,27 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="contactTab">
+     <widget class="QWidget" name="contestTab">
       <attribute name="title">
        <string>Contest</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
+       <property name="horizontalSpacing">
+        <number>10</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
        <item row="3" column="2">
         <widget class="QLineEdit" name="lineEdit_3"/>
        </item>
        <item row="0" column="2">
         <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Rx Serial</string>
          </property>
@@ -748,6 +966,11 @@
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Contest</string>
          </property>
@@ -769,6 +992,11 @@
        </item>
        <item row="0" column="4">
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Tx Serial</string>
          </property>
@@ -804,10 +1032,13 @@
      </widget>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer_5">
+   <item row="5" column="0">
+    <layout class="QGridLayout" name="gridLayout_8">
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <item row="0" column="0">
+      <spacer name="horizontalSpacer_6">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -819,14 +1050,14 @@
        </property>
       </spacer>
      </item>
-     <item>
+     <item row="0" column="2">
       <widget class="QPushButton" name="resetButton">
        <property name="text">
         <string>Reset</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QPushButton" name="saveButton">
        <property name="text">
         <string>Save</string>
@@ -836,8 +1067,8 @@
        </property>
       </widget>
      </item>
-     <item>
-      <spacer name="horizontalSpacer_6">
+     <item row="0" column="3">
+      <spacer name="horizontalSpacer_7">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -862,8 +1093,6 @@
   <tabstop>gridEdit</tabstop>
   <tabstop>modeEdit</tabstop>
   <tabstop>frequencyEdit</tabstop>
-  <tabstop>cqEdit</tabstop>
-  <tabstop>ituEdit</tabstop>
   <tabstop>rigEdit</tabstop>
   <tabstop>powerEdit</tabstop>
   <tabstop>qslViaEdit</tabstop>
