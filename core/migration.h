@@ -11,6 +11,7 @@ private:
     bool migrate(int toVersion);
     int getVersion();
     bool setVersion(int version);
+    void reloadData();
 
     bool migrate1();
 

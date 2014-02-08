@@ -101,7 +101,8 @@ OTHER_FILES += \
 
 RESOURCES += \
     i18n/i18n.qrc \
-    res/res.qrc
+    res/res.qrc \
+    data/data.qrc
 
 TRANSLATIONS = i18n/openshack_de.ts
 

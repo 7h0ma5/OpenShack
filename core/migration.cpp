@@ -1,4 +1,4 @@
-#include <QProgressDialog>
+#include <QTemporaryFile>
 #include <QtSql>
 #include <QDebug>
 #include "core/migration.h"
@@ -8,6 +8,8 @@
  * Returns true on success.
  */
 bool Migration::run() {
+    reloadData();
+
     int currentVersion = getVersion();
 
     if (currentVersion == latestVersion) {
@@ -34,6 +36,19 @@ bool Migration::run() {
     qDebug() << "database migration successful";
 
     return true;
+}
+
+void Migration::reloadData() {
+    QTemporaryFile* csv = QTemporaryFile::createLocalFile(":/data/dxcc.csv");
+    QSqlQuery query;
+    query.prepare("LOAD DATA LOCAL INFILE :file REPLACE"
+                  " INTO TABLE dxcc"
+                  " FIELDS TERMINATED BY ','");
+    query.bindValue(":file", csv->fileName());
+    query.exec();
+    csv->close();
+    csv->remove();
+    delete csv;
 }
 
 /**
@@ -108,6 +123,11 @@ bool Migration::migrate1() {
     result &= query.exec("CREATE TABLE IF NOT EXISTS schema_versions"
                          "(version INT PRIMARY KEY,"
                          "updated DATETIME NOT NULL)");
+
+    result &= query.exec("CREATE TABLE IF NOT EXISTS dxcc"
+                         "(id INT AUTO_INCREMENT PRIMARY KEY,"
+                         "name VARCHAR(100), cont CHAR(2),"
+                         "ituz INT, cqz INT)");
 
     result &= query.exec("CREATE TABLE IF NOT EXISTS contacts"
                          "(id INT AUTO_INCREMENT PRIMARY KEY,"
