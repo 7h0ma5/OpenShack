@@ -81,12 +81,12 @@ int LogFormat::runExport() {
     if (dateRangeSet()) {
         query.prepare("SELECT * FROM contacts"
                       " WHERE (date BETWEEN :start_date AND :end_date)"
-                      " ORDER BY date DESC, time_on DESC");
+                      " ORDER BY date ASC, time_on ASC");
         query.bindValue(":start_date", startDate);
         query.bindValue(":end_date", endDate);
     }
     else {
-        query.prepare("SELECT * FROM contacts ORDER BY date DESC, time_on DESC");
+        query.prepare("SELECT * FROM contacts ORDER BY date ASC, time_on ASC");
     }
 
     query.exec();
