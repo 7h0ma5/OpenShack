@@ -14,20 +14,23 @@ NewContactWidget::NewContactWidget(QWidget *parent) :
 
     rig = Rig::instance();
 
-    connect(rig, SIGNAL(frequencyChanged(double)),
-            this, SLOT(changeFrequency(double)));
+    connect(rig, &Rig::frequencyChanged,
+            this, &NewContactWidget::changeFrequency);
 
-    connect(rig, SIGNAL(modeChanged(QString)),
-            this, SLOT(changeMode(QString)));
+    connect(rig, &Rig::modeChanged,
+            this, &NewContactWidget::changeMode);
 
-    connect(rig, SIGNAL(powerChanged(double)),
-            this, SLOT(changePower(double)));
+    connect(rig, &Rig::powerChanged,
+            this, &NewContactWidget::changePower);
 
     contactTimer = new QTimer(this);
-    connect(contactTimer, SIGNAL(timeout()), this, SLOT(updateTimeOff()));
+    connect(contactTimer, &QTimer::timeout, this, &NewContactWidget::updateTimeOff);
 
-    connect(&callbook, SIGNAL(callsignResult(const QMap<QString, QString>&)),
-            this, SLOT(callsignResult(const QMap<QString, QString>&)));
+    connect(&callbook, &HamQTH::callsignResult, this, &NewContactWidget::callsignResult);
+
+    new QShortcut(QKeySequence(Qt::Key_Escape), this, SLOT(resetContact()), 0, Qt::ApplicationShortcut);
+    new QShortcut(QKeySequence(Qt::Key_F10), this, SLOT(saveContact()), 0, Qt::ApplicationShortcut);
+    new QShortcut(QKeySequence(Qt::Key_F9), this, SLOT(stopContactTimer()), 0, Qt::ApplicationShortcut);
 
     QStringListModel* rigModel = new QStringListModel(this);
     ui->rigEdit->setModel(rigModel);
@@ -133,6 +136,10 @@ void NewContactWidget::callsignResult(const QMap<QString, QString>& data) {
     if (!data.value("qth").isEmpty() && ui->qthEdit->text().isEmpty()) {
         ui->qthEdit->setText(data.value("qth"));
     }
+
+    if (ui->callsignEdit->styleSheet().isEmpty()) {
+        ui->callsignEdit->setStyleSheet("background-color: #bbddff;");
+    }
 }
 
 void NewContactWidget::frequencyChanged() {
@@ -182,6 +189,7 @@ void NewContactWidget::resetContact() {
 
     ui->callsignEdit->setStyleSheet("");
     ui->callsignEdit->setFocus();
+    callsign = QString();
     coordPrec = COORD_NONE;
     emit newTarget(0, 0);
 }
