@@ -137,6 +137,10 @@ void NewContactWidget::callsignResult(const QMap<QString, QString>& data) {
         ui->qthEdit->setText(data.value("qth"));
     }
 
+    if (!data.value("qsl_via").isEmpty() && ui->qslViaEdit->text().isEmpty()) {
+        ui->qslViaEdit->setText(data.value("qsl_via"));
+    }
+
     if (ui->callsignEdit->styleSheet().isEmpty()) {
         ui->callsignEdit->setStyleSheet("background-color: #bbddff;");
     }

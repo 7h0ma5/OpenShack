@@ -81,6 +81,9 @@ void HamQTH::processReply(QNetworkReply* reply) {
         else if (xml.name() == "grid") {
             data["grid"] = xml.readElementText();
         }
+        else if (xml.name() == "qsl_via") {
+            data["qsl_via"] = xml.readElementText();
+        }
     }
 
     delete reply;
