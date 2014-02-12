@@ -114,6 +114,10 @@ void NewContactWidget::queryDatabase(QString callsign) {
         ui->nameEdit->setText(query.value(0).toString());
         ui->qthEdit->setText(query.value(1).toString());
         ui->gridEdit->setText(query.value(2).toString());
+        ui->callsignEdit->setStyleSheet("background-color: #99ff99;");
+    }
+    else {
+        ui->callsignEdit->setStyleSheet("");
     }
 }
 
@@ -176,6 +180,7 @@ void NewContactWidget::resetContact() {
     stopContactTimer();
     setDefaultRst();
 
+    ui->callsignEdit->setStyleSheet("");
     ui->callsignEdit->setFocus();
     coordPrec = COORD_NONE;
     emit newTarget(0, 0);
