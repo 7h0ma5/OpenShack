@@ -51,7 +51,6 @@ SOURCES += core/main.cpp \
     core/hamqth.cpp \
     core/cty.cpp \
     core/logformat.cpp \
-    core/adif.cpp \
     core/utils.cpp \
     core/rigtypemodel.cpp \
     ui/mainwindow.cpp \
@@ -63,14 +62,15 @@ SOURCES += core/main.cpp \
     ui/importdialog.cpp \
     core/migration.cpp \
     ui/dbdialog.cpp \
-    ui/exportdialog.cpp
+    ui/exportdialog.cpp \
+    core/jsonformat.cpp \
+    core/adif2format.cpp
 
 HEADERS += core/rig.h \
     core/fldigi.h \
     core/hamqth.h \
     core/cty.h \
     core/logformat.h \
-    core/adif.h \
     core/utils.h \
     core/rigtypemodel.h \
     ui/mainwindow.h \
@@ -82,7 +82,9 @@ HEADERS += core/rig.h \
     ui/importdialog.h \
     core/migration.h \
     ui/dbdialog.h \
-    ui/exportdialog.h
+    ui/exportdialog.h \
+    core/jsonformat.h \
+    core/adif2format.h
 
 FORMS += ui/mainwindow.ui \
     ui/newcontactwidget.ui \

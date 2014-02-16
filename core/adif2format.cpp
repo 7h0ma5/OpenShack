@@ -1,16 +1,16 @@
-#include <QtSql>
+#include <QSqlRecord>
 #include <QDebug>
-#include "adif.h"
+#include "adif2format.h"
 
-void Adif::exportStart() {
+void Adif2Format::exportStart() {
     stream << "# OpenShack ADIF Export " << QDateTime::currentDateTimeUtc().toString(Qt::ISODate) << "\n";
     writeField("ADIF_VER", "2.2.7");
     writeField("PROGRAMID", "OpenShack");
-    writeField("PROGRAMVERSION", "1.0");
+    writeField("PROGRAMVERSION", VERSION);
     stream << "<EOH>\n\n";
 }
 
-void Adif::exportContact(QSqlRecord& record) {
+void Adif2Format::exportContact(QSqlRecord& record) {
     QDate date = QDate::fromString(record.value("date").toString(), Qt::ISODate);
     QTime time_on = QTime::fromString(record.value("time_on").toString(), Qt::ISODate);
     QTime time_off = QTime::fromString(record.value("time_off").toString(), Qt::ISODate);
@@ -38,7 +38,7 @@ void Adif::exportContact(QSqlRecord& record) {
     stream << "<eor>\n\n";
 }
 
-void Adif::writeField(QString name, QString value, QString type) {
+void Adif2Format::writeField(QString name, QString value, QString type) {
     if (value.isEmpty()) return;
     stream << "<" << name << ":" << value.size();
     if (!type.isEmpty()) stream << ":" << type;
@@ -46,7 +46,7 @@ void Adif::writeField(QString name, QString value, QString type) {
     // TODO: handle unicode values
 }
 
-void Adif::readField(QString& field, QString& value) {
+void Adif2Format::readField(QString& field, QString& value) {
     char c;
 
     field = "";
@@ -100,7 +100,7 @@ void Adif::readField(QString& field, QString& value) {
     }
 }
 
-bool Adif::readContact(QMap<QString, QString>& contact) {
+bool Adif2Format::readContact(QMap<QString, QString>& contact) {
     QString field;
     QString value;
 
@@ -119,7 +119,7 @@ bool Adif::readContact(QMap<QString, QString>& contact) {
     return false;
 }
 
-bool Adif::importNext(QSqlRecord& record) {
+bool Adif2Format::importNext(QSqlRecord& record) {
     QMap<QString, QString> contact;
 
     if (!readContact(contact)) {
@@ -162,7 +162,7 @@ bool Adif::importNext(QSqlRecord& record) {
     return true;
 }
 
-QTime Adif::parseTime(QString time) {
+QTime Adif2Format::parseTime(QString time) {
     switch (time.length()) {
     case 4:
         return QTime::fromString(time, "hhmm");

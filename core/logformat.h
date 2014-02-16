@@ -9,13 +9,25 @@ class QSqlRecord;
 class LogFormat
 {
 public:
+    enum Type {
+        ADIF2,
+        ADIF3,
+        CABRILLO,
+        JSON
+    };
+
     LogFormat(QTextStream& stream);
     virtual ~LogFormat();
+
+    static LogFormat* open(QString type, QTextStream& stream);
+    static LogFormat* open(Type typ, QTextStream& stream);
 
     int runImport();
     int runExport();
     void setDefaults(QMap<QString, QString>& defaults);
     void setDateRange(QDate start, QDate end);
+
+
 
 protected:
     virtual void importStart() {}

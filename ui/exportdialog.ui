@@ -142,6 +142,11 @@
           <string notr="true">ADIF 2</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>JSON</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

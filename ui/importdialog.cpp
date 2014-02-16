@@ -1,7 +1,7 @@
 #include <QFileDialog>
 #include "importdialog.h"
 #include "ui_importdialog.h"
-#include "core/adif.h"
+#include "core/adif2format.h"
 
 ImportDialog::ImportDialog(QWidget *parent) :
     QDialog(parent),
@@ -53,7 +53,7 @@ void ImportDialog::runImport() {
         defaults["comment"] = ui->commentEdit->text();
     }
 
-    Adif adif(in);
+    Adif2Format adif(in);
     adif.setDefaults(defaults);
 
     if (!ui->allCheckBox->isChecked()) {

@@ -1,5 +1,7 @@
 #include <QtSql>
 #include "logformat.h"
+#include "adif2format.h"
+#include "jsonformat.h"
 #include "utils.h"
 #include "cty.h"
 
@@ -9,6 +11,46 @@ LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
 
 LogFormat::~LogFormat() {
 
+}
+
+LogFormat* LogFormat::open(QString type, QTextStream& stream) {
+    type = type.toLower();
+
+    if (type == "adif 2") {
+        return open(LogFormat::ADIF2, stream);
+    }
+    else if (type == "adif 3") {
+        return open(LogFormat::ADIF3, stream);
+    }
+    else if (type == "json") {
+        return open(LogFormat::JSON, stream);
+    }
+    else if (type == "cabrillo") {
+        return open(LogFormat::JSON, stream);
+    }
+    else {
+        return NULL;
+    }
+}
+
+LogFormat* LogFormat::open(LogFormat::Type type, QTextStream& stream) {
+    switch (type) {
+    case LogFormat::ADIF2:
+        return new Adif2Format(stream);
+
+    case LogFormat::ADIF3:
+        return NULL;
+
+    case LogFormat::JSON:
+        qDebug() << "new json";
+        return new JsonFormat(stream);
+
+    case LogFormat::CABRILLO:
+        return NULL;
+
+    default:
+        return NULL;
+    }
 }
 
 void LogFormat::setDefaults(QMap<QString, QString>& defaults) {

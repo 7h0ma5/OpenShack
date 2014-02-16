@@ -2,7 +2,7 @@
 #include <QtXml>
 #include <QtDebug>
 #include "fldigi.h"
-#include "adif.h"
+#include "adif2format.h"
 
 Fldigi::Fldigi(QObject *parent) :
     QTcpServer(parent)
@@ -138,7 +138,7 @@ QByteArray Fldigi::addRecord(QString data) {
     defaults["my_grid"] = settings.value("operator/grid").toString();
 
     QTextStream in(&data);
-    Adif adif(in);
+    Adif2Format adif(in);
     adif.setDefaults(defaults);
     int count = adif.runImport();
 

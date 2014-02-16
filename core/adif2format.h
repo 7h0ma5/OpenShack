@@ -1,11 +1,11 @@
-#ifndef ADIF_H
-#define ADIF_H
+#ifndef ADIF2FORMAT_H
+#define ADIF2FORMAT_H
 
 #include "logformat.h"
 
-class Adif : public LogFormat {
+class Adif2Format : public LogFormat {
 public:
-    Adif(QTextStream& stream) : LogFormat(stream) {}
+    Adif2Format(QTextStream& stream) : LogFormat(stream) {}
 
 private:
     bool importNext(QSqlRecord& contact);
@@ -18,4 +18,4 @@ private:
     QTime parseTime(QString time);
 };
 
-#endif // ADIF_H
+#endif // ADIF2FORMAT_H

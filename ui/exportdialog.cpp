@@ -1,7 +1,8 @@
 #include <QFileDialog>
+#include <QDebug>
 #include "ui/exportdialog.h"
 #include "ui_exportdialog.h"
-#include "core/adif.h"
+#include "core/logformat.h"
 
 ExportDialog::ExportDialog(QWidget *parent) :
     QDialog(parent),
@@ -15,7 +16,7 @@ ExportDialog::ExportDialog(QWidget *parent) :
 }
 
 void ExportDialog::browse() {
-    QString filename = QFileDialog::getSaveFileName(this, "ADIF File", "logbook.adi", "*.adi");
+    QString filename = QFileDialog::getSaveFileName(this);
     ui->fileEdit->setText(filename);
 }
 
@@ -29,13 +30,20 @@ void ExportDialog::runExport() {
     file.open(QFile::WriteOnly | QFile::Text);
     QTextStream out(&file);
 
-    Adif adif(out);
+    LogFormat* format = LogFormat::open(ui->typeSelect->currentText(), out);
 
-    if (!ui->allCheckBox->isChecked()) {
-        adif.setDateRange(ui->startDateEdit->date(), ui->endDateEdit->date());
+    if (!format) {
+        qCritical() << "unknown log format";
+        return;
     }
 
-    int count = adif.runExport();
+    if (!ui->allCheckBox->isChecked()) {
+        format->setDateRange(ui->startDateEdit->date(), ui->endDateEdit->date());
+    }
+
+    int count = format->runExport();
+
+    delete format;
 
     ui->statusLabel->setText(tr("Exported %n contacts.", "", count));
 }
