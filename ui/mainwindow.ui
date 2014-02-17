@@ -17,9 +17,32 @@
    <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
-     <widget class="LogbookWidget" name="logbookWidget" native="true"/>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="NewContactWidget" name="newContactWidget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <widget class="LogbookWidget" name="logbookWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>-10</x>
+         <y>-100</y>
+         <width>718</width>
+         <height>228</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -29,7 +52,7 @@
      <x>0</x>
      <y>0</y>
      <width>810</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -68,7 +91,6 @@
     </property>
     <addaction name="actionDXClusterWindow"/>
     <addaction name="actionMapWindow"/>
-    <addaction name="actionNewContactWindow"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuLogbook"/>
@@ -85,7 +107,7 @@
     <string>DX Cluster</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_3">
     <layout class="QGridLayout" name="gridLayout_2">
@@ -100,7 +122,7 @@
     <string>Map</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>8</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_4">
     <layout class="QGridLayout" name="gridLayout_5">
@@ -118,46 +140,6 @@
      </property>
      <item row="0" column="0">
       <widget class="MapWidget" name="mapWidget" native="true"/>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QDockWidget" name="newContactDockWidget">
-   <property name="windowTitle">
-    <string>New Contact</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>8</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_5">
-    <layout class="QGridLayout" name="gridLayout_4">
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="NewContactWidget" name="newContactWidget" native="true">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -473,22 +455,6 @@
     <hint type="destinationlabel">
      <x>657</x>
      <y>150</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionNewContactWindow</sender>
-   <signal>triggered()</signal>
-   <receiver>newContactDockWidget</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>404</x>
-     <y>438</y>
     </hint>
    </hints>
   </connection>
