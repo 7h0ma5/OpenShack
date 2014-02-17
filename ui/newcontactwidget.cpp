@@ -81,8 +81,7 @@ void NewContactWidget::callsignChanged() {
         callsign = ui->callsignEdit->text();
     }
 
-    ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
-    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    updateTime();
 
     if (callsign.isEmpty()) {
         stopContactTimer();
@@ -173,9 +172,7 @@ void NewContactWidget::gridChanged() {
 }
 
 void NewContactWidget::resetContact() {
-    ui->dateEdit->setDate(QDate::currentDate());
-    ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
-    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    updateTime();
     ui->callsignEdit->clear();
     ui->nameEdit->clear();
     ui->qthEdit->clear();
@@ -242,15 +239,21 @@ void NewContactWidget::saveContact() {
 void NewContactWidget::startContactTimer() {
     if (!contactTimer->isActive()) {
         contactTimer->start(1000);
-        ui->stopContactTimerButton->setEnabled(true);
     }
 }
 
 void NewContactWidget::stopContactTimer() {
     if (contactTimer->isActive()) {
         contactTimer->stop();
-        ui->stopContactTimerButton->setEnabled(false);
     }
+    updateTimeOff();
+}
+
+void NewContactWidget::updateTime() {
+    ui->dateEdit->setDate(QDate::currentDate());
+    ui->timeOnEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    ui->timeOffEdit->setTime(QDateTime::currentDateTimeUtc().time());
+    startContactTimer();
 }
 
 void NewContactWidget::updateTimeOff() {

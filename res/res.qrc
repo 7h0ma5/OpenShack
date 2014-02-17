@@ -4,19 +4,21 @@
         <file>map/nasaearthlights.jpg</file>
         <file>stylesheet.css</file>
         <file>openshack.png</file>
-        <file>icons/application-exit.svg</file>
-        <file>icons/application-settings.svg</file>
-        <file>icons/dialog-apply.svg</file>
-        <file>icons/document-new.svg</file>
-        <file>icons/document-save.svg</file>
-        <file>icons/edit-clear.svg</file>
-        <file>icons/edit-delete.svg</file>
-        <file>icons/emblem-web.svg</file>
-        <file>icons/go-bottom.svg</file>
-        <file>icons/go-top.svg</file>
-        <file>icons/network-wireless.svg</file>
-        <file>icons/playback-stop.svg</file>
-        <file>icons/help-about.svg</file>
-        <file>icons/network-wired.svg</file>
+        <file>icons/ac-adapter.png</file>
+        <file>icons/application-exit.png</file>
+        <file>icons/application-settings.png</file>
+        <file>icons/clock-new.png</file>
+        <file>icons/document-new.png</file>
+        <file>icons/document-save.png</file>
+        <file>icons/edit-clear.png</file>
+        <file>icons/edit-delete.png</file>
+        <file>icons/emblem-web.png</file>
+        <file>icons/go-down.png</file>
+        <file>icons/go-up.png</file>
+        <file>icons/help-about.png</file>
+        <file>icons/network-wireless.png</file>
+        <file>icons/user-trash.png</file>
+        <file>icons/dialog-apply.png</file>
+        <file>icons/clock-stop.png</file>
     </qresource>
 </RCC>

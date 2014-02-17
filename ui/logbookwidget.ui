@@ -58,7 +58,7 @@
   <action name="deleteContact">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/edit-delete.svg</normaloff>:/res/icons/edit-delete.svg</iconset>
+     <normaloff>:/res/icons/edit-delete.png</normaloff>:/res/icons/edit-delete.png</iconset>
    </property>
    <property name="text">
     <string>Delete</string>

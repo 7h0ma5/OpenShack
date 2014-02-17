@@ -137,10 +137,38 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionNewContact"/>
+   <addaction name="actionSaveContact"/>
+   <addaction name="separator"/>
+   <addaction name="actionImport"/>
+   <addaction name="actionExport"/>
+   <addaction name="separator"/>
+   <addaction name="actionDXClusterWindow"/>
+   <addaction name="actionMapWindow"/>
+  </widget>
   <action name="actionQuit">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/application-exit.svg</normaloff>:/res/icons/application-exit.svg</iconset>
+     <normaloff>:/res/icons/application-exit.png</normaloff>:/res/icons/application-exit.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -152,7 +180,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/application-settings.svg</normaloff>:/res/icons/application-settings.svg</iconset>
+     <normaloff>:/res/icons/application-settings.png</normaloff>:/res/icons/application-settings.png</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -164,7 +192,7 @@
   <action name="actionNewContact">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/document-new.svg</normaloff>:/res/icons/document-new.svg</iconset>
+     <normaloff>:/res/icons/document-new.png</normaloff>:/res/icons/document-new.png</iconset>
    </property>
    <property name="text">
     <string>New Contact</string>
@@ -176,7 +204,7 @@
   <action name="actionImport">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/go-top.svg</normaloff>:/res/icons/go-top.svg</iconset>
+     <normaloff>:/res/icons/go-up.png</normaloff>:/res/icons/go-up.png</iconset>
    </property>
    <property name="text">
     <string>Import</string>
@@ -185,7 +213,7 @@
   <action name="actionExport">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/go-bottom.svg</normaloff>:/res/icons/go-bottom.svg</iconset>
+     <normaloff>:/res/icons/go-down.png</normaloff>:/res/icons/go-down.png</iconset>
    </property>
    <property name="text">
     <string>Export</string>
@@ -194,7 +222,7 @@
   <action name="actionConnect">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/network-wired.svg</normaloff>:/res/icons/network-wired.svg</iconset>
+     <normaloff>:/res/icons/ac-adapter.png</normaloff>:/res/icons/ac-adapter.png</iconset>
    </property>
    <property name="text">
     <string>Connect</string>
@@ -203,7 +231,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/help-about.svg</normaloff>:/res/icons/help-about.svg</iconset>
+     <normaloff>:/res/icons/help-about.png</normaloff>:/res/icons/help-about.png</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -212,7 +240,7 @@
   <action name="actionSaveContact">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/document-save.svg</normaloff>:/res/icons/document-save.svg</iconset>
+     <normaloff>:/res/icons/document-save.png</normaloff>:/res/icons/document-save.png</iconset>
    </property>
    <property name="text">
     <string>Save Contact</string>
@@ -224,7 +252,7 @@
   <action name="actionDXClusterWindow">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/network-wireless.svg</normaloff>:/res/icons/network-wireless.svg</iconset>
+     <normaloff>:/res/icons/network-wireless.png</normaloff>:/res/icons/network-wireless.png</iconset>
    </property>
    <property name="text">
     <string>DX Cluster</string>
@@ -233,7 +261,7 @@
   <action name="actionMapWindow">
    <property name="icon">
     <iconset resource="../res/res.qrc">
-     <normaloff>:/res/icons/emblem-web.svg</normaloff>:/res/icons/emblem-web.svg</iconset>
+     <normaloff>:/res/icons/emblem-web.png</normaloff>:/res/icons/emblem-web.png</iconset>
    </property>
    <property name="text">
     <string>Map</string>

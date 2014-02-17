@@ -38,6 +38,7 @@ public slots:
     void resetContact();
     void saveContact();
     void gridChanged();
+    void updateTime();
     void updateTimeOff();
     void startContactTimer();
     void stopContactTimer();

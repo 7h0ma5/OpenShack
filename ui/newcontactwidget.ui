@@ -186,6 +186,31 @@
      <property name="verticalSpacing">
       <number>2</number>
      </property>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="callsignEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="3">
       <widget class="QLabel" name="dxccLabel">
        <property name="font">
@@ -216,31 +241,6 @@
        </property>
        <property name="text">
         <string notr="true">59</string>
-       </property>
-       <property name="maxLength">
-        <number>25</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLineEdit" name="callsignEdit">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
        </property>
        <property name="maxLength">
         <number>25</number>
@@ -311,19 +311,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="6">
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="1" column="3">
       <widget class="QLabel" name="dxccInfo">
        <property name="font">
@@ -336,6 +323,19 @@
         <string notr="true"/>
        </property>
       </widget>
+     </item>
+     <item row="1" column="4">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -656,7 +656,7 @@
      <property name="verticalSpacing">
       <number>2</number>
      </property>
-     <item row="0" column="3">
+     <item row="0" column="4">
       <widget class="QLabel" name="timeOffLabel">
        <property name="font">
         <font>
@@ -686,7 +686,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="1" column="4">
       <widget class="QTimeEdit" name="timeOffEdit">
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
@@ -699,7 +699,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="5">
+     <item row="1" column="6">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -747,7 +747,7 @@
        </property>
        <property name="dateTime">
         <datetime>
-         <hour>10</hour>
+         <hour>9</hour>
          <minute>0</minute>
          <second>0</second>
          <year>1999</year>
@@ -763,16 +763,31 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
+     <item row="1" column="5">
       <widget class="QPushButton" name="stopContactTimerButton">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="text">
-        <string>Stop</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../res/res.qrc">
+         <normaloff>:/res/icons/clock-stop.png</normaloff>:/res/icons/clock-stop.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="updateTimeButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../res/res.qrc">
+         <normaloff>:/res/icons/clock-new.png</normaloff>:/res/icons/clock-new.png</iconset>
        </property>
       </widget>
      </item>
@@ -787,7 +802,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="stationTab">
       <attribute name="title">
@@ -1063,7 +1078,7 @@
        </property>
        <property name="icon">
         <iconset resource="../res/res.qrc">
-         <normaloff>:/res/icons/edit-clear.svg</normaloff>:/res/icons/edit-clear.svg</iconset>
+         <normaloff>:/res/icons/edit-clear.png</normaloff>:/res/icons/edit-clear.png</iconset>
        </property>
       </widget>
      </item>
@@ -1074,7 +1089,7 @@
        </property>
        <property name="icon">
         <iconset resource="../res/res.qrc">
-         <normaloff>:/res/icons/dialog-apply.svg</normaloff>:/res/icons/dialog-apply.svg</iconset>
+         <normaloff>:/res/icons/dialog-apply.png</normaloff>:/res/icons/dialog-apply.png</iconset>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -1251,6 +1266,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>updateTimeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>NewContactWidget</receiver>
+   <slot>updateTime()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>193</x>
+     <y>205</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>saveContact()</slot>
@@ -1260,5 +1291,6 @@
   <slot>stopContactTimer()</slot>
   <slot>frequencyChanged()</slot>
   <slot>modeChanged()</slot>
+  <slot>updateTime()</slot>
  </slots>
 </ui>
