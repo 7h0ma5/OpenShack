@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>810</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -139,9 +139,8 @@
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/application-exit.svg</normaloff>:/res/icons/application-exit.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -152,9 +151,8 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="preferences-desktop">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/application-settings.svg</normaloff>:/res/icons/application-settings.svg</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -165,9 +163,8 @@
   </action>
   <action name="actionNewContact">
    <property name="icon">
-    <iconset theme="document-new">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/document-new.svg</normaloff>:/res/icons/document-new.svg</iconset>
    </property>
    <property name="text">
     <string>New Contact</string>
@@ -178,9 +175,8 @@
   </action>
   <action name="actionImport">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/go-top.svg</normaloff>:/res/icons/go-top.svg</iconset>
    </property>
    <property name="text">
     <string>Import</string>
@@ -188,9 +184,8 @@
   </action>
   <action name="actionExport">
    <property name="icon">
-    <iconset theme="document-save">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/go-bottom.svg</normaloff>:/res/icons/go-bottom.svg</iconset>
    </property>
    <property name="text">
     <string>Export</string>
@@ -198,9 +193,8 @@
   </action>
   <action name="actionConnect">
    <property name="icon">
-    <iconset theme="network-wired">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/network-wired.svg</normaloff>:/res/icons/network-wired.svg</iconset>
    </property>
    <property name="text">
     <string>Connect</string>
@@ -208,9 +202,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/help-about.svg</normaloff>:/res/icons/help-about.svg</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -218,9 +211,8 @@
   </action>
   <action name="actionSaveContact">
    <property name="icon">
-    <iconset theme="document-save">
-     <normaloff/>
-    </iconset>
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/document-save.svg</normaloff>:/res/icons/document-save.svg</iconset>
    </property>
    <property name="text">
     <string>Save Contact</string>
@@ -230,18 +222,21 @@
    </property>
   </action>
   <action name="actionDXClusterWindow">
+   <property name="icon">
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/network-wireless.svg</normaloff>:/res/icons/network-wireless.svg</iconset>
+   </property>
    <property name="text">
     <string>DX Cluster</string>
    </property>
   </action>
   <action name="actionMapWindow">
+   <property name="icon">
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/emblem-web.svg</normaloff>:/res/icons/emblem-web.svg</iconset>
+   </property>
    <property name="text">
     <string>Map</string>
-   </property>
-  </action>
-  <action name="actionNewContactWindow">
-   <property name="text">
-    <string>New Contact</string>
    </property>
   </action>
  </widget>
@@ -289,7 +284,9 @@
    </slots>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../res/res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>

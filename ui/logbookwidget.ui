@@ -56,6 +56,10 @@
    </item>
   </layout>
   <action name="deleteContact">
+   <property name="icon">
+    <iconset resource="../res/res.qrc">
+     <normaloff>:/res/icons/edit-delete.svg</normaloff>:/res/icons/edit-delete.svg</iconset>
+   </property>
    <property name="text">
     <string>Delete</string>
    </property>
@@ -64,7 +68,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res/res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>deleteContact</sender>
