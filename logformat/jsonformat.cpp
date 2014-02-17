@@ -1,16 +1,16 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QSqlRecord>
-#include "core/jsonformat.h"
+#include "jsonformat.h"
 
 void JsonFormat::exportContact(QSqlRecord& record) {
     QJsonObject contact;
     int fieldCount = record.count();
     for (int i = 0; i < fieldCount; i++) {
         QString fieldName = record.fieldName(i);
-        QString fieldValue = record.value(i).toString();
-        if (fieldValue.isEmpty()) continue;
-        contact[fieldName] = QJsonValue(fieldValue);
+        QVariant fieldValue = record.value(i);
+        if (fieldValue.isNull()) continue;
+        contact[fieldName] = QJsonValue::fromVariant(fieldValue);
     }
     data.append(contact);
 }

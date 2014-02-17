@@ -64,7 +64,7 @@ SOURCES += core/main.cpp \
     ui/exportdialog.cpp \
     logformat/logformat.cpp \
     logformat/jsonformat.cpp \
-    logformat/adif2format.cpp
+    logformat/adif2format.cpp \
 
 HEADERS += core/rig.h \
     core/fldigi.h \
@@ -84,7 +84,7 @@ HEADERS += core/rig.h \
     ui/exportdialog.h \
     logformat/logformat.h \
     logformat/jsonformat.h \
-    logformat/adif2format.h
+    logformat/adif2format.h \
 
 FORMS += ui/mainwindow.ui \
     ui/newcontactwidget.ui \

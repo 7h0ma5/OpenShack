@@ -1,7 +1,7 @@
 #include <QFileDialog>
 #include "importdialog.h"
 #include "ui_importdialog.h"
-#include "core/adif2format.h"
+#include "logformat/logformat.h"
 
 ImportDialog::ImportDialog(QWidget *parent) :
     QDialog(parent),
@@ -53,14 +53,19 @@ void ImportDialog::runImport() {
         defaults["comment"] = ui->commentEdit->text();
     }
 
-    Adif2Format adif(in);
-    adif.setDefaults(defaults);
+    LogFormat* format = LogFormat::open(ui->typeSelect->currentText(), in);
+    format->setDefaults(defaults);
 
-    if (!ui->allCheckBox->isChecked()) {
-        adif.setDateRange(ui->startDateEdit->date(), ui->endDateEdit->date());
+    if (!format) {
+        qCritical() << "unknown log format";
+        return;
     }
 
-    int count = adif.runImport();
+    if (!ui->allCheckBox->isChecked()) {
+        format->setDateRange(ui->startDateEdit->date(), ui->endDateEdit->date());
+    }
+
+    int count = format->runImport();
 
     ui->statusLabel->setText(tr("Imported %n contacts.", "", count));
 }

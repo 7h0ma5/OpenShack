@@ -2,8 +2,8 @@
 #include "logformat.h"
 #include "adif2format.h"
 #include "jsonformat.h"
-#include "utils.h"
-#include "cty.h"
+#include "core/utils.h"
+#include "core/cty.h"
 
 LogFormat::LogFormat(QTextStream& stream) : stream(stream) {
     this->defaults = 0;

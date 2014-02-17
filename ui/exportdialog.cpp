@@ -2,7 +2,7 @@
 #include <QDebug>
 #include "ui/exportdialog.h"
 #include "ui_exportdialog.h"
-#include "core/logformat.h"
+#include "logformat/logformat.h"
 
 ExportDialog::ExportDialog(QWidget *parent) :
     QDialog(parent),
