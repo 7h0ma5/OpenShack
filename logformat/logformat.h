@@ -10,8 +10,8 @@ class LogFormat
 {
 public:
     enum Type {
-        ADIF2,
-        ADIF3,
+        ADI,
+        ADX,
         CABRILLO,
         JSON
     };

@@ -1,6 +1,7 @@
 #include <QtSql>
 #include "logformat.h"
-#include "adif2format.h"
+#include "adiformat.h"
+#include "adxformat.h"
 #include "jsonformat.h"
 #include "core/utils.h"
 #include "core/cty.h"
@@ -16,11 +17,11 @@ LogFormat::~LogFormat() {
 LogFormat* LogFormat::open(QString type, QTextStream& stream) {
     type = type.toLower();
 
-    if (type == "adif 2") {
-        return open(LogFormat::ADIF2, stream);
+    if (type == "adi") {
+        return open(LogFormat::ADI, stream);
     }
-    else if (type == "adif 3") {
-        return open(LogFormat::ADIF3, stream);
+    else if (type == "adx") {
+        return open(LogFormat::ADX, stream);
     }
     else if (type == "json") {
         return open(LogFormat::JSON, stream);
@@ -35,14 +36,13 @@ LogFormat* LogFormat::open(QString type, QTextStream& stream) {
 
 LogFormat* LogFormat::open(LogFormat::Type type, QTextStream& stream) {
     switch (type) {
-    case LogFormat::ADIF2:
-        return new Adif2Format(stream);
+    case LogFormat::ADI:
+        return new AdiFormat(stream);
 
-    case LogFormat::ADIF3:
-        return NULL;
+    case LogFormat::ADX:
+        return new AdxFormat(stream);
 
     case LogFormat::JSON:
-        qDebug() << "new json";
         return new JsonFormat(stream);
 
     case LogFormat::CABRILLO:

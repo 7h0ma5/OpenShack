@@ -2,7 +2,7 @@
 #include <QtXml>
 #include <QtDebug>
 #include "fldigi.h"
-#include "logformat/adif2format.h"
+#include "logformat/adiformat.h"
 
 Fldigi::Fldigi(QObject *parent) :
     QTcpServer(parent)
@@ -99,20 +99,9 @@ QByteArray Fldigi::listMethods() {
     xml.writeStartElement("array");
     xml.writeStartElement("data");
 
-    xml.writeStartElement("value");
-    xml.writeCharacters("log.add_record");
-    xml.writeEndElement();
+    xml.writeTextElement("value", "log.add_record");
+    xml.writeTextElement("value", "system.listMethods");
 
-    xml.writeStartElement("value");
-    xml.writeCharacters("system.listMethods");
-    xml.writeEndElement();
-
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
     xml.writeEndDocument();
 
     return out;
@@ -128,17 +117,13 @@ QByteArray Fldigi::addRecord(QString data) {
     xml.writeStartElement("params");
     xml.writeStartElement("param");
     xml.writeStartElement("value");
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
-    xml.writeEndElement();
     xml.writeEndDocument();
 
     QMap<QString, QString> defaults;
     defaults["my_grid"] = settings.value("operator/grid").toString();
 
     QTextStream in(&data);
-    Adif2Format adif(in);
+    AdiFormat adif(in);
     adif.setDefaults(defaults);
     int count = adif.runImport();
 

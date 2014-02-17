@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>327</width>
-    <height>327</height>
+    <width>372</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Import</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
@@ -75,7 +78,7 @@
         </property>
         <item>
          <property name="text">
-          <string notr="true">ADIF 2</string>
+          <string notr="true">ADI</string>
          </property>
         </item>
        </widget>

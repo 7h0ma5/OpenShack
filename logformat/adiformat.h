@@ -1,11 +1,11 @@
-#ifndef ADIF2FORMAT_H
-#define ADIF2FORMAT_H
+#ifndef ADIFORMAT_H
+#define ADIFORMAT_H
 
 #include "logformat.h"
 
-class Adif2Format : public LogFormat {
+class AdiFormat : public LogFormat {
 public:
-    Adif2Format(QTextStream& stream) : LogFormat(stream) {}
+    AdiFormat(QTextStream& stream) : LogFormat(stream) {}
 
 private:
     bool importNext(QSqlRecord& contact);
